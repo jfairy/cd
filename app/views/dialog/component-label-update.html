@@ -1,0 +1,26 @@
+<div class="dialog-header">
+    <h4>更新标签</h4>
+</div>
+<div class="dialog-body">
+   <div class="form-horizontal">  
+      <form name="updateLabelForm" novalidate="" class="form-validate form-horizontal">
+	        <fieldset>
+	           <div class="form-group">
+	              <label class="col-sm-3 control-label">标签：</label>
+	              <div class="col-sm-9"> 
+	                 <select ng-show="hasLabels" id="optionalLabels"
+                       data-placeholder="请选择标签"
+                       name="labels" ng-model="labels" multiple="multiple"
+                       class="chosen-select form-control">
+                     </select>
+	              </div>
+	           </div>
+	        </fieldset>
+      </form>
+   </div>
+</div>
+<div class="dialog-footer">
+   <a href="" class="btn btn-info" ng-click="closeThisDialog(0)">取消</a> 
+   <button class="btn" ng-disabled="!updateLabelForm.$valid" ng-class="{'btn-primary':updateLabelForm.$valid,'btn-default':!updateLabelForm.$valid}" ng-click="saveFn()">更新</button>
+</div>
+ 

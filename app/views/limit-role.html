@@ -1,0 +1,54 @@
+<div class="clearfix cont-header" style="padding:0;">
+    <div class="col-sm-6">
+        <a class="btn-cd-icon" ng-click="openCreateRole()"><span class="cd-ic_adduser">
+                <span class="path1"></span><span class="path2"></span><span class="path3"></span>
+                </span>  新建角色</a>
+    </div>
+</div>
+<div class="row mt20">
+    <div ng-class="{'col-sm-8':treeoff,'col-sm-12':!treeoff}">
+        <table class="table table_title table-striped cd-table">
+            <tr>
+                <th>角色名称</th>
+                <th>操作</th>
+            </tr>
+            <tr ng-repeat="role in roleList">
+                <td>{{role.name}}</td>
+                <td>
+
+                    <a class="btn btn-cd-default" ng-click="viewLimit(role)">查看权限</a>
+                    <button class="btn btn-cd-default btn-cd-default-del" title="删除角色" ng-click="delRole($index,role.roleId)">
+                        删除
+                    </button>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="col-sm-4" ng-if="treeoff">
+        <div class="well wd-wide">
+            <span class="fa-stack" ng-click="close()">
+                <em class="fa fa-circle fa-stack-2x text-danger"></em>
+                <em class="fa fa-close fa-stack-1x fa-inverse text-white"></em>
+             </span>
+            <div class="head">{{currole.name}}:当前权限</div>
+            <tabset justified="true">
+                <tab>
+                    <tab-heading>一级权限</tab-heading>
+                    <div class="checkbox-tree">
+                        <span ng-if="doing_async">...loading...</span>
+                        <abn-tree ng-if="treeoneoff" tree-data="my_data_one" tree-control="my_tree_one" on-select="my_tree_handler(branch)" expand-level="2"></abn-tree>
+                        <button type="button" class="btn btn-info" ng-click="savetree(my_data_one,currole.roleId)">修改</button>
+                    </div>
+                </tab>
+                <tab>
+                    <tab-heading>二级权限</tab-heading>
+                    <div class="checkbox-tree">
+                        <span ng-if="doing_async">...loading...</span>
+                        <abn-tree ng-if="treetwooff" tree-data="my_data_two" tree-control="my_tree_two" on-select="my_tree_handler(branch)" expand-level="2"></abn-tree>
+                        <button type="button" class="btn btn-info" ng-click="savetree(my_data_two,currole.roleId)">修改</button>
+                    </div>
+                </tab>
+            </tabset>
+        </div>
+    </div>
+</div>

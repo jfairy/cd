@@ -1,0 +1,93 @@
+<div class="breadcont clearfix">
+   <ol class="breadcrumb pull-left">
+      <li><a ui-sref="app.component_manage">组件列表</a>
+      </li>
+      <li>
+      	<a ui-sref="app.component_detail({componentName:$stateParams.componentName,resourceId:$stateParams.componentId})">{{$stateParams.componentName}}</a>
+      </li>
+      <li class="active">
+      	{{$stateParams.versionName}}  
+      </li>
+   </ol>
+</div>
+<div class="cont-body">
+  
+
+<div class="panel" ng-show="!fail">
+<div class="panel-body">
+<div class="form-horizontal">  
+      <form name="form">
+         <div class="panel-body loader-demo" ng-show="!isLoading">
+            <div class="ball-spin-fade-loader">
+               <div></div>
+               <div></div>
+               <div></div>
+               <div></div>
+               <div></div>
+               <div></div>
+               <div></div>
+               <div></div>
+            </div>
+            <p style="position:relative;top:30px;">正在加载文件请稍等！</p>
+         </div>
+        
+         <div class="filetree clearfix" ng-show="isLoading">  
+      	  	<div class="filemenu pull-left">
+      	  		<abn-tree2 ng-if="treeoff" tree-data="my_data" tree-control="my_tree" on-select="my_tree_handler(branch,my_data)" expand-level="4"></abn-tree2>
+      	  	</div>
+      	    <div class="filecont pull-left">
+      	        <textarea style="height:400px;" class="form-control" ng-model="fileCont"></textarea>
+      	    </div>
+         </div>
+         <table class="table table_title">
+          	 <thead>
+          	 	<tr>
+          	 		<th>模板名称</th>
+          	 		<th>配置文件名称</th>
+          	 	</tr>
+          	 </thead>
+          	 <tbody>
+          	 	<tr>
+          	 		<td>
+          	 		    <input type="text" class="form-control" ng-model="mappingKey">
+          	 		</td>
+          	 		<td>
+          	 		    <input type="text" class="form-control" ng-model="mappingValue">
+          	 		</td>
+          	 	</tr>
+          	 </tbody>
+         </table>
+     </form>
+     
+</div>
+</div>
+<div class="panel-footer text-center">
+	<a href="javascript:;" class="btn btn-default add_newv btn-sm mt20" ng-click="saveFile()"><em class="fa fa-plus"></em> 保存文件</a>
+</div>
+</div>
+
+<div class="panel" ng-show="fail">
+	<div class="panel-body">
+	    <p class="text-center">{{TreeLoadMessage}}</p>
+	</div>
+</div>
+<table class="table table_title">
+	<thead>
+		<tr>
+			<th>模板名称</th>
+			<th>配置文件名称</th>
+			<th>操作</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr ng-repeat="item in mappingConfigList">
+			<th>{{item.templateKey}}</th>
+			<th>{{item.templateValue}}</th>
+			<th>
+				<button class="btn btn-default" ng-click="updateFile(item)">修改文件</button>
+				<button class="btn btn-default con_trash" ng-click="delFile(item.id,$index)">删除</button>
+			</th>
+		</tr>
+	</tbody>	
+</table>
+</div>

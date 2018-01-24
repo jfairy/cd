@@ -1,0 +1,101 @@
+<div class="dialog-header">
+    <h4>插件配置</h4>
+</div>
+<div class="dialog-body">
+     <div class="toggle-config">
+     	<div class="toggle-config-head" ng-click="commonToggle=!commonToggle"><span>通用配置</span><em class="fa" ng-class="{'fa-sort-down':!commonToggle,'fa-sort-up':commonToggle}"></em></div>
+     	<div class="toggle-config-body" ng-show="commonToggle">
+     		<table class="table table-bordered table-hover table-striped">
+		      	<thead>
+		      		<tr style="font-weight: bold">
+		               <td style="width:40%">参数名</td>
+		               <td style="width:40%">参数值</td>
+		               <td style="width:20%;text-align:center;">操作</td>
+		             </tr>
+		      	</thead>
+		      	<tbody> 
+		      		<tr ng-repeat="configItem in commonConfigs track by $index">
+		      			<td>
+		      			   <input type="text" ng-model="configItem.key" class="form-control" ng-value="configItem.key">   
+		      			</td>
+		      			<td>
+		      			    <textarea ng-if="configItem.key=='CMD'||configItem.key=='sql'" ng-model="configItem.value" class="form-control" ng-value="configItem.value"></textarea>
+		      				<input ng-if="configItem.key!=='CMD'&&configItem.key!=='sql'" type="text" ng-model="configItem.value" class="form-control" ng-value="configItem.value">
+		      			</td>
+		      			<td style="text-align:center;">
+		      			    <a href="" ng-click="del('commonConfigs',$index)" class="text-danger"><em class="fa fa-trash"></em></a>
+		      			</td>
+		      		</tr>
+		      	</tbody>
+		     </table>
+     	</div>
+     </div>
+     
+     <div class="toggle-config">
+     	<div class="toggle-config-head" ng-click="advancedToggle=!advancedToggle"><span>高级配置</span><em class="fa" ng-class="{'fa-sort-down':!advancedToggle,'fa-sort-up':advancedToggle}"></em></div>
+     	<div class="toggle-config-body" ng-show="advancedToggle">
+     		<table class="table table-bordered table-hover table-striped">
+		      	<thead>
+		      		<tr style="font-weight: bold">
+		               <td style="width:35%">参数名</td>
+		               <td style="width:40%">参数值</td>
+					   <td style="width:15%">参数类型</td>
+		               <td style="width:10%;text-align:center;">操作</td>
+		             </tr>
+		      	</thead>
+		      	<tbody> 
+		      		<tr ng-repeat="configItem in advancedConfigs track by $index">
+		      			<td>
+		      			   <input type="text" ng-model="configItem.key" class="form-control" ng-value="configItem.key">   
+		      			</td>
+		      			<td>
+		      			    <textarea id="advancedConfigValue{{$index}}" ng-if="configItem.key=='CMD'||configItem.key=='sql'" ng-model="configItem.value" class="form-control" ng-value="configItem.value"></textarea>
+		      				<input id="advancedConfigValue{{$index}}" ng-if="configItem.key!=='CMD'&&configItem.key!=='sql'" type="text" ng-model="configItem.value" class="form-control" ng-value="configItem.value">
+		      			</td>
+						<td>
+							<input type="checkbox" ng-checked="passwordChecked(configItem,'advancedConfigValue'+$index)" ng-click="passwordTypeChange(configItem,'advancedConfigValue'+$index)">密码参数</input>
+						</td>
+		      			<td style="text-align:center;">
+		      			    <a href="" ng-click="del('advancedConfigs',$index)" class="text-danger"><em class="fa fa-trash"></em></a>
+		      			</td>
+		      		</tr>
+		      	</tbody>
+		     </table>
+     	</div>
+     </div>
+     
+     <!-- <div class="toggle-config">
+     	<div class="toggle-config-head" ng-click="newToggle=!newToggle"><span>添加新配置</span><em class="fa" ng-class="{'fa-sort-down':!newToggle,'fa-sort-up':newToggle}"></em></div>
+     	<div class="toggle-config-body" ng-show="newToggle">
+     		<table class="table table-bordered table-hover table-striped">
+		      	<thead>
+		      		<tr style="font-weight: bold">
+		               <td style="width:40%">KEY</td>
+		               <td style="width:40%">VALUE</td>
+		               <td style="width:20%;text-align:center;">操作</td>
+		             </tr>
+		      	</thead>
+		      	<tbody> 
+		      		<tr ng-repeat="configItem in newConfigs track by $index">
+		      			<td>
+		      			   <input type="text" ng-model="configItem.key" class="form-control" ng-value="configItem.key">   
+		      			</td>
+		      			<td>
+		      			    <textarea ng-if="configItem.key=='CMD'||configItem.key=='sql'" ng-model="configItem.value" class="form-control" ng-value="configItem.value"></textarea>
+		      				<input ng-if="configItem.key!=='CMD'&&configItem.key!=='sql'" type="text" ng-model="configItem.value" class="form-control" ng-value="configItem.value">
+		      			</td>
+		      			<td style="text-align:center;">
+		      			    <a href="" ng-click="del('newConfigs',$index)" class="text-danger"><em class="fa fa-trash"></em></a>
+		      			</td>
+		      		</tr>
+		      	</tbody>
+		     </table>
+		     <a href="" class="btn btn-info btn-sm" ng-click="add('newConfigs')"><em class="fa fa-plus"></em> 添加配置</a>
+     	</div>
+     </div> -->
+ 
+</div>
+<div class="dialog-footer">
+	<a class="btn btn-info" ng-click="closeThisDialog(0)">取消</a>
+    <button type="submit" class="btn btn-primary" ng-click="savePlugins()">确定</button>
+</div>

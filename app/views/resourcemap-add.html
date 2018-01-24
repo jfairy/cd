@@ -1,0 +1,80 @@
+<form name="formValidate" ng-submit="addReaourceMap()" novalidate="" class="form-validate form-horizontal">
+<div class="panel panel-default">
+	<div class="panel-body">
+
+      <fieldset>
+           <div class="form-group">
+              <label class="col-sm-2 control-label"><span class=""></span>资源映射名称：</label>
+              <div class="col-sm-6">
+                  <input type="text" name="label" required="" class="form-control" ng-model="label">
+                  <span ng-show="validateInput(formValidate,'label', 'required')" class="text-danger">请填写资源映射名称！</span>
+              </div>
+           </div>
+      </fieldset>
+
+      <fieldset>
+           <div class="form-group">
+              <label class="col-sm-2 control-label"><span class=""></span>选择类型：</label>
+              <div class="col-sm-6"> 
+                 <select class="form-control" ng-model="layerType" ng-options="typeItem.value as typeItem.text for typeItem in typeList">
+                     
+                 </select>
+              </div>
+           </div>
+      </fieldset>
+		
+			<fieldset>
+           <div class="form-group">
+              <label class="col-sm-2 control-label"><span class=""></span>选择集群：</label>
+              <div class="col-sm-6">
+                 <select class="form-control" ng-model="cluster" ng-options="clusterItem.id as clusterItem.name for clusterItem in clusterList">
+                 		 
+                 </select>
+              </div>
+           </div>
+      </fieldset>
+
+      <fieldset>
+           <div class="form-group">
+              <label class="col-sm-2 control-label"><span class=""></span>选择节点：</label>
+              <div class="col-sm-6">
+                  <table class="table table_title">
+                  <thead>
+                    <tr>
+                        <th check-all="check-all" checkapp-id="checkappId">
+                          <div data-toggle="tooltip" data-title="Check All" class="checkbox c-checkbox">
+                          <label>
+                             <input type="checkbox" />
+                             <span class="fa fa-check"></span>
+                          </label>
+                      </div>
+                        </th>
+                      <th>名称</th>
+                      <th>IP</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr ng-repeat="nodeItem in nodeList">   
+                                <td>
+                                  <div class="checkbox c-checkbox">
+                           <label>
+                              <input type="checkbox" id="{{nodeItem}}" save-id="{{nodeItem}}" checkapp-id="checkappId" ng-checked="{{nodeItem.ischecked}}" />
+                              <span class="fa fa-check"></span>
+                           </label>
+                        </div>
+                                </td>
+                      <td>{{nodeItem.name}}</td>
+                      <td>{{nodeItem.ip}}</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+           </div>
+      </fieldset>
+            
+	</div>
+	<div class="panel-footer text-center">
+       <button type="submit" ng-disabled="!formValidate.$valid" class="btn" ng-class="{'btn-info':formValidate.$valid,'btn-default':!formValidate.$valid}">添加</button>
+   </div>
+</div>
+</form>

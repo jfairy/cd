@@ -1,0 +1,32 @@
+<div class="dialog-header">
+	<h4>克隆蓝图实例</h4>
+</div>
+<div class="dialog-body">
+   <div class="form-horizontal">  
+      <form name="cloneBlueprintInsForm">
+      	 <div class="form-group">
+	         <label class="col-lg-3 control-label text-right">蓝图实例名称</label>
+	         <div class="col-lg-8">
+	            <input type="text" ng-focus="authMsg=''" ng-model="name" class="form-control" required="" ng-maxlength="32" ng-pattern="/^[a-zA-Z0-9_.-]*$/" name="name" autocomplete="off" />
+	            <div><small>名称由字母、数字、.、-、_组成，最多32位</small></div>
+	            <span ng-show="validateInput(cloneBlueprintInsForm,'name', 'required')" class="text-danger">请输入蓝图实例名称！</span> 
+	            <span ng-show="validateInput(cloneBlueprintInsForm,'name', 'pattern')" class="text-danger">名称不符合规则！</span> 
+	            <span ng-show="validateInput(cloneBlueprintInsForm,'name', 'maxlength')" class="text-danger">名称最多32个字符！</span>
+	            <span ng-show="authMsg" class="text-danger">{{authMsg}}</span>
+	         </div>
+	     </div>
+	     <div class="form-group">
+	         <label class="col-lg-3 control-label text-right">蓝图实例描述</label>
+	         <div class="col-lg-8">
+	            <textarea type="text" ng-model="description" class="form-control" name="description">
+	            </textarea>
+	         </div>
+	     </div>
+      </form>
+   </div>
+</div>
+<div class="dialog-footer">
+   <a class="btn btn-info" ng-click="closeThisDialog(0)">取消</a>
+   <button type="submit" class="btn" ng-disabled="!cloneBlueprintInsForm.$valid" ng-class="{'btn-primary':cloneBlueprintInsForm.$valid,'btn-default':!cloneBlueprintInsForm.$valid}" ng-click="cloneBlueprintInstanceFn()">保存</button>
+</div>
+ 

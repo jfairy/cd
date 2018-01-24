@@ -1,0 +1,30 @@
+<div class="breadcont clearfix">
+   <ol class="breadcrumb pull-left">
+      <li><a ui-sref="app.blueprint_manage">蓝图列表</a>
+      </li>
+	  <li>
+      	{{$stateParams.insCloneName}}
+      </li>
+	  <li class="active">
+      	克隆蓝图实例
+      </li>
+   </ol>
+</div>
+<script src="vendor/flow/jquery-ui.min.js"></script> 
+<div class="cont-body">
+<div ng-controller="blueprintCtrl">
+  <div ng-init="init()">
+  <div id="PaletteAndDiagram">
+    <div style="width:100%;" id="myDiagramDiv"></div>
+  </div>
+  <div>
+	<a href="" class="btn btn-info" ng-click="cloneBlueprintIns()">克隆蓝图实例</a>
+    Diagram Model saved in JSON format:
+  </div>
+  <textarea id="mySavedModel" ng-model="blueprintInfo" style="width:100%;height:300px">
+     
+  </textarea>
+  </div>
+</div>
+</div>
+ 

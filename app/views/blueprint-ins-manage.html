@@ -1,0 +1,107 @@
+<div class="row clearfix cont-header">
+    <div class="col-sm-6">
+        <!--<a class="btn blue_btn">-->
+            <!--<img src="app/images/ic/ic_adduser.png"> 蓝图实例列表-->
+        <!--</a>-->
+    </div>
+    <div class="col-sm-6">
+        <!-- <div class="search">
+          <input type="text" ng-keyup="search()" class="form-control search-form-control" placeholder="按组件名称搜索" ng-model="searchAppVal" />
+          <em class="icon-magnifier"></em>
+        </div>
+            <div class="search">
+          <input type="text" ng-keyup="search()" class="form-control search-form-control" placeholder="按蓝图模板名称搜索" ng-model="searchTemplateVal" />
+          <em class="icon-magnifier"></em>
+        </div>
+            <div class="search">
+          <input type="text" ng-keyup="search()" class="form-control search-form-control" placeholder="按蓝图实例名称搜索" ng-model="searchval" />
+          <em class="icon-magnifier"></em>
+        </div> -->
+        <div class="search-group">
+            <div class="input-group">
+                <div class="input-group-btn">
+                    <select class="form-control" ng-model="searchType" ng-options="item.value as item.text for item in searchTypeList">
+
+                    </select>
+                </div>
+                <input type="text" ng-keyup="search()" ng-model="searchval" class="form-control" />
+                <em class="icon-magnifier"></em>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="cont-body">
+
+
+    <table class="table table_title table-striped cd-table mt20">
+        <thead>
+        <tr>
+            <th>蓝图实例名称</th>
+            <th>蓝图模板名称</th>
+            <th>描述</th>
+            <th>操作</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-if="!listoff">
+            <td colspan="4">
+                <p class="noresult"><em class="icon-info"></em> {{warninginfo}}</p>
+            </td>
+        </tr>
+        <tr ng-repeat="item in blueInstancesList track by $index">
+            <!--<td><a ui-sref="app.deploydetail({templateid:item.ID})">{{item.INSTANCE_NAME}}</a></td>-->
+            <td>{{item.INSTANCE_NAME}}</td>
+            <td>{{item.TEMPLATE_NAME}}</td>
+            <td>{{item.INSTANCE_DESC}}</td>
+            <td>
+                <a ng-click="setCookie()" ui-sref="app.blueprint_ins_view({insId:item.ID})" class="btn btn-cd-default btn-cd-default-info">蓝图实例展示</a>
+				<a ng-click="setCookie(item.INSTANCE_NAME)" ui-sref="app.blueprint_ins_clone({insCloneId:item.ID,insCloneName:item.INSTANCE_NAME})" class="btn btn-cd-default btn-cd-default-info">蓝图克隆</a>
+                <button class="btn btn-cd-default btn-cd-default-del" ng-click="delIns(item.ID)">删除</button>
+                <a ng-click="setCookie()" ui-sref="app.blueprint_ins_components({insName:item.INSTANCE_NAME,insId:item.ID,INSTANCE_ID:item.INSTANCE_ID})" class="btn btn-cd-default btn-cd-default-info">组件</a>
+                <a ng-click="setCookie()" ui-sref="app.blueprint_ins_component_configs({insName:item.INSTANCE_NAME,INSTANCE_ID:item.INSTANCE_ID})" class="btn btn-cd-default btn-cd-default-info">配置</a>
+                <a ng-click="setCookie()" class="btn btn-cd-default btn-cd-default-info" ui-sref="app.blueprint_ins_log_manage({insName:item.INSTANCE_NAME,INSTANCE_ID:item.INSTANCE_ID})">日志管理</a>
+
+                <div dropdown="dropdown" class="btn-group">
+                    <button dropdown-toggle="" class="btn btn-cd-default"><em class="fa fa-camera"></em> 快照 <b class="caret"></b>
+                    </button>
+                    <ul role="menu" class="dropdown-menu btn-dropdown-menu">
+                        <li>
+                            <a href="" ng-click="setCookie();snapshoot(item.INSTANCE_ID)">生成快照</a>
+                        </li>
+                        <li>
+                            <a ng-click="setCookie()" ui-sref="app.blueprint_ins_snapshoot({insName:item.INSTANCE_NAME,INSTANCE_ID:item.INSTANCE_ID})">查看快照</a>
+                        </li>
+                    </ul>
+                </div>
+                <a ng-click="setCookie()" ui-sref="app.blueprint_ins_resource_configs({insName:item.INSTANCE_NAME,insId:item.ID,INSTANCE_ID:item.INSTANCE_ID})" class="btn btn-cd-default btn-cd-default-info">资源映射</a>
+
+                <div dropdown="dropdown" class="btn-group">
+                    <button dropdown-toggle="" class="btn btn-cd-default">执行过程 <b class="caret"></b>
+                    </button>
+                    <ul role="menu" class="dropdown-menu btn-dropdown-menu">
+                        <li ng-repeat="doItem in item.flowList"><a ng-click="setCookie()" href="" ui-sref="app.blueprint_ins_flow_view({blueprintInsId:item.INSTANCE_ID,flowId:doItem.ID,templateName:item.TEMPLATE_NAME,blueprintId:item.TEMPLATE_ID,insName:item.INSTANCE_NAME,flowName:doItem.FLOW_NAME})">{{doItem.FLOW_NAME}}</a>
+                        </li>
+                    </ul>
+                </div>
+
+                <div dropdown="dropdown" class="btn-group">
+                    <button dropdown-toggle="" class="btn btn-cd-default">配置比对 <b class="caret"></b>
+                    </button>
+                    <ul role="menu" class="dropdown-menu btn-dropdown-menu">
+                        <li ng-repeat="compareItem in item.compareList">
+                            <!-- <a href="" ui-sref="app.blueprint_ins_configs_compare({INSTANCE_ID:item.INSTANCE_ID,insId:item.ID})">dtest321</a> -->
+                            <a ng-click="setCookie()" href="" ui-sref="app.blueprint_ins_configs_compare({insName:item.INSTANCE_NAME,Ori_INSTANCE_ID:item.INSTANCE_ID,Ori_insId:item.ID,compare_insName:compareItem.INSTANCE_NAME,Compare_INSTANCE_ID:compareItem.INSTANCE_ID,Compare_insId:compareItem.ID})">{{compareItem.INSTANCE_NAME}}</a>
+                        </li>
+                    </ul>
+                </div>
+
+            </td>
+        </tr>
+        <tr ng-show="listoff">
+            <td colspan="4">
+                <page page-count="pageCount" page-num="pageNum" on-page-change="onPageChange()"></page>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>

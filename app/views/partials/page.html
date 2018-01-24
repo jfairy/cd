@@ -1,0 +1,13 @@
+<div class="page pull-right">
+	 <div class="pagebutton">
+	   <button title="首页" class="firstpage" ng-click="pageChange(1)"><em class="fa fa-fast-backward"></em></button>
+	   <button title="上一页" ng-click="pageChange(pageNum-1>0?pageNum-1:1)" class="previous"><em class="fa fa-backward"></em></button>
+	   <input type="number" ng-model="pageNum" ng-click="pageChange(page=pageNum)" min="1" max="{{pageCount}}" placeholder="1">
+	   <button title="下一页" class="next" ng-click="pageChange(pageNum+1<=pageCount?pageNum+1:pageCount)"><em class="fa fa-forward"></em></button>
+	   <button title="尾页" class="lastpage" ng-click="pageChange(pageCount)"><em class="fa fa-fast-forward"></em></button>
+	   <button title="刷新" ng-click="pageRefresh(pageNum)"><em class="fa fa-refresh"></em></button>
+	</div>
+	<div class="pagetotal">
+	   共<span>{{pageCount}}</span>页
+	</div>
+</div>

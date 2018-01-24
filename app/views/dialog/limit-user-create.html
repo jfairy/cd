@@ -1,0 +1,43 @@
+<div class="dialog-header">
+    <h4>创建用户</h4>
+</div>
+<div class="dialog-body">
+   <div class="form-horizontal form-control-padding">  
+      <form name="createUserForm">
+      	 <div class="form-group">
+	         <label class="col-lg-3 control-label text-right">用户名：</label>
+	         <div class="col-lg-8 control-formele">
+	            <input type="text" ng-focus="authMsg=''" ng-model="user.name" class="form-control" required="" ng-pattern="/^[a-zA-Z0-9_-]{4,16}$/" name="name" autocomplete="off" />
+	            <div><small>名字可以包含字母，数字，_，-，4-16个字符</small></div>
+	            <span ng-show="validateInput(createUserForm,'name','required')" class="text-danger">请输入用户名！</span> 
+	            <span ng-show="validateInput(createUserForm,'name','pattern')" class="text-danger">用户名不符合规则！</span> 
+	         </div>
+	       </div>
+
+         <div class="form-group">
+           <label class="col-lg-3 control-label text-right">密码：</label>
+           <div class="col-lg-8 control-formele">
+              <input type="password" ng-focus="authMsg=''" ng-model="user.password" class="form-control" required="" ng-pattern="/^[a-zA-Z0-9]{6,10}$/" name="password" autocomplete="off" />
+              <div><small>6-10位的数字或字母</small></div>
+              <span ng-show="validateInput(createUserForm,'password','required')" class="text-danger">请输入密码！</span>
+              <span ng-show="validateInput(createUserForm,'password','pattern')" class="text-danger">密码不符合规则！</span>
+           </div>
+         </div>
+
+         <div class="form-group">
+           <label class="col-lg-3 control-label text-right">角色：</label>
+           <div class="col-lg-8 control-formele">
+               <select class="form-control" ng-model="user.rolename">
+                  <option>运维</option>
+               </select>
+               <span ng-show="authMsg" class="text-danger">{{authMsg}}</span>
+           </div>
+         </div>
+      </form>
+   </div>
+</div>
+<div class="dialog-footer">
+   <a class="btn btn-default" ng-click="closeThisDialog(0)">取消</a>
+   <button type="submit" class="btn" ng-disabled="!createUserForm.$valid" ng-class="{'btn-primary':createUserForm.$valid,'btn-default':!createUserForm.$valid}" ng-click="createUserFn()">创建</button>
+</div>
+ 

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="userControllers">
+<head>
+   <meta charset="utf-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+ 
+   <!-- Bootstrap styles-->
+   <link rel="stylesheet" href="../../app/css/bootstrap.css">
+   <link rel="stylesheet" href="../../app/css/app.css">
+   <link rel="stylesheet" href="../../app/css/login.css">
+   <link rel="icon" ng-href="{{app.logosrc_favicon}}">
+   <script src="../../app/js/jquery.min.js"></script>
+   <script src="../../app/js/angular-1.5.0.min.js"></script>
+   <script src="../../app/js/angular-cookie.min.js"></script>
+   <script src="../../app/js/base64_utf8.js"></script>
+   <script src="../../app/js/user.js"></script>
+   <script src="../../app/js/md5.js"></script>
+</head>
+
+<body class="layout-fixed">
+<div class="login_bg">
+   <div class="login-bg-cloud"></div>
+</div>
+<div  class="center-block wdlogin" ng-controller="LoginFormController">
+   <section>
+       <header>
+          <span class="avatar">
+            <img ng-src="{{app.logosrc}}" alt="">
+          </span>
+          <h1>{{app.name}}</h1>
+          <h2>{{app.description}}</h2>
+       </header>
+       <form role="form" ng-submit="login()" name="loginForm" novalidate="" class="form-validate login-form">
+            <div class="form-group has-feedback">
+
+               <input ng-focus="authMsg=''" id="exampleInputEmail1" type="text" name="account_username" placeholder="用户名" autocomplete="off" ng-model="account.username" required="" class="form-control"  />
+
+               <!-- <span class="fa fa-envelope form-control-feedback text-muted"></span> -->
+
+               <label class="prompt text-danger" ng-show="loginForm.account_username.$dirty &amp;&amp; loginForm.account_username.$error.required" class="text-danger">请输入用户名!</label>
+
+
+            </div>
+            <div class="form-group has-feedback">
+
+               <input ng-focus="authMsg=''" id="exampleInputPassword1" type="password" name="account_password" placeholder="密码" ng-model="account.password" required="" class="form-control"/>
+
+               <!-- <span class="fa fa-lock form-control-feedback text-muted"></span> -->
+
+               <label class="prompt text-danger" ng-show="loginForm.account_password.$dirty &amp;&amp; loginForm.account_password.$error.required" class="text-danger">请输入密码!</span>
+
+            </div>
+            <div class="form-group has-feedback" >
+            <div class="rember">
+               <label>
+               <input id="rememberMe" type="checkBox" ng-model="isCookie" />&nbsp;
+               <span style="margin-left:1px;">记住账户</span>
+               </label>
+            </div>
+            </div>
+            <button type="submit" class="btn btn-block btn-primary mt-lg loginbtn">登录</button>
+         </form>
+         <div ng-show="authMsg" class="alert alert-danger text-center">{{authMsg}}</div>
+         <!-- <div ng-show="authMsg" class="alert alert-danger text-center">{{authMsg}}</div> -->
+         <!-- <p class="pt-lg text-center">还没有账号?</p><a href="register.html" class="btn btn-block btn-default">注册</a> -->
+   </section>
+</div>
+  
+</body>
+
+</html>

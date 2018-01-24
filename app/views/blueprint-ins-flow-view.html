@@ -1,0 +1,36 @@
+<div class="breadcont clearfix">
+   <ol class="breadcrumb pull-left">
+      <li>
+        <a ui-sref="app.blueprint_ins_manage">蓝图实例列表</a>
+      </li>
+      <li>
+      	{{$stateParams.insName}}
+      </li>
+      <li class="active">
+      	执行过程
+      </li>
+      <li>
+        {{$stateParams.flowName}}
+      </li>
+   </ol>
+</div>
+<script src="vendor/flow/jquery-ui.min.js"></script>
+<script src="vendor/flow/BPMNClasses.js"></script>
+<div class="cont-body">
+<div ng-controller="flowCtrl">
+<div ng-init="init()">
+
+    <div id="PaletteAndDiagram">
+
+    <div id="myDiagramDiv" style="width:100%;height:400px;"></div>
+  </div>
+  <div> 
+    <button class="btn btn-info" ng-disabled="disabled" ng-click="flowAction()">执行过程</button>
+    <!-- <button class="btn btn-info" ng-click="flowActionNew()">执行过程New</button> -->
+    <a class="btn btn-info" ui-sref="app.blueprint_flow_update({templateName:$stateParams.templateName,blueprintId:$stateParams.blueprintId,flowId:flowId})">编辑过程</a>
+  </div>
+  <textarea style="display:none" id="mySavedModel" style="width:100%;height:300px" ng-model="flowInfo">
+  </textarea>
+</div>
+</div>
+</div>

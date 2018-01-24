@@ -1,0 +1,61 @@
+<div class="dialog-header">
+    <h4>新建菜单</h4>
+</div>
+<div class="dialog-body">
+   <div class="form-horizontal">  
+      <form name="createLimitForm">
+      	 <div class="form-group">
+	         <label class="col-lg-3 control-label text-right">菜单名</label>
+	         <div class="col-lg-8">
+	            <input type="text" ng-model="limit.text" class="form-control" required="" name="text" autocomplete="off" />
+	            <span ng-show="validateInput(createLimitForm,'text','required')" class="text-danger">请输入菜单名！</span>
+	         </div>
+	     </div>
+
+         <div class="form-group">
+           <label class="col-lg-3 control-label text-right">菜单图标</label>
+           <div class="col-lg-8">
+              <input type="text" ng-model="limit.icon" required="" class="form-control" name="icon" autocomplete="off" />
+              <span ng-show="validateInput(createLimitForm,'icon','required')" class="text-danger">请输入菜单图标！</span>
+           </div>
+         </div>
+
+         <div class="form-group">
+           <label class="col-lg-3 control-label text-right">菜单描述</label>
+           <div class="col-lg-8">
+              <textarea ng-model="limit.sref" required="" class="form-control" name="sref" autocomplete="off"></textarea>
+              <span ng-show="validateInput(createLimitForm,'sref','required')" class="text-danger">请输入菜单描述！</span>
+           </div>
+         </div>
+
+         <div class="form-group">
+           <label class="col-lg-3 control-label text-right">菜单类型</label>
+           <div class="col-lg-8">
+              <input type="text" ng-model="limit.type" required="" class="form-control" name="type" autocomplete="off" />
+              <span ng-show="validateInput(createLimitForm,'type','required')" class="text-danger">请输入菜单类型！</span>
+           </div>
+         </div>
+
+         <!-- <div class="form-group">
+           <label class="col-lg-3 control-label text-right">优先级</label>
+           <div class="col-lg-8">
+              <input type="number" ng-model="limit.serialNum" min="0" class="form-control" name="serialNum" autocomplete="off" />
+              <span ng-show="validateInput(createLimitForm,'serialNum','number')" class="text-danger">请输入数字类型！</span>
+              <span ng-show="validateInput(createLimitForm,'serialNum','min')" class="text-danger">最小为0！</span>
+           </div>
+         </div> -->
+         
+         <div class="form-group">
+           <label class="col-lg-3 control-label text-right">父级菜单</label>
+           <div class="col-lg-8">
+               <select class="form-control" ng-model="limit.parent" ng-options="parentItem.text as parentItem.text for parentItem in parentMenuList"></select>
+           </div>
+         </div>
+      </form>
+   </div>
+</div>
+<div class="dialog-footer">
+   <a class="btn btn-default" ng-click="closeThisDialog(0)">取消</a>
+   <button type="submit" class="btn" ng-disabled="!createLimitForm.$valid" ng-class="{'btn-primary':createLimitForm.$valid,'btn-default':!createLimitForm.$valid}" ng-click="createLimitFn()">确定</button>
+</div>
+ 

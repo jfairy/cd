@@ -1,0 +1,110 @@
+<div class="cont-header">
+	<div class="row clearfix">
+	   <div class="col-sm-6">
+
+	       <a href="" class="btn-cd-icon" ng-click="openCreateCluster()">
+	  	        <span class="cd-ic_adduser">
+                <span class="path1"></span><span class="path2"></span><span class="path3"></span>
+                </span>
+	          新建环境
+	        </a>
+	  
+	   </div>
+	   <div class="col-sm-6">
+	      <div class="custom-search">
+	        <input type="text" ng-keyup="search()" class="custom-search-form-control" placeholder="按环境名称搜索" ng-model="searchval" />
+	        <em class="icon-magnifier"></em>
+	      </div>
+	   </div>
+	</div>
+</div>
+
+<div class="cont-body">
+
+ <!--没有资源池-->
+<div class="text-center mt20" ng-if="!isExistCluster&&isLoad">
+	<img src="app/images/cluster.png">
+	<p class="mt20">
+	   您还没有环境，创建一个吧！
+       <a href="" class="btn btn-info" ng-click="openCreateCluster()">
+  	       <em class="fa fa-plus"></em>
+          新建环境
+        </a>
+	</p>
+</div>
+<!--有资源池-->
+<div class="row listclusters mt20" ng-if="isExistCluster">
+    <!-- <div class="col-sm-3">
+    	    <div class="panel panel-add">
+    			<div class="panel-body">
+    				<div class="text-center">
+    				    <div class="icon-add">
+    				    	<em class="icon-plus"></em>
+    				    </div>
+    					<p class="text-muted mt20">添加一个环境！</p>
+    				    <a href="#" class="btn btn-info mt20" ng-click="openCreateCluster()">
+    			  	       <em class="fa fa-plus"></em>
+    			          新建环境
+    			        </a>
+    		        </div>
+    			</div>
+    		</div>
+    	</div> -->
+	<div class="col-sm-3" ng-repeat="item in clusterList">
+	    <div class="panel">
+			<div class="panel-heading clearfix">
+				<h4 class="pull-left">
+					<a ng-click="setCookie()" ui-sref="app.cluster_detail({clusterid: item.id})" ng-bind="item.name"></a>
+				</h4>
+				<div class="pull-right">
+					 <!-- <a class="text-danger del-icon" title="删除资源池" ng-click="openDelCluster(item)">
+					 	<i class="fa fa-trash-o trash"></i>
+					 </a> -->
+					 <div class="btn-top">
+					 <a class="btn-cd btn-cd-gray btn-cd-del text-danger del-icon" ng-click="openDelCluster(item)" title="删除环境">
+					 	 <em class="cd-ic_delet2"></em>
+					 </a>
+					 </div>
+		        </div>
+			</div>
+			<div class="panel-body">
+				<div class="node" ng-if="!item.hostNum">
+					<p class="text-muted">您还没有主机接入该环境，请先点击添加主机！</p>
+				   <!--  <a href="#" ng-click="setCookie(item.name)" ui-sref="app.node_add({clustername:item.name,clusterid:item.id})" class="btn btn-lg btn-success mt20">
+					 	<i class="fa fa-plus-square"></i>
+					 	添加主机
+				    </a> -->
+				</div> 
+			    <div class="node" ng-if="item.hostNum">
+			       <a ng-click="setCookie()" ui-sref="app.cluster_detail({clusterid: item.id})">
+				    	<img class="pull-left" src="app/images/ic/ic_machine.png">
+				    	<div class="caption pull-right text-center">
+					    	<div class="node-text">主机</div>
+			                <div class="num" ng-bind="item.hostNum"></div>
+		                </div>
+	               </a>
+			    </div>
+			</div>
+			<div class="panel-footer">
+				<!-- <div class="clearfix">
+					<div class="cluster-list-btn text-center">
+						<a href="" ng-click="setCookie(item.name)" ui-sref="app.cluster_detail({clusterid: item.id})">
+							<em class="fa fa-server"></em>
+							管理主机
+						</a>
+					</div> -->
+					<div class="cluster-list-btn text-center">
+						<a href="" ng-click="setCookie()" ui-sref="app.node_add({clustername:item.name,clusterid:item.id})">
+							<em class="cd-ic_add"></em>
+							添加主机
+						</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<page ng-show="isExistCluster" page-count="pageCount" page-num="pageNum" on-page-change="onPageChange()"></page>
+
+</div>
+ 

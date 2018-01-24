@@ -1,0 +1,241 @@
+/* 
+   abn-tree.css
+
+   style for the angular-bootstrap-nav-tree
+   for both Bootstrap 2 and Bootstrap 3
+
+*/
+
+
+
+/* ------------------------------------------
+AngularJS Animations...
+
+The first selector is for Angular 1.1.5
+The second selector is for Angular 1.2.0
+
+*/
+.abn-tree-animate-enter,
+li.abn-tree-row.ng-enter {
+  transition: 200ms linear all;
+  position: relative;
+  display: block;
+  opacity: 0;
+  max-height:0px;
+}
+.abn-tree-animate-enter.abn-tree-animate-enter-active,
+li.abn-tree-row.ng-enter-active{
+  opacity: 1;
+  max-height:30px;
+}
+
+.abn-tree-animate-leave,
+li.abn-tree-row.ng-leave {
+  transition: 200ms linear all;
+  position: relative;
+  display: block;
+  height:30px;
+  max-height: 30px;
+  opacity: 1;
+}
+.abn-tree-animate-leave.abn-tree-animate-leave-active,
+li.abn-tree-row.ng-leave-active {  
+  height: 0px;
+  max-height:0px;
+  opacity: 0;
+}
+
+
+/* 
+------------------------------------------
+Angular 1.2.0 Animation 
+*/
+
+
+.abn-tree-animate.ng-enter{
+
+}
+.abn-tree-animate.ng-enter{
+
+}
+
+
+
+
+/*
+   end animation stuff
+-----------------------------------------
+   begin normal css stuff
+*/
+ul.abn-tree li.abn-tree-row {  
+  padding: 0px;
+  margin:0px;
+}
+
+ul.abn-tree li.abn-tree-row a {
+  padding: 3px 10px;
+}
+
+ul.abn-tree i.indented {
+  padding: 2px;
+}
+
+.abn-tree {
+  cursor: pointer;
+}
+ul.nav.abn-tree .level-1 .indented {
+  position: relative;
+  left: 0px;
+}
+ul.nav.abn-tree .level-2 .indented {
+  position: relative;
+  left: 20px;
+}
+ul.nav.abn-tree .level-3 .indented {
+  position: relative;
+  left: 40px;
+}
+ul.nav.abn-tree .level-4 .indented {
+  position: relative;
+  left: 60px;
+}
+ul.nav.abn-tree .level-5 .indented {
+  position: relative;
+  left: 80px;
+}
+ul.nav.abn-tree .level-6 .indented {
+  position: relative;
+  left: 100px;
+}
+ul.nav.nav-list.abn-tree .level-7 .indented {
+  position: relative;
+  left: 120px;
+}
+ul.nav.nav-list.abn-tree .level-8 .indented {
+  position: relative;
+  left: 140px;
+}
+ul.nav.nav-list.abn-tree .level-9 .indented {
+  position: relative;
+  left: 160px;
+}
+
+dl,dt,h2,p,ol {
+   margin: 0;
+   padding: 0;
+}
+ul.abn-tree li.abn-tree-row {
+  width: 500px;
+}
+.componentbg {
+  height:84px;
+  width: 480px;
+  max-width: 480px;
+  width: auto;
+  padding:12px;
+  position: relative;
+  left: 30px;
+  color: #fff;
+}
+.componentbg dl {
+  width: 284px;
+  float: left;
+}
+.componentbg dt {  
+  float: left;
+  margin-right: 10px;
+}
+.componentbg dt img {  
+  width: 60px;
+}
+.componentbg dd {  
+  float: left;
+}
+.componentbg dd h2 {
+  font-size: 16px;
+  margin:6px 0 10px 0;
+}
+.componentbg dd p {
+  font-size: 12px;
+}
+.componentbg ol {
+  position: absolute;
+  right: 26px;
+  bottom: 6px;
+  list-style: none;
+  font-size: 12px;
+}
+.componentbg ol li {
+  float: left;
+  text-align: center;
+  background: url(../../../img/stepbg.gif) 0 12px repeat-x;
+  padding-right: 38px;
+}
+.componentbg ol li:last-of-type {  
+  padding: 0;
+}
+.step-icon {
+  width: 24px; 
+  height: 24px; 
+  display: block;
+  border-radius: 100%;
+  border: 2px solid #539cca;
+  position: relative;
+}
+.componentbg ol li:last-of-type .step-icon {
+   left: 4px;
+}
+.componentbg ol em {
+  font-size: 18px;
+  padding-top: 2px;
+}
+.level-2 .componentbg {
+  left: 60px;
+}
+.level-3 .componentbg {
+   left: 90px;
+}
+.level-4 .componentbg {
+  left: 120px;
+}
+.level-5 .componentbg {
+  left: 150px;
+}
+.level-6 .componentbg {
+  left: 180px;
+}
+.level-7 .componentbg {
+  left: 210px;
+}
+.componentstate {
+  position: absolute;
+  right: -15px;
+  top: -15px;
+  z-index: 1;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+}
+.componentstate em {
+  font-size: 30px;
+}
+.progressnum {
+  position: absolute;
+  right: 15px;
+  top: 4px;
+  font-size: 16px;
+}
+/* ul.abn-tree i.indented { top: 20px!important; } */
+
+.bg-11 { background: #bac6d7; }
+.bg-0 { background: #62b7ed; }
+.bg-2 { background: #645a9b; }
+.bg-7 { background: #d94d4e; }
+
+
+.stepbg-11 { background: #fff; border-color:rgba(77,83,96,0.5); }
+.stepbg-0 { background: #ffbe32; }
+.stepbg-2 { background: #47d576; }
+.stepbg-7 { background: #fe5b5c; }
+
+

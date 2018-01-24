@@ -1,0 +1,14 @@
+<div class="dialog-header">
+    <h4>导入蓝图</h4>
+</div>
+<div class="dialog-body">
+   <div class="form-horizontal">  
+       <input type="file" required="" ng-files-model="fileModel"/>
+       <small>蓝图模板zip包</small>   
+   </div>
+</div>
+<div class="dialog-footer">
+   <a class="btn btn-info" ng-click="closeThisDialog(0)">取消</a>
+   <button class="btn btn-info" ng-click="importFn()">导入</button>
+</div>
+ 

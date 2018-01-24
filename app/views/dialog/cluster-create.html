@@ -1,0 +1,23 @@
+<div class="dialog-header">
+    <h4>创建环境</h4>
+</div>
+<div class="dialog-body">
+   <div class="form-horizontal form-control-padding">  
+      <form name="createclusterForm">
+      	 <div class="form-group">
+	         <label class="col-lg-4 control-label text-right"><span class="text-danger">*</span> 环境名称：</label>
+	         <div class="col-lg-7 control-formele">
+	            <input type="text" ng-focus="authMsg=''" tooltip="名字由字母，数字或下划线组成，首字母不能为数字或下划线,最多18位" ng-model="account.name" class="form-control" required="" ng-pattern="/^[a-zA-Z][a-zA-Z0-9_]{0,17}$/" name="name" autocomplete="off" />
+	            <span ng-show="validateInput(createclusterForm,'name','required')" class="text-danger">请输入环境名称！</span>
+	            <span ng-show="validateInput(createclusterForm,'name','pattern')" class="text-danger">名字不符合规则，请重新填写！</span>
+	            <span ng-show="authMsg" class="text-danger">{{authMsg}}</span>
+	         </div>
+	     </div>
+      </form>
+   </div>
+</div>
+<div class="dialog-footer">
+   <button class="btn btn-default" ng-click="closeThisDialog(0)">取 消</button>
+   <button type="submit" class="btn" ng-disabled="!createclusterForm.$valid" ng-class="{'btn-primary':createclusterForm.$valid,'btn-default':!createclusterForm.$valid}" ng-click="createclusterFn()">创建</button>
+</div>
+ 

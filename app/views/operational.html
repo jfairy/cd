@@ -1,0 +1,126 @@
+<div class="cont-body cont_sta">
+<div class="panel mt20">
+    <div class="panel-body">
+<form role="form" class="form-horizontal clearfix form-log">
+  <div class="col-sm-5">
+     <div class="form-group"> 
+         <label class="col-sm-4 control-label">操作用户：</label> 
+         <div class="col-sm-8"> 
+           <select ng-model="user" class="form-control"  ng-options="item for item in userList" >
+           </select> 
+         </div>
+     </div>
+  </div>
+
+  <div class="col-sm-5">
+     <div class="form-group"> 
+         <label class="col-sm-4 control-label">操作资源类型：</label> 
+         <div class="col-sm-8"> 
+           <select ng-model="resourceType" class="form-control"  ng-options="item for item in resourceTypeList" >
+           </select>
+         </div>
+     </div>
+  </div>
+
+  <div class="col-sm-5">
+     <div class="form-group"> 
+         <label class="col-sm-4 control-label">操作类型：</label> 
+         <div class="col-sm-8">
+       <select ng-model="operateType" class="form-control"  ng-options="item.value as item.text for item in operateTypeList" >
+           </select>           
+         </div>
+     </div>
+  </div>
+
+  <div class="col-sm-5">
+     <div class="form-group"> 
+         <label class="col-sm-4 control-label">操作结果：</label> 
+         <div class="col-sm-8">
+           <select class="form-control" ng-model="operateResult" ng-options="item.value as item.text for item in resultList">
+               
+           </select> 
+         </div>
+     </div>
+  </div>
+
+  <div class="col-sm-5">
+     <div class="form-group"> 
+         <label class="col-sm-4 control-label">操作时间区间：</label> 
+         <div class="col-sm-8">
+             <input type="text" ruledate ng-model="daterange" class="form-control daterange" data-time-picker="true" data-time-picker-increment="5" data-format="YYYY-MM-DD HH:mm:ss" />  
+            </select> 
+         </div>
+
+     </div>
+  </div>
+
+  <div class="col-sm-5">
+     <button type="button" class="btn btn-info" ng-click="queryFn()">查询</button>
+  </div>  
+ </form>
+   </div>
+    </div>
+
+ <a class="btn-cd-icon" ng-click="exportData()"><span class="cd-ic_derive">
+  <span class="path1"></span><span class="path2"></span>
+  </span> 导出</a>
+
+ <table class="table table_title">
+    <thead>
+      <tr>
+        <th check-all="check-all" checkapp-id="checkappId" width="46px">
+           <div data-toggle="tooltip" data-title="Check All" class="checkbox c-checkbox">
+              <label style="padding-left:0;">
+                 <input type="checkbox" />
+                 <span class="fa fa-check hide"></span>全选
+              </label>
+           </div>
+        </th>
+        <th>操作用户</th>
+        <th>操作资源类型</th> 
+        <th>操作资源名称</th> 
+        <th>操作类型</th>
+        <th>操作结果</th>
+        <th>操作时间</th>
+        <th>详情</th>
+      </tr>
+    </thead>
+    <tbody>
+           <tr ng-if="!listoff">
+            <td colspan="8">   
+                <p class="noresult"><em class="icon-info"></em>{{warninginfo}}</p>
+            </td>
+          </tr> 
+
+          <tr ng-repeat="item in resultData">
+               <td>
+                 <div class="checkbox c-checkbox">
+                   <label>
+                         <input type="checkbox" id="{{item.id}}" save-id="{{item.id}}" checkapp-id="checkappId" ng-checked="{{item.ischecked}}" />
+                         <span class="fa fa-check"></span>
+                   </label>
+                </div>
+               </td>
+               <td>{{item.userId}}</td>
+               <td>{{item.resourceType}}</td> 
+               <td>{{item.resourceName}}</td>
+               <td ng-bind="text(item.operateType,'operateType')"></td>
+               <td ng-bind="text(item.operateResult,'operateResult')"></td>
+               <td>{{item.operateTime}}</td>
+               <td><a ng-if="item.detail" tooltip-placement="left"
+                  tooltip="{{item.detail}}">详情</a>
+                  <span ng-if="!item.detail">无</span>
+                  </td>
+         </tr>
+         <tr>
+           <td colspan="8">
+                  <page ng-if="loadoff" page-count="pageCount" page-num="pageNum" on-page-change="onPageChange(pageNum)"></page>
+            </td>
+          </tr>
+    </tbody>
+  
+</table>  
+
+</div> 
+
+

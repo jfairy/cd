@@ -1,0 +1,22 @@
+<div class="dialog-header">
+    <h4>创建角色</h4>
+</div>
+<div class="dialog-body">
+   <div class="form-horizontal">  
+      <form name="createRoleForm">
+      	 <div class="form-group">
+	         <label class="col-lg-3 control-label text-right">角色名称</label>
+	         <div class="col-lg-8">
+	            <input type="text" ng-focus="authMsg=''" ng-model="role.name" class="form-control" required="" name="name" autocomplete="off" />
+	            <span ng-show="validateInput(createRoleForm,'name','required')" class="text-danger">请输入角色名称！</span>
+              <span ng-show="authMsg" class="text-danger">{{authMsg}}</span>
+	         </div>
+	       </div>
+      </form>
+   </div>
+</div>
+<div class="dialog-footer">
+   <a class="btn btn-default" ng-click="closeThisDialog(0)">取消</a>
+   <button type="submit" class="btn" ng-disabled="!createRoleForm.$valid" ng-class="{'btn-primary':createRoleForm.$valid,'btn-default':!createRoleForm.$valid}" ng-click="createRoleFn()">确定</button>
+</div>
+ 

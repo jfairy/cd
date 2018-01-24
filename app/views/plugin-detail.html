@@ -1,0 +1,121 @@
+<div class="breadcont clearfix">
+   <ol class="breadcrumb pull-left">
+      <li>
+          <a ui-sref="app.plugin_manage">插件列表</a>
+      </li>
+      <li class="active">{{pluginInfo.pluginName}}
+      </li>
+   </ol>
+</div>
+
+<div class="cont-body">
+  <div class="container-fluid">
+   <div class="row">
+      <div class="col-md-12">
+         <div class="panel panel-default">
+            <div class="panel-body form-horizontal">
+              <fieldset>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">插件名称：</label>
+                    <div class="col-sm-6">
+                       <div class="form-control-static" ng-bind="pluginInfo.pluginName||'无'"></div>
+                    </div>
+                </div>
+              </fieldset>
+              
+              <fieldset>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">插件描述：</label>
+                    <div class="col-sm-6">
+                       <div class="form-control-static" ng-bind="pluginInfo.description||'无'"></div>
+                    </div>
+                </div>
+              </fieldset>
+
+              <fieldset>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">插件前处理方法：</label>
+                    <div class="col-sm-6">
+                       <div class="form-control-static" ng-bind="pluginInfo.preAction||'无'"></div>
+                    </div>
+                </div>
+              </fieldset>
+              <fieldset>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">插件前行为方法：</label>
+                    <div class="col-sm-6">
+                       <div class="form-control-static" ng-bind="pluginInfo.invoke||'无'"></div>
+                    </div>
+                </div>
+              </fieldset>
+              <fieldset>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">插件后处理方法：</label>
+                    <div class="col-sm-6">
+                       <div class="form-control-static" ng-bind="pluginInfo.postAction||'无'"></div>
+                    </div>
+                </div>
+              </fieldset>
+              <fieldset>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">插件Agent方法：</label>
+                    <div class="col-sm-6">
+                       <div class="form-control-static" ng-bind="pluginInfo.agent||'无'"></div>
+                    </div>
+                </div>
+              </fieldset>
+              <fieldset>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">插件包名（jar）：</label>
+                    <div class="col-sm-6">
+                       <div class="form-control-static" ng-bind="pluginInfo.fileName||'无'"></div>
+                    </div>
+                </div>
+              </fieldset>
+              
+              <fieldset>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">插件存放路径：</label>
+                    <div class="col-sm-6">
+                       <div class="form-control-static" ng-bind="pluginInfo.path||'无'"></div>
+                    </div>
+                </div>
+              </fieldset>
+     
+              <fieldset>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">标签：</label>
+                    <div class="col-sm-8">
+                    <div class="form-control-static" ng-bind="pluginInfo.labels||'无'"></div>
+                    </div>
+                </div>
+              </fieldset>
+              
+              <fieldset>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">参数：</label>
+                    <div class="col-sm-8">
+                    <div class="table-responsive table-bordered">
+                        <table class="table tablebordered">
+                           <tr>
+                             <th>参数名</th>
+                             <th>参数值</th>
+                           </tr>
+                           <tr ng-repeat="param in paramsarr">
+                             <td ng-bind="param.key"></td>
+                             <td ng-bind="param.val||'无'"></td>
+                           </tr>
+                        </table>
+                    </div>
+                    </div>
+                </div>
+              </fieldset>
+            </div>
+         </div>
+      </div>
+   </div>
+</div>
+</div>
+
+
+ 

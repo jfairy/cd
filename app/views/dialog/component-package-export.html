@@ -1,0 +1,44 @@
+<div class="dialog-header">
+    <h4>导出工件包</h4>
+</div>
+<div class="dialog-body">
+   <div class="form-horizontal">  
+        <table class="table table-bordered mt20">
+		   <thead>
+		      <tr>
+		         <th check-all="check-all" checkapp-id="checkappId" width="46px">
+		         <div data-toggle="tooltip" data-title="Check All" class="checkbox c-checkbox">
+		            <label style="padding-left:0;">
+		               <input type="checkbox" />
+		               <span class="fa fa-check hide"></span>全选
+		            </label>
+		         </div>
+		         </th>
+		         <th>工件包名称</th>
+		         <th>大小</th>
+		      </tr>
+		   </thead>
+		   <tbody>
+		      <tr ng-repeat="item in packageList">
+		         <td>
+		            <div class="checkbox c-checkbox">
+		               <label>
+		                     <input type="checkbox" id="{{item.ID}}" save-id="{{item.ID}}" checkapp-id="checkappId" ng-checked="{{item.ischecked}}" />
+		                     <span class="fa fa-check"></span>
+		               </label>
+		            </div>
+		         </td>
+		         <td>{{item.RESOURCE_NAME}}</td>
+		         <td>
+		         	 {{item.RESOURCE_SIZE}}
+		         </td>
+		      </tr>
+		   </tbody>
+		</table>
+   </div>
+</div>
+<div class="dialog-footer">
+   <a class="btn btn-info" ng-click="closeThisDialog(0)">取消</a>
+   <button class="btn btn-info" ng-click="exportFn(closeThisDialog)">确定</button>
+</div>
+ 

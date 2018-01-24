@@ -1,0 +1,296 @@
+<div class="breadcont clearfix">
+   <ol class="breadcrumb pull-left">
+      <li><a ui-sref="app.blueprint_ins_manage">蓝图实例列表</a>
+      </li>
+      <li>
+      	{{$stateParams.insName}}
+      </li>
+      <li class="active">
+      	配置比对
+      </li>
+   </ol>
+</div>
+<div class="cont-body">
+<div class="panel">
+	<div class="panel-body">
+		<div class="row toggle-config-more">
+			<div class="col-sm-6">
+			    <p>当前实例：{{$stateParams.insName}}</p>
+				    <!-- 资源配置 -->
+					<div class="toggle-config">
+     	                <div class="toggle-config-head" ng-click="resourceToggle=!resourceToggle"><span>资源池配置</span><em class="fa" ng-class="{'fa-sort-down':!resourceToggle,'fa-sort-up':resourceToggle}"></em></div>
+     	                <div class="toggle-config-body" ng-show="!resourceToggle">
+			                 <div class="toggle-config" ng-repeat="oriResourceItem in oriResourceList" ng-init="resourceindex=$index+1">
+				                 <div class="toggle-config-head" ng-click="resourceindex=!resourceindex">
+				                 	<span>{{oriResourceItem.nodeDisplay}}</span>
+				                 	<em class="fa" ng-class="{'fa-sort-down':!resourceindex,'fa-sort-up':resourceindex}"></em>
+				                 </div> 
+				                 <div class="toggle-config-body" ng-show="resourceindex"> 
+				                    <div ng-class="{'highlight':oriResourceItem.des.highlight}"><p>资源池描述：{{oriResourceItem.des.value}}</p></div>
+				                    <div ng-class="{'highlight':oriResourceItem.cluster_name.highlight}"><p>环境：{{oriResourceItem.cluster_name.value}}</p></div>
+				                    <!-- <div ng-class="{'highlight':oriResourceItem.label.value.highlight}"><p>标签：{{oriResourceItem.label.value.value}}</p></div> -->
+				                    <div ng-class="{'highlight':oriResourceItem.nodes.highlight}">
+					                    <p>节点：</p>
+					                    <ul>
+					                    	<li ng-repeat="nodeItem in oriResourceItem.nodesArr">{{nodeItem.ip}}</li>
+					                    </ul>
+				                    </div>
+				                 </div>
+			                 </div> 
+     	                </div>
+                    </div>
+                    <!-- 组件配置 --> 
+				    <div class="toggle-config">
+				     	<div class="toggle-config-head" ng-click="componentToggle=!componentToggle"><span>组件配置</span><em class="fa" ng-class="{'fa-sort-down':!componentToggle,'fa-sort-up':componentToggle}"></em></div>
+				     	<div class="toggle-config-body" ng-show="!componentToggle">
+				     		 <div class="toggle-config" ng-repeat="oriComponentItem in oriComponentList" ng-init="componentindex=$index+1">
+				                 <div class="toggle-config-head" ng-click="componentindex=!componentindex">
+				                 	<span>{{oriComponentItem.nodeDisplay}}</span>
+				                 	<em class="fa" ng-class="{'fa-sort-down':!componentindex,'fa-sort-up':componentindex}"></em>
+				                 </div>
+				                 <div class="toggle-config-body" ng-show="componentindex"> 
+				                     <div class="toggle-config">
+						                 <div class="toggle-config-head" ng-click="current=!current">
+						                 	<span>当前版本</span>
+						                 	<em class="fa" ng-class="{'fa-sort-down':!current,'fa-sort-up':current}"></em>
+						                 </div>
+						                 <div class="toggle-config-body" ng-show="!current"> 
+						                     <div ng-class="{'highlight':oriComponentItem.currentVersionName.highlight}"><p>版本：{{oriComponentItem.currentVersionName.value}}</p></div>
+						                     <p>输入参数： </p>
+						                     <table class="table table_title">
+						                     	 <thead>
+						                     	 	<tr>
+						                     	 		<th>参数名</th>
+						                     	 		<th>参数值</th>
+						                     	 	</tr>
+						                     	 </thead>
+						                     	 <tbody>
+						                     	 	<tr ng-repeat="currentInputItem in oriComponentItem.currentInputArr">
+						                     	 		<td><div ng-class="{'highlight':currentInputItem.value.highlight}">{{currentInputItem.key}}</div></td>
+						                     	 		<td><div ng-class="{'highlight':currentInputItem.value.highlight}">{{currentInputItem.value.value}}</div></td>
+						                     	 	</tr>
+						                     	 </tbody>
+						                     </table>
+						                     <p>输出参数：</p>
+						                     <table class="table table_title">
+						                     	 <thead>
+						                     	 	<tr>
+						                     	 		<th>参数名</th>
+						                     	 		<th>参数值</th>
+						                     	 	</tr>
+						                     	 </thead>
+						                     	 <tbody>
+						                     	 	<tr ng-repeat="currentOutputItem in oriComponentItem.currentOutputArr">
+						                     	 		<td><div ng-class="{'highlight':currentOutputItem.value.highlight}">{{currentOutputItem.key}}</div></td>
+						                     	 		<td><div ng-class="{'highlight':currentOutputItem.value.highlight}">{{currentOutputItem.value}}</div></td>
+						                     	 	</tr>
+						                     	 </tbody>
+						                     </table>
+						                 </div>
+					                 </div>
+					                 <div class="toggle-config">
+						                 <div class="toggle-config-head" ng-click="target=!target">
+						                 	<span>目标版本</span>
+						                 	<em class="fa" ng-class="{'fa-sort-down':!target,'fa-sort-up':target}"></em>
+						                 </div>
+						                 <div class="toggle-config-body" ng-show="!target"> 
+						                     <div ng-class="{'highlight':oriComponentItem.targetVersionName.highlight}"><p>版本：{{oriComponentItem.targetVersionName.value}}</p></div>
+						                     <p>输入参数：</p>
+						                     <table class="table table_title">
+						                     	 <thead>
+						                     	 	<tr>
+						                     	 		<th>参数名</th>
+						                     	 		<th>参数值</th>
+						                     	 	</tr>
+						                     	 </thead>
+						                     	 <tbody>
+						                     	 	<tr ng-repeat="targetInputItem in oriComponentItem.targetInputArr">
+						                     	 		<td><div ng-class="{'highlight':targetInputItem.value.highlight}">{{targetInputItem.key}}</div></td>
+						                     	 		<td><div ng-class="{'highlight':targetInputItem.value.highlight}">{{targetInputItem.value.value}}</div></td>
+						                     	 	</tr>
+						                     	 </tbody>
+						                     </table>
+						                     <p>输出参数：</p>
+						                     <table class="table table_title">
+						                     	 <thead>
+						                     	 	<tr>
+						                     	 		<th>参数名</th>
+						                     	 		<th>参数值</th>
+						                     	 	</tr>
+						                     	 </thead>
+						                     	 <tbody>
+						                     	 	<tr ng-repeat="targetOutputItem in oriComponentItem.targetOutputArr">
+						                     	 		<td><div ng-class="{'highlight':targetOutputItem.value.highlight}">{{targetOutputItem.key}}</div></td>
+						                     	 		<td><div ng-class="{'highlight':targetOutputItem.value.highlight}">{{targetOutputItem.value.value}}</div></td>
+						                     	 	</tr>
+						                     	 </tbody>
+						                     </table>
+						                 </div>
+					                 </div>
+				                 </div>
+			                 </div>
+				     	</div>
+				    </div>
+                    <!-- 蓝图配置 -->
+				    <div class="toggle-config">
+				     	<div class="toggle-config-head" ng-click="blueprintToggle=!blueprintToggle"><span>蓝图配置</span><em class="fa" ng-class="{'fa-sort-down':!blueprintToggle,'fa-sort-up':blueprintToggle}"></em></div>
+				     	<div class="toggle-config-body" ng-show="!blueprintToggle">
+				     		<table class="table table_title">
+		                     	 <thead>
+		                     	 	<tr>
+		                     	 		<th>参数名</th>
+		                     	 		<th>参数值</th>
+		                     	 	</tr>
+		                     	 </thead>
+		                     	 <tbody>
+		                     	 	<tr ng-repeat="blueprintItem in oriBlueprintList">
+		                     	 		<td><div ng-class="{'highlight':blueprintItem.value.highlight}">{{blueprintItem.key}}</div></td>
+		                     	 		<td><div ng-class="{'highlight':blueprintItem.value.highlight}">{{blueprintItem.value.value}}</div></td>
+		                     	 	</tr>
+		                     	 </tbody>
+		                     </table>   
+				     	</div>
+				    </div>
+			</div>
+			<div class="col-sm-6">
+			    <p>对比实例：{{$stateParams.compare_insName}}</p>
+				    <!-- 资源配置 -->
+					<div class="toggle-config">
+     	                <div class="toggle-config-head" ng-click="resourceToggle=!resourceToggle"><span>资源池配置</span><em class="fa" ng-class="{'fa-sort-down':!resourceToggle,'fa-sort-up':resourceToggle}"></em></div>
+     	                <div class="toggle-config-body" ng-show="!resourceToggle">
+			                 <div class="toggle-config" ng-repeat="compareResourceItem in compareResourceList" ng-init="resourceindex=$index+1">
+				                 <div class="toggle-config-head" ng-click="resourceindex=!resourceindex">
+				                 	<span>{{compareResourceItem.nodeDisplay}}</span>
+				                 	<em class="fa"  ng-class="{'fa-sort-down':!resourceindex,'fa-sort-up':resourceindex}"></em>
+				                 </div>
+				                 <div class="toggle-config-body" ng-show="resourceindex"> 
+				                    <div ng-class="{'highlight':compareResourceItem.des.highlight}"><p>资源池描述：{{compareResourceItem.des.value}}</p></div>
+				                    <div ng-class="{'highlight':compareResourceItem.cluster_name.highlight}"><p>环境：{{compareResourceItem.cluster_name.value}}</p></div>
+				                    <!-- <div ng-class="{'highlight':compareResourceItem.label.value.highlight}"><p>标签：{{compareResourceItem.label.value.value}}</p></div> -->
+				                    <div ng-class="{'highlight':compareResourceItem.nodes.highlight}">
+					                    <p>节点：</p>
+					                    <ul>
+					                    	<li ng-repeat="nodeItem in compareResourceItem.nodesArr">{{nodeItem.ip}}</li>
+					                    </ul>
+				                    </div>
+				                 </div>
+			                 </div>
+     	                </div>
+                    </div>
+                    <!-- 组件配置 -->
+				    <div class="toggle-config">
+				     	<div class="toggle-config-head" ng-click="componentToggle=!componentToggle"><span>组件配置</span><em class="fa" ng-class="{'fa-sort-down':!componentToggle,'fa-sort-up':componentToggle}"></em></div>
+				     	<div class="toggle-config-body" ng-show="!componentToggle">
+				     		 <div class="toggle-config" ng-repeat="compareComponentItem in compareComponentList" ng-init="componentindex=$index+1">
+				                 <div class="toggle-config-head" ng-click="componentindex=!componentindex">
+				                 	<span>{{compareComponentItem.nodeDisplay}}</span>
+				                 	<em class="fa" ng-class="{'fa-sort-down':!componentindex,'fa-sort-up':componentindex}"></em>
+				                 </div>
+				                 <div class="toggle-config-body" ng-show="componentindex"> 
+				                     <div class="toggle-config">
+						                 <div class="toggle-config-head" ng-click="current=!current">
+						                 	<span>当前版本</span> 
+						                 	<em class="fa" ng-class="{'fa-sort-down':!current,'fa-sort-up':current}"></em>
+						                 </div>
+						                 <div class="toggle-config-body" ng-show="!current"> 
+						                     <div ng-class="{'highlight':compareComponentItem.currentVersionName.highlight}"><p>版本：{{compareComponentItem.currentVersionName.value}}</p></div>
+						                     <p>输入参数：</p>
+						                     <table class="table table_title">
+						                     	 <thead>
+						                     	 	<tr>
+						                     	 		<th>参数名</th>
+						                     	 		<th>参数值</th>
+						                     	 	</tr>
+						                     	 </thead>
+						                     	 <tbody>
+						                     	 	<tr ng-repeat="currentInputItem in compareComponentItem.currentInputArr">
+						                     	 		<td><div ng-class="{'highlight':currentInputItem.value.highlight}">{{currentInputItem.key}}</div></td>
+						                     	 		<td><div ng-class="{'highlight':currentInputItem.value.highlight}">{{currentInputItem.value.value}}</div></td>
+						                     	 	</tr>
+						                     	 </tbody>
+						                     </table>
+						                     <p>输出参数：</p>
+						                     <table class="table table_title">
+						                     	 <thead>
+						                     	 	<tr>
+						                     	 		<th>参数名</th>
+						                     	 		<th>参数值</th>
+						                     	 	</tr>
+						                     	 </thead>
+						                     	 <tbody>
+						                     	 	<tr ng-repeat="currentOutputItem in compareComponentItem.currentOutputArr">
+						                     	 		<td><div ng-class="{'highlight':currentOutputItem.value.highlight}">{{currentOutputItem.key}}</div></td>
+						                     	 		<td><div ng-class="{'highlight':currentOutputItem.value.highlight}">{{currentOutputItem.value}}</div></td>
+						                     	 	</tr>
+						                     	 </tbody>
+						                     </table>
+						                 </div>
+					                 </div>
+					                 <div class="toggle-config">
+						                 <div class="toggle-config-head" ng-click="target=!target">
+						                 	<span>目标版本</span>
+						                 	<em class="fa" ng-class="{'fa-sort-down':!target,'fa-sort-up':target}"></em>
+						                 </div>
+						                 <div class="toggle-config-body" ng-show="!target"> 
+						                     <div ng-class="{'highlight':compareComponentItem.targetVersionName.highlight}"><p>版本：{{compareComponentItem.targetVersionName.value}}</p></div>
+						                     <p>输入参数：</p>
+						                     <table class="table table_title">
+						                     	 <thead>
+						                     	 	<tr>
+						                     	 		<th>参数名</th>
+						                     	 		<th>参数值</th>
+						                     	 	</tr>
+						                     	 </thead>
+						                     	 <tbody>
+						                     	 	<tr ng-repeat="targetInputItem in compareComponentItem.targetInputArr">
+						                     	 		<td><div ng-class="{'highlight':targetInputItem.value.highlight}">{{targetInputItem.key}}</div></td>
+						                     	 		<td><div ng-class="{'highlight':targetInputItem.value.highlight}">{{targetInputItem.value.value}}</div></td>
+						                     	 	</tr>
+						                     	 </tbody>
+						                     </table>
+						                     <p>输出参数：</p>
+						                     <table class="table table_title">
+						                     	 <thead>
+						                     	 	<tr>
+						                     	 		<th>参数名</th>
+						                     	 		<th>参数值</th>
+						                     	 	</tr>
+						                     	 </thead>
+						                     	 <tbody>
+						                     	 	<tr ng-repeat="targetOutputItem in compareComponentItem.targetOutputArr">
+						                     	 		<td><div ng-class="{'highlight':targetOutputItem.value.highlight}">{{targetOutputItem.key}}</div></td>
+						                     	 		<td><div ng-class="{'highlight':targetOutputItem.value.highlight}">{{targetOutputItem.value.value}}</div></td>
+						                     	 	</tr>
+						                     	 </tbody>
+						                     </table>
+						                 </div>
+					                 </div>
+				                 </div>
+			                 </div>
+				     	</div>
+				    </div>
+                    <!-- 蓝图配置 -->
+				    <div class="toggle-config">
+				     	<div class="toggle-config-head" ng-click="blueprintToggle=!blueprintToggle"><span>蓝图配置</span><em class="fa" ng-class="{'fa-sort-down':!blueprintToggle,'fa-sort-up':blueprintToggle}"></em></div>
+				     	<div class="toggle-config-body" ng-show="!blueprintToggle">
+                             <table class="table table_title">
+		                     	 <thead>
+		                     	 	<tr>
+		                     	 		<th>参数名</th>
+		                     	 		<th>参数值</th>
+		                     	 	</tr>
+		                     	 </thead>
+		                     	 <tbody>
+		                     	 	<tr ng-repeat="blueprintItem in compareBlueprintList">
+		                     	 		<td><div ng-class="{'highlight':blueprintItem.value.highlight}">{{blueprintItem.key}}</div></td>
+		                     	 		<td><div ng-class="{'highlight':blueprintItem.value.highlight}">{{blueprintItem.value.value}}</div></td>
+		                     	 	</tr>
+		                     	 </tbody>
+		                     </table>
+				     	</div>
+				    </div>
+			</div>
+		</div>
+	</div>
+</div>
+</div>

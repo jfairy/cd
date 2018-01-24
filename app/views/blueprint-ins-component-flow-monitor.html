@@ -1,0 +1,61 @@
+<div class="breadcont clearfix">
+   <ol class="breadcrumb pull-left">
+      <li><a ui-sref="app.blueprint_ins_manage">蓝图实例列表</a>
+      </li>
+      <li>
+        {{$stateParams.insName}}
+      </li>
+      <li>
+        <a ui-sref="app.blueprint_ins_components({insName:$stateParams.insName,insId:$stateParams.insId,INSTANCE_ID:$stateParams.INSTANCE_ID})">组件列表</a>
+      </li>
+      <li>
+         {{$stateParams.appName}}
+      </li>
+      <li>
+        <a ui-sref="app.blueprint_ins_components_log_manage({insName:$stateParams.insName,insId:$stateParams.insId,INSTANCE_ID:$stateParams.INSTANCE_ID,appName:$stateParams.appName})">日志管理</a>
+      </li>
+      <li class="active">
+        {{$stateParams.flowName}}
+      </li>
+   </ol>
+</div>
+<div class="panel">
+<div class="panel-body">
+<div class="form-horizontal">  
+    <form name="form">
+       <div class="monitor-color">
+	    	<ul class="color-block clearfix">
+	    		<li><span class="bg-success"></span> 执行成功</li>
+	    		<li><span class="bg-danger"></span> 执行失败</li>
+	    		<li><span class="bg-warning"></span> 正在执行</li>
+	    		<li><span class="bg-gray"></span> 未执行</li>
+	    	</ul>
+ 	   </div>
+       <div class="filetree monitor-tree clearfix">  
+    	  	<div class="filemenu pull-left">
+    	  		<abn-tree3 ng-if="treeoff" tree-data="my_data" tree-control="my_tree" on-select="my_tree_handler(branch,my_data)" expand-level="4"></abn-tree3> 
+    	  	</div>
+    	    <div class="filecont pull-left">
+    	         <small ng-show="branch">
+    	                               开始时间：{{branch.startTime}} 结束时间：{{branch.endTime}} 
+    	            <a ng-if="branch.meddleError" ng-click="intervene(branch)" href="" class="btn btn-danger btn-xs" style="margin-right:10px;">干预</a></span>
+                    <a href="javascript:;" ng-if="branch.type=='9'" ng-click="pluginLog(branch.type,branch.id)" class="btn btn-info btn-xs">查看日志</a>
+                    <a href="javascript:;" ng-if="(branch.type=='1')&&(branch.state==7)" ng-click="pluginLog(branch.type,branch.id)"  class="btn btn-danger btn-xs">查看错误日志</a>
+    	         </small>
+    	         <script src="vendor/flow/jquery-ui.min.js"></script>
+    	         <script src="vendor/flow/BPMNClasses.js"></script>
+				 <div ng-if="isMonitor" ng-controller="flowCtrl">
+					  <div ng-init="init()">
+					     <div id="PaletteAndDiagram"> 
+					     	<div id="myDiagramDiv" style="width:100%;border:none;"></div>
+					     </div>
+					     <textarea id="mySavedModel" style="display:none" ng-model="flowInfo">
+					     </textarea>
+					 </div>
+				</div> 
+    	    </div>
+       </div>
+   </form>
+</div>
+</div>
+ 

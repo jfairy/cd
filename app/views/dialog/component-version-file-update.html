@@ -1,0 +1,15 @@
+<div class="dialog-header">
+    <h4>修改文件</h4>
+</div>
+<div class="dialog-body">
+   <div class="form-horizontal">  
+      <form name="form">
+      	  <textarea style="height:400px;" class="form-control" ng-model="fileCont"></textarea> 
+      </form>
+   </div>
+</div>
+<div class="dialog-footer">
+   <a class="btn btn-info" ng-click="closeThisDialog(0)">取消</a>
+   <button type="submit" class="btn" ng-disabled="!form.$valid" ng-class="{'btn-primary':form.$valid,'btn-default':!form.$valid}" ng-click="updateFile()">更新</button>
+</div>
+ 

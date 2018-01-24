@@ -1,0 +1,42 @@
+<div class="dialog-header">
+    <h4>组件维护</h4>
+</div>
+<div class="dialog-body">
+	<div class="form-horizontal"> 
+	    <form name="form">
+
+	       <div class="form-group">
+	       		<label class="col-sm-3 control-label text-right"><text class="text-danger">*</text> 操作类型：</label>
+	            <div class="col-sm-9">
+	                <select required="" class="form-control" ng-model="formData.do" ng-options="doItem as doItem.doChineseName for doItem in doList"></select>
+	            </div>
+	       </div>
+	       
+	       <div class="form-group">
+	            <label class="col-sm-3 control-label text-right"><text class="text-danger">*</text> 版本：</label>
+	            <div class="col-sm-9">
+	                 <select required="" class="form-control" ng-model="formData.versionType" ng-options="item.value as item.text for item in versionType"></select>
+	            </div>
+	       </div>
+	       
+	       <div class="form-group">
+	       		<label class="col-sm-3 control-label text-right"><text class="text-danger">*</text> 选择过程：</label>
+	            <div class="col-sm-9">
+	                <select required="" class="form-control" ng-model="formData.flow" ng-options="flowItem as flowItem.flowName for flowItem in formData.do.doCont"></select>
+	            </div>
+	       </div>
+	       
+	       <div class="form-group" ng-if="isRollback">
+	       		<label class="col-sm-3 control-label text-right"><text class="text-danger">*</text> 快照列表：</label> 
+	            <div class="col-sm-9 form-inline"> 
+	                <select required="" class="form-control" ng-model="formData.snapshoot" ng-options="item.snapshotId as item.snapshotName for item in snapshootList"></select>
+	            </div> 
+	       </div>
+	    	
+	    </form>
+	</div>
+</div>
+<div class="dialog-footer">
+	<a class="btn btn-info" ng-click="closeThisDialog(0)">取消</a>
+    <button type="submit" class="btn" ng-disabled="!form.$valid" ng-class="{'btn-default':!form.$valid,'btn-info':form.$valid}" ng-click="mainTainFn()">执行</button>
+</div>

@@ -1,0 +1,32 @@
+<div class="dialog-header">
+    <h4>新建蓝图</h4>
+</div>
+<div class="dialog-body">
+   <div class="form-horizontal">  
+      <form name="addBlueprintForm">
+      	 <div class="form-group">
+	         <label class="col-lg-3 control-label text-right">蓝图名称</label>
+	         <div class="col-lg-8">
+	            <input type="text" ng-focus="authMsg=''" ng-model="name" class="form-control" required="" ng-maxlength="32" ng-pattern="/^[a-zA-Z0-9_.-]*$/" name="name" autocomplete="off" />
+	            <div><small>名称由字母、数字、.、-、_组成，最多32位</small></div>
+	            <span ng-show="validateInput(addBlueprintForm,'name', 'required')" class="text-danger">请输入蓝图名称！</span> 
+	            <span ng-show="validateInput(addBlueprintForm,'name', 'pattern')" class="text-danger">名称不符合规则！</span> 
+	            <span ng-show="validateInput(addBlueprintForm,'name', 'maxlength')" class="text-danger">名称最多32个字符！</span>
+	            <span ng-show="authMsg" class="text-danger">{{authMsg}}</span>
+	         </div>
+	     </div>
+	     <div class="form-group">
+	         <label class="col-lg-3 control-label text-right">蓝图描述</label>
+	         <div class="col-lg-8">
+	            <textarea type="text" ng-model="description" class="form-control" name="description">
+	            </textarea>
+	         </div>
+	     </div>
+      </form>
+   </div>
+</div>
+<div class="dialog-footer">
+   <a class="btn btn-info" ng-click="closeThisDialog(0)">取消</a>
+   <button type="submit" class="btn" ng-disabled="!addBlueprintForm.$valid" ng-class="{'btn-primary':addBlueprintForm.$valid,'btn-default':!addBlueprintForm.$valid}" ng-click="saveBlueprintTemplateFn()">保存</button>
+</div>
+ 

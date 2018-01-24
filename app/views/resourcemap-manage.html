@@ -1,0 +1,37 @@
+ <div class="row clearfix">
+   <div class="col-sm-6">
+        <a ui-sref="app.resourcemap_add" class="btn btn-info">添加资源映射</a>
+   </div>
+</div>
+
+<table class="table table_title mt20">
+    <thead>
+       <tr>
+          <th>名称</th>
+          <th>类型</th>
+          <th>所属集群</th>
+          <th>操作</th>
+       </tr>
+    </thead>
+    <tbody>
+       <tr ng-if="!listoff">
+         <td colspan="4">
+            <p class="noresult"><em class="icon-info"></em> {{warninginfo}}</p>
+         </td>
+       </tr>
+       <tr ng-repeat="resourcemapItem in resourcemapList track by $index">
+    	 	<td>{{resourcemapItem.label_value}}</td>
+            <td>{{labelType(resourcemapItem.label_type)}}</td>
+    	 	<td>{{resourcemapItem.cluster_name}}</td>
+       	    <td> 
+               <button class="btn btn-sm btn-info" ng-click="editResourceMap(resourcemapItem)">编辑</button>
+               <button class="btn btn-sm btn-danger" ng-click="delLabel($index,resourcemapItem)">删除</button>
+          	</td>
+       </tr>
+       <tr ng-show="listoff">
+	        <td colspan="4"> 
+	            <page page-count="pageCount" page-num="pageNum" on-page-change="onPageChange(pageNum)"></page>
+	        </td>
+       </tr>
+   </tbody>
+</table>

@@ -1,0 +1,70 @@
+<div class="dialog-header">
+    <h4>编辑资源映射</h4>
+</div>
+<div class="dialog-body">
+   <div class="form-horizontal">  
+      <form name="editResourceMapForm">
+         <div class="form-group">
+             <label class="col-lg-3 control-label text-right">名称：</label>
+             <div class="col-lg-8 form-control-static">
+                     {{labelData.label_value}} 
+             </div>
+         </div>
+
+         <div class="form-group">
+             <label class="col-lg-3 control-label text-right">类型：</label>
+             <div class="col-lg-8 form-control-static"> 
+                   {{labelType(labelData.label_type)}} 
+             </div>
+         </div>
+
+         <div class="form-group">
+             <label class="col-lg-3 control-label text-right">所属集群：</label>
+             <div class="col-lg-8 form-control-static">
+                  {{labelData.cluster_name}} 
+             </div>
+         </div>
+
+         <div class="form-group">
+             <label class="col-lg-3 control-label text-right">选择节点：</label>
+             <div class="col-lg-8 form-control-static">
+                   <table class="table table_title">
+                        <thead>
+                          <tr>
+                              <th check-all="check-all" checkapp-id="checkappId">
+                                <div data-toggle="tooltip" data-title="Check All" class="checkbox c-checkbox">
+                                    <label>
+                                       <input type="checkbox" />
+                                       <span class="fa fa-check"></span>
+                                    </label>
+                                 </div>
+                              </th>
+                              <th>名称</th>
+                              <th>IP</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                             <tr ng-repeat="nodeItem in nodeList track by $index">   
+                                <td>
+                                  <div class="checkbox c-checkbox">
+                                     <label>
+                                        <input type="checkbox" id="{{nodeItem}}" save-id="{{nodeItem}}" checkapp-id="checkappId" ng-checked="{{nodeItem.selected}}" />
+                                        <span class="fa fa-check"></span>
+                                     </label>
+                                  </div>
+                                </td>
+                                <td>{{nodeItem.name}}</td>
+                                <td>{{nodeItem.ip}}</td>
+                              </tr>
+                        </tbody>
+                    </table> 
+             </div>
+         </div>
+      </form>
+   </div>
+</div>
+<div class="dialog-footer">
+    <button class="btn btn-info" ng-click="closeThisDialog(0)">取消</button>
+    <button class="btn btn-info" ng-click="editResourceMapFn();">保存</button> 
+</div>
+ 

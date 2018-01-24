@@ -1,0 +1,56 @@
+<div class="row clearfix cont-header">
+   <div class="col-sm-6">
+        <a ui-sref="app.quartz_create" class="btn-cd-icon"><span class="cd-ic_adduser">
+                <span class="path1"></span><span class="path2"></span><span class="path3"></span>
+                </span> 添加任务</a>
+   </div>
+   <div class="col-sm-6">
+      <div class="custom-search">
+        <input type="text" ng-keyup="search()" class="custom-search-form-control" placeholder="按任务名称搜索" ng-model="searchval" />
+        <em class="icon-magnifier"></em>
+      </div>
+   </div>
+</div>
+
+<div class="cont-body">
+     <table class="table table_title table-striped cd-table mt20">
+       <thead>
+          <tr>
+             <th>定时任务名称</th>
+             <th>表达式</th>
+             <th>更新时间</th>
+             <th>操作</th>
+          </tr>
+       </thead>
+       <tbody>
+          <tr ng-if="!listoff">
+             <td colspan="4">
+               <p class="noresult"><em class="icon-info"></em> {{warninginfo}}</p>
+             </td>
+          </tr>
+          <tr ng-repeat="item in quartzList.rows">
+             <td>{{item.quartzName}}</td>
+             <td>{{item.quartzCron}}</td>
+             <td>{{item.updateTime}}</td>
+             <td>
+             <a ui-sref="app.quartz_update({quartzId:item.quartzId})" class="btn btn-cd-default">更新</a>
+             <a ui-sref="app.quartz_jobs({quartzName:item.quartzName,quartzId:item.quartzId})" class="btn btn-cd-default">查看Jobs</a>
+             <a ui-sref="app.quartz_info({quartzName:item.quartzName,quartzId:item.quartzId})" class="btn btn-cd-default">添加Job</a>
+             <button class="btn btn-cd-default" ng-click="stopQuartzJob($index,item.quartzId)">暂停Jobs
+             </button>
+             <button class="btn btn-cd-default" ng-click="resumeQuartzJob($index,item.quartzId)">恢复Jobs
+             </button>
+             <button class="btn btn-cd-default btn-cd-default-del" ng-click="delQuartz($index,item.quartzId)">
+             删除
+             </button>
+             </td>
+          </tr>
+          <tr ng-show="listoff">
+             <td colspan="4">
+                <page page-count="pageCount" page-num="pageNum" on-page-change="onPageChange()"></page>
+             </td>
+          </tr>
+       </tbody>
+    </table>
+</div>
+ 

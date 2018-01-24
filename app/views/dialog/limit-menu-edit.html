@@ -1,0 +1,53 @@
+<div class="dialog-header">
+    <h4>编辑菜单</h4>
+</div>
+<div class="dialog-body">
+   <div class="form-horizontal">  
+      <form name="editLimitForm">
+      	 <div class="form-group">
+	         <label class="col-lg-3 control-label text-right">菜单名</label>
+	         <div class="col-lg-8">
+	            <input type="text" ng-model="limit.text" class="form-control" required="" name="text" autocomplete="off" />
+	            <span ng-show="validateInput(editLimitForm,'text','required')" class="text-danger">请输入菜单名！</span>
+	         </div>
+	       </div>
+
+         <div class="form-group">
+           <label class="col-lg-3 control-label text-right">菜单图标</label>
+           <div class="col-lg-8">
+              <input type="text" ng-model="limit.icon" class="form-control" required="" name="icon" autocomplete="off" />
+              <span ng-show="validateInput(editLimitForm,'icon','required')" class="text-danger">请输入菜单图标！</span>
+           </div>
+         </div> 
+
+         <div class="form-group">
+           <label class="col-lg-3 control-label text-right">菜单描述</label>
+           <div class="col-lg-8">
+              <textarea ng-model="limit.sref" class="form-control" required="" name="sref" autocomplete="off"></textarea>
+           	  <span ng-show="validateInput(editLimitForm,'sref','required')" class="text-danger">请输入菜单描述！</span>
+           </div>
+         </div>
+
+        
+         <div class="form-group">
+           <label class="col-lg-3 control-label text-right">菜单类型</label>
+           <div class="col-lg-8">
+              <input type="text" ng-model="limit.type" class="form-control" required="" name="type" autocomplete="off" />
+           	  <span ng-show="validateInput(editLimitForm,'type','required')" class="text-danger">请输入菜单类型！</span>
+           </div>
+         </div>
+          <div class="form-group">
+           <label class="col-lg-3 control-label text-right">父级菜单</label>
+           <div class="col-lg-8">
+              <select class="form-control" ng-model="limit.parent" ng-options="parentItem.page_id as parentItem.text for parentItem in parentMenuList"></select>
+           </div>
+         </div>
+         
+      </form>
+   </div>
+</div>
+<div class="dialog-footer">
+   <a class="btn btn-info" ng-click="closeThisDialog(0)">取消</a>
+   <button type="submit" class="btn" ng-disabled="!editLimitForm.$valid" ng-class="{'btn-primary':editLimitForm.$valid,'btn-default':!editLimitForm.$valid}"  ng-click="editLimitFn()">确定</button>
+</div>
+ 

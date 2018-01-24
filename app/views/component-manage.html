@@ -1,0 +1,79 @@
+<div class="row clearfix cont-header">
+	   <div class="col-sm-6">
+	        <a href="" class="btn-cd-icon" ng-click="clearCookie();addComponentFn()"><span class="cd-ic_adduser">
+                <span class="path1"></span><span class="path2"></span><span class="path3"></span>
+                </span> 创建通用组件</a>
+            <a class="btn-cd-icon" ng-click="clearCookie();exportComponent()">
+            	<span class="cd-ic_derive">
+                <span class="path1"></span><span class="path2"></span>
+                </span> 导出组件</a>
+            <a class="btn-cd-icon" ng-click="clearCookie();importComponent()">
+            	<span class="cd-ic_lead">
+                <span class="path1"></span><span class="path2"></span>
+                </span> 导入组件</a>
+	   </div>
+	   <div class="col-sm-6">
+	      <div class="search">
+	        <input type="text" ng-keyup="search()" class="form-control search-form-control" placeholder="按组件名称搜索" ng-model="searchval" />
+	        <em class="icon-magnifier"></em>
+	      </div>
+	   </div>
+	</div>
+
+    <div class="loader-demo" ng-if="loadoff">
+         <div class="ball-pulse">
+            <div></div>
+            <div></div>
+            <div></div>
+         </div>
+    </div>
+    
+    <div ng-if="!resultoff">
+    	<p class="noresult"><em class="icon-info"></em> {{warninginfo}}</p>
+    </div>
+    
+    <div class="cont-body">
+    	
+    
+	<div class="list-image clearfix" ng-repeat="item in ftplist.rows" ng-show="!loadoff">
+	   <a href="" class="pull-left image-pic"><img ng-src="app/images/component-icons/{{item.pic}}.png"></a>
+	   <div class="pull-left">
+	      <p class="name">
+	      	<a ng-click="setCookie()" ui-sref="app.component_detail(
+	      	{componentName:item.resourceName,resourceId:item.resourceId})" class="text-info">
+	      		{{item.resourceName}}
+	      	</a>
+	      </p>
+	      <p class="newv">最新版本：{{item.versionName}}<span class="vnum text-info">({{item.versionNum}}个版本)</span></p>
+	   </div>
+	   <div class="pull-right mt20">
+	       <a class="btn btn-cd-default btn-cd-default-info btn-cd-default-sm" ng-click="setCookie()" ui-sref="app.component_version_add({componentName:item.resourceName,componentId:item.resourceId})">添加版本</a>
+	      
+	       
+	       <div dropdown="dropdown" class="btn-group">
+                 <button dropdown-toggle="" class="btn btn-cd-default btn-cd-default-sm">过程 <b class="caret"></b>
+                 </button>
+                 <ul role="menu" class="dropdown-menu btn-dropdown-menu">
+                     <li>
+                         <a ng-click="setCookie()" ui-sref="app.component_flow_create({componentName:item.resourceName,componentId:item.resourceId})">添加过程</a>
+                     </li>
+                     <li>
+                         <a ng-click="setCookie()" ui-sref="app.component_flow_manage({componentName:item.resourceName,componentId:item.resourceId})">查看过程</a>
+                     </li>
+                 </ul>
+           </div>
+	       <button class="btn btn-cd-default btn-cd-default-del btn-cd-default-sm" ng-click="delComponent(item.resourceId,$index)">删除</button>
+	   </div>
+	   <div class="pull-right image-v">
+	      <span><span class="date">更新时间：</span>{{item.updateTime}}</span>
+	      
+	   </div>
+	   
+	   <div class="pos-pic"></div>
+	</div>
+	
+	<div class="pagewrap" ng-show="resultoff">
+		<page page-count="pageCount" page-num="pageNum" on-page-change="onPageChange(pageNum)"></page>
+	</div>
+</div>
+ 

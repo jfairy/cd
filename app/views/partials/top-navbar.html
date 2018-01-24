@@ -1,0 +1,66 @@
+<nav role="navigation" class="navbar topnavbar">
+    <div class="nav-wrapper">
+        <!-- <ul class="nav navbar-nav">
+           <li>
+              <h3 style="margin:15px 0 0 0;">{{currTitle}}</h3>
+           </li>
+        </ul> -->
+        <div class="logo">
+            <h1 class="text-center">
+                <!--<a href="">-->
+                    <div class="brand-logo">
+                        <img width="100" height="18" ng-src="{{app.logosrc_big}}" ng-attr-alt="{{app.name}}" class="img-responsive" />
+                        <span class="ng-binding">{{app.name}}</span>
+                    </div>
+                    <div class="brand-logo-collapsed">
+                        <img width="40" height="22" ng-src="{{app.logosrc_small}}" ng-attr-alt="{{app.name}}" class="img-responsive" />
+                    </div>
+                <!--</a>-->
+            </h1>
+
+            <a href="#" class="isCollapsed" trigger-resize="" ng-click="setCollapsed()" class="hidden-xs" >
+                <em class="fa fa-navicon"></em>
+            </a>
+        </div>
+
+
+
+        <ul class="nav navbar-nav navbar-right">
+
+            <li dropdown="" class="dropdown dropdown-list">
+                <a dropdown-toggle="" ng-click="app.layout.isDropdown=!app.layout.isDropdown">
+                    <em class="cd-user-ic_personal"></em> {{user.name}}
+                    <em class="fa"  ng-class="{'fa-caret-down':app.layout.isDropdown,'fa-caret-up':!app.layout.isDropdown}"></em> 
+                </a>
+
+                <!-- START Dropdown menu-->
+                <ul class="dropdown-menu animated flipInX">
+                    <li>
+                        <a href="UserGuide/UserGuide.html" target="_blank">
+                            <em class="cd-user-ic_userhelp"></em> 用户手册
+                        </a>
+                    </li>
+                    <li class="second-dropdown" ng-mouseover="showStyle=true" ng-mouseout="showStyle=false">
+                        <a href="#">
+                            <em class="cd-user-ic_skins"></em> 改变风格
+                        </a>
+                        <ul class="second-dropdown-menu" ng-show="showStyle">
+                            <li>
+                                <a href="" ng-click="changeStyle('blue')" class="blue"><em class="cd-user-ic_skins"></em> 清新蓝</a>
+                            </li>
+                            <li>
+                                <a href="" ng-click="changeStyle('purple')" class="purple"><em class="cd-user-ic_skins"></em> 深沉紫</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#" ng-click="loginout()">
+                            <em class="cd-user-ic_logout"></em>
+                            <span>注销</span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+</nav>

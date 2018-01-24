@@ -1,0 +1,58 @@
+<div class="dialog-header">
+    <h4>创建组件</h4>
+</div>
+<div class="dialog-body">
+   <div class="form-horizontal">  
+      <form name="addComponentForm" novalidate="" class="form-validate form-horizontal">
+      		<fieldset>
+	           <div class="form-group">
+	              <label class="col-sm-3 control-label">组件名称：</label>
+	              <div class="col-sm-9"> 
+	                 <input type="text" name="name" required="" ng-maxlength="32" ng-pattern="/^[a-zA-Z0-9_.-]*$/" ng-model="formdata.resourceName" class="form-control" />
+                     <div><small>名称由字母、数字、.、-、_组成，最多32位</small></div>
+                     <span ng-show="validateInput(addComponentForm,'name', 'required')" class="text-danger">请填写组件名称！</span> 
+	                 <span ng-show="validateInput(addComponentForm,'name', 'pattern')" class="text-danger">名称不符合规则！</span> 
+	                 <span ng-show="validateInput(addComponentForm,'name', 'maxlength')" class="text-danger">名称最多32个字符！</span> 
+	              </div>
+	           </div>
+	        </fieldset>
+	        
+	        <fieldset>
+	           <div class="form-group">
+	              <label class="col-sm-3 control-label">组件描述：</label>
+	              <div class="col-sm-9"> 
+	                 <textarea name="description" ng-model="formdata.resourceDesc" class="form-control" /></textarea>
+	              </div>
+	           </div>
+	        </fieldset>
+	        
+	        <fieldset>
+	           <div class="form-group">
+	              <label class="col-sm-3 control-label">组件标签：</label>
+	              <div class="col-sm-9"> 
+	                 <select ng-show="hasLabels" id="optionalLabels"
+                       data-placeholder="请选择标签"
+                       name="labels" ng-model="labels" multiple="multiple"
+                       class="chosen-select form-control">
+                     </select>
+	              </div>
+	           </div>
+	        </fieldset>
+
+	        <fieldset>
+	           <div class="form-group">
+	              <label class="col-sm-3 control-label">组件图标：</label>
+	              <div class="col-sm-9"> 
+	                 <select ng-model="formdata.icon" class="form-control" ng-options="item for item in iconList">
+                     </select>
+	              </div>
+	           </div>
+	        </fieldset>
+      </form>
+   </div>
+</div>
+<div class="dialog-footer">
+   <a href="" class="btn btn-info" ng-click="closeThisDialog(0)">取消</a> 
+   <button class="btn" ng-disabled="!addComponentForm.$valid" ng-class="{'btn-primary':addComponentForm.$valid,'btn-default':!addComponentForm.$valid}" ng-click="addComponentFn()">创建</button>
+</div>
+ 

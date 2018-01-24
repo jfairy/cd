@@ -1,0 +1,23 @@
+<div class="dialog-header">
+    <h4>并发、轮循配置</h4>
+</div>
+<div class="dialog-body">
+ 	<div class="form-horizontal"> 
+ 		 <form name="form">
+ 		 	<div class="form-group">
+	            <label class="col-lg-2 control-label text-right">设置：</label>
+	            <div class="col-lg-10"> 
+	                 <select class="form-control" ng-model="grouptype" ng-options="item.value as item.text for item in groupTypeList"></select>
+	            </div>
+	       </div> 
+ 		 </form>
+ 	</div>
+    
+</div>
+
+	   
+	       
+<div class="dialog-footer">
+	<a class="btn btn-info" ng-click="closeThisDialog(0)">取消</a>
+    <button type="submit" class="btn btn-primary" ng-click="groupTypeFn()">确定</button>
+</div>

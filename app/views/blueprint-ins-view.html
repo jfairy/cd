@@ -1,0 +1,23 @@
+<script src="vendor/flow/jquery-ui.min.js"></script> 
+<div ng-controller="blueprintCtrl">
+	<div class="breadcont clearfix">
+	   <ol class="breadcrumb pull-left">
+	      <li><a ui-sref="app.blueprint_ins_manage">蓝图实例列表</a>
+	      </li>
+	      <li>
+	      	{{tempName}}
+	      </li>
+	      <li class="active">
+	      	蓝图模板
+	      </li>
+	   </ol>
+	</div>
+	<div class="cont-body">
+	<div ng-init="init()">
+	  <div id="PaletteAndDiagram">
+	    <div style="width:100%;" id="myDiagramDiv"></div>
+	  </div>
+	</div>
+	</div>
+</div>
+ 

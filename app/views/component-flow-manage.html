@@ -1,0 +1,37 @@
+<div class="breadcont clearfix">
+   <ol class="breadcrumb pull-left">
+      <li><a ui-sref="app.component_manage">组件列表</a>
+      </li>
+      <li>
+      	<a ui-sref="app.component_detail({componentName:$stateParams.componentName,resourceId:$stateParams.componentId})">{{$stateParams.componentName}}</a>
+      </li>
+      <li class="active">
+      	过程管理
+      </li>
+   </ol>
+</div>
+
+<div class="cont-body">
+<ul class="flowul">
+	<li ng-repeat="doItem in flowList" ng-init="outindex=$index">
+	    <p class="clearfix" ng-click="doItem.show=!doItem.show">{{flowText(doItem.doName)}} <em class="pull-right fa" ng-class="{'fa-angle-double-down':!doItem.show,'fa-angle-double-up':doItem.show}"></em></p>
+	    <table class="table table_title cont-bor" ng-show="doItem.show">
+	        <thead>
+	            <tr class="clearfix-float">
+	              <th>过程名称</th>
+	              <th class="right right-oper">操作</th>
+	            </tr>
+            </thead>
+            <tbody>
+	            <tr ng-repeat="docontItem in doItem.doCont" ng-init="innerindex=$index" class="clearfix-float cont-tr">
+		             <td>{{docontItem.flowName}}</td>  
+		            <td class="right">
+		               <button class="btn btn-cd-default" ui-sref="app.component_flow_update({componentName:$stateParams.componentName,componentId:componentId,flowType:doItem.doName,flowId:docontItem.cdFlowId,flowName:docontItem.flowName})">编辑</button>
+		               <button class="btn btn-cd-default btn-cd-default-del" ng-click="delFlow(docontItem.cdFlowId,outindex,innerindex)">删除</button>
+		            </td>
+	            </tr>
+            </tbody>
+       </table>
+	</li>
+</ul>
+</div>

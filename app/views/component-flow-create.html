@@ -1,0 +1,60 @@
+<div class="breadcont clearfix">
+   <ol class="breadcrumb pull-left">
+      <li><a ui-sref="app.component_manage">组件列表</a>
+      </li>
+      <li>
+      	<a ui-sref="app.component_detail({componentName:$stateParams.componentName,resourceId:$stateParams.componentId})">{{$stateParams.componentName}}</a>
+      </li>
+      <li class="active">
+      	添加过程
+      </li>
+   </ol>
+</div>
+<script src="vendor/flow/jquery-ui.min.js"></script>
+<script src="vendor/flow/BPMNClasses2.js"></script>
+<div class="cont-body">
+<div ng-controller="flowCtrl">
+<div ng-init="init()">
+
+    <div id="PaletteAndDiagram">
+    <div id="sideBar">
+      <span style="display: inline-block; vertical-align: top; width:100%">
+        <div id="accordion">
+        <h4>插件集</h4>
+        <div id="combar" class="">
+        	<h5 ng-repeat-start="item in cList">{{item.name}}</h5>
+        	<div ng-repeat-end>
+        		<div id="plugins{{$index}}" class="myPaletteDiv customPaletteDiv"></div>
+        		<div class="search designer-search mt20"> 
+                  <input type="text" ng-keyup="searchPlugin(item.type,$index,item.searchval)" class="form-control search-form-control" placeholder="按插件名称搜索" ng-model="item.searchval" />
+                  <em class="icon-magnifier"></em>
+            </div>
+        	</div>
+        </div>
+        <h4>过程控制</h4>
+        <div>
+          <div id="processControl" class="myPaletteDiv" ></div>
+          <div class="search designer-search mt20"> 
+                  <input type="text" class="form-control search-form-control" placeholder="按插件名称搜索" />
+                  <em class="icon-magnifier"></em>
+          </div>
+        </div>
+      </div>
+         <div class="search designer-search">
+           <input type="text" class="form-control search-form-control" placeholder="搜索"><em class="icon-magnifier"></em>
+           </div>
+      </span>
+    </div>
+    <div id="myDiagramDiv"></div>
+  </div>
+  <div>
+    <button class="btn btn-info" ng-click="addComponentFlow()">添加过程</button>
+    <!-- <button class="btn btn-info" ng-click="saveFlow()">更新过程</button> -->
+    <button type="text" id="save" class="btn btn-info" ng-click="save()">查看过程数据</button>
+    <button class="btn btn-info" ng-click="load(flowInfo)">载入过程数据</button>
+  </div>
+  <textarea id="mySavedModel" style="width:100%;height:300px" ng-model="flowInfo">
+  </textarea>
+</div>
+</div>
+</div>

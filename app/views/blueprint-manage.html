@@ -1,0 +1,70 @@
+<div class="row clearfix cont-header">
+   <div class="col-sm-6">
+        <a ui-sref="app.blueprint_add({sys:sys})" class="btn-cd-icon"><span class="cd-ic_adduser">
+                <span class="path1"></span><span class="path2"></span><span class="path3"></span>
+                </span> 新建蓝图</a>
+        <a class="btn-cd-icon" ng-click="exportBlueprint()"><span class="cd-ic_derive">
+                <span class="path1"></span><span class="path2"></span>
+                </span> 导出蓝图</a>
+        <a class="btn-cd-icon" ng-click="importBlueprint()"><span class="cd-ic_lead">
+                <span class="path1"></span><span class="path2"></span>
+                </span> 导入蓝图</a>
+   </div>
+   <div class="col-sm-6">
+
+      <div class="search-group">
+      <div class="input-group"> 
+         <div class="input-group-btn"> 
+             <select class="form-control" ng-model="searchType" ng-options="item.value as item.text for item in searchTypeList">
+                
+             </select>
+         </div>
+         <input type="text" ng-keyup="search()" ng-model="searchval" class="form-control" />
+         <em class="icon-magnifier"></em>
+      </div>
+      </div>
+   </div>
+</div>
+<!-- cj add -->
+<div id="myThumbDiagramDiv" style="width: 100%;height: 500px;" ng-hide="true"></div>
+<div class="cont-body">
+  <table class="table table_title table-striped cd-table mt20">
+    <thead>
+      <tr>
+         <th>蓝图模版名称</th>
+         <th>描述</th>
+         <th>创建时间</th>
+         <th>更新时间</th>
+         <th>操作</th> 
+      </tr>
+    </thead>
+    <tbody>
+       <tr ng-if="!listoff">
+           <td colspan="5">
+             <p class="noresult"><em class="icon-info"></em> {{warninginfo}}</p>
+           </td>
+        </tr>
+        <tr ng-repeat="item in blueprintList">
+          <td>{{item.NAME}}</td>
+          <td>{{item.DESC||'无'}}</td>
+          <td>{{item.CREATE_TIME}}</td>
+            <td>{{item.UPDATE_TIME}}</td>
+          <td>
+            <a ng-click="setCookie(item.NAME)" ui-sref="app.blueprint_ins_add({templateName:item.NAME,blueprintId:item.ID})" class="btn btn-cd-default btn-cd-default-info">创建蓝图实例</a>
+            <a ng-click="setCookie(item.NAME)" ui-sref="app.blueprint_view({templateName:item.NAME})" class="btn btn-cd-default">查看</a>
+            <a ng-click="setCookie(item.NAME)" ui-sref="app.blueprint_edit({templateName:item.NAME})" class="btn btn-cd-default">编辑</a>
+            <a ng-click="setCookie(item.NAME)" ui-sref="app.blueprint_flow_create({blueprintId:item.ID,templateName:item.NAME})" class="btn btn-cd-default">添加过程</a>
+            <a ng-click="setCookie(item.NAME)" ui-sref="app.blueprint_flow_manage({blueprintId:item.ID,templateName:item.NAME})" class="btn btn-cd-default">查看过程</a>
+            <button class="btn btn-cd-default btn-cd-default-del" ng-click="delBlueprint(item.ID,$index)">删除</button>
+            <button ng-if="sys=='cop'" class="btn btn-cd-default" ng-click="printBlueprint(item.ID,item.NAME,$index)">发布</button>
+          </td>
+          </tr>
+          <tr ng-show="listoff">
+                <td colspan="5"> 
+                   <page page-count="pageCount" page-num="pageNum" on-page-change="onPageChange()"></page>
+                </td>
+          </tr>
+    </tbody>
+</table>
+</div>
+ 

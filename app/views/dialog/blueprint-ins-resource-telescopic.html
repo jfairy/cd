@@ -1,0 +1,88 @@
+<div class="dialog-header">
+    <h4>过程收缩</h4>
+</div>
+<div class="dialog-body">
+	<div class="form-horizontal"> 
+	    <form name="addLoopcount">
+	    <scrollable height="400">
+            <div class="form-group" ng-repeat-start="resourceItem in rcnodeList" ng-init="increaseNodes=getNodeListArr(resourceItem.increase_nodes);reduceNodes=getNodeListArr(resourceItem.reduce_nodes)">
+	            <label class="col-lg-2 control-label text-right">资源池：</label>
+	            <div class="col-lg-6">  
+	                  {{resourceItem.nodeName}}
+	            </div>
+		    </div> 
+		  
+		    <div class="form-group">
+	            <label class="col-lg-2 control-label text-right">资源池描述：</label>
+	            <div class="col-lg-6">  
+	                 <p class="form-control-static">{{resourceItem.des}}</p>
+	            </div>
+		    </div> 
+		    
+		    <div class="form-group"> 
+		         <label class="col-sm-2 control-label text-right">扩展节点：</label>
+		         <div class="col-sm-6  form-control-static" ng-if="increaseNodes.length>0">
+		             <ul>
+		             	<li ng-repeat="nodeItem in increaseNodes">{{nodeItem.ip}}</li>
+		             </ul>
+		         </div>
+		         <div class="col-sm-6  form-control-static" ng-if="!(increaseNodes.length>0)">
+		                     无
+		         </div>
+	       </div>
+	       
+	       <div class="form-group" ng-repeat-end> 
+		         <label class="col-sm-2 control-label text-right">收缩节点：</label>
+		         <div class="col-sm-6  form-control-static" ng-if="reduceNodes.length>0">
+		             <ul>
+		             	<li ng-repeat="nodeItem in reduceNodes">{{nodeItem.ip}}</li>
+		             </ul>
+		         </div>
+		         <div class="col-sm-6  form-control-static" ng-if="!(reduceNodes.length>0)">
+		                     无
+		         </div>
+	       </div>
+	       
+	       <div class="form-group" ng-if="isexit_increase">
+		         <label class="col-sm-2 control-label text-right">扩展过程：</label>
+		         <div class="col-sm-6">
+		             <table>
+		                <tr ng-repeat="increaseNode in flowList">
+		                	<td>
+			                	<div class="checkbox c-checkbox">
+					                <label> 
+					                   <input type="checkbox" save-id="{{increaseNode.ID}}" checkapp-id="increasecheckappId" ng-checked="{{increaseNode.ischecked}}" />
+					                   <span class="fa fa-check"></span>
+					                </label>{{increaseNode.FLOW_NAME}}
+				                </div>
+			                </td>
+		                </tr>
+		             </table> 
+		         </div>
+	       </div>
+	       
+	       <div class="form-group" ng-if="isexit_reduce">
+		         <label class="col-sm-2 control-label text-right">收缩过程：</label>
+		         <div class="col-sm-6">
+		             <table>
+		                <tr ng-repeat="reduceNode in flowList">
+		                	<td>
+			                	<div class="checkbox c-checkbox">
+					                <label> 
+					                   <input type="checkbox" save-id="{{reduceNode.ID}}" checkapp-id="reducecheckappId" ng-checked="{{reduceNode.ischecked}}" />
+					                   <span class="fa fa-check"></span>
+					                </label>{{reduceNode.FLOW_NAME}}
+				                </div>
+			                </td>
+		                </tr>
+		             </table> 
+		         </div>
+	       </div>
+	    </scrollable>
+	    </form>
+	</div>
+</div>
+<div class="dialog-footer">
+	<a class="btn btn-info" ng-click="closeThisDialog(0)">取消</a>
+    <button type="submit" class="btn btn-primary" ng-click="telescopicFn()">确定</button>
+</div>

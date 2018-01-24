@@ -1,0 +1,87 @@
+<div class="breadcont clearfix">
+   <ol class="breadcrumb pull-left">
+      <li>
+          <a ui-sref="app.cluster_manage">环境列表</a>
+      </li>
+      <li>
+          <a ui-sref="app.cluster_detail({clusterid: clusterid})">{{clustername}}</a>
+      </li>
+      <li class="active">添加主机
+      </li>
+   </ol>
+</div>
+
+<div class="cont-body">
+  
+
+<form name="formaddnode" ng-submit="addNodeFn()" novalidate="" class="form-validate form-horizontal">
+    <div class="panel">
+       <div class="panel-body">
+          <fieldset>
+             <div class="form-group">
+                <label class="col-sm-2 control-label">系统</label>
+                <div class="col-sm-6">
+                  <label class="radio-inline c-radio">
+                     <input type="radio" ng-model="system" name="system" value="linux" checked="checked" />
+                     <span class="fa fa-circle"></span>Linux</label>
+                  <label class="radio-inline c-radio">
+                     <input type="radio" ng-model="system" name="system" value="windows" />
+                     <span class="fa fa-circle"></span>Windows</label>
+                </div>
+             </div>
+          </fieldset>
+       		<fieldset>
+             <div class="form-group">
+                <label class="col-sm-2 control-label">主机名称</label>
+                <div class="col-sm-6">
+                   <input type="text" name="name" required="" class="form-control" ng-model="formnodeData.name" maxlength="18" />
+                   <span ng-show="validateInput(formaddnode,'name','required')" class="text-danger">主机名称不能为空！</span>
+                </div>
+             </div>
+          </fieldset>
+          <fieldset>
+             <div class="form-group">
+                <label class="col-sm-2 control-label">描述</label>
+                <div class="col-sm-6">
+                   <textarea class="form-control" ng-model="formnodeData.description"></textarea>
+                </div>
+             </div>
+          </fieldset>
+          <fieldset>
+             <div class="form-group">
+                <label class="col-sm-2 control-label">主机IP</label>
+                <div class="col-sm-6">
+                   <input type="text" name="formnodeData.ip" required="" addnodeonlyip ng-pattern ="/^((25[0-5]|2[0-4]\d|((1\d{2})|([1-9]?\d)))\.){3}(25[0-5]|2[0-4]\d|((1\d{2})|([1-9]?\d)))$/" class="form-control" ng-model="formnodeData.ip" />
+                   <span ng-show="validateInput(formaddnode,'formnodeData.ip','required')" class="text-danger">IP不能为空！</span>
+                   <span ng-show="validateInput(formaddnode,'formnodeData.ip','pattern')" class="text-danger">请输入正确的IP格式！</span>
+                   <span ng-show="validateInput(formaddnode,'formnodeData.ip','isonly')" class="text-danger">此IP已存在,请重新输入！</span>
+                </div>
+             </div>
+          </fieldset> 
+          <fieldset ng-if="system=='linux'">
+             <div class="form-group">
+                <label class="col-sm-2 control-label">用户名</label>
+                <div class="col-sm-6">
+                   <input type="text" name="username" required="" class="form-control" ng-model="formnodeData.username" maxlength="18" />
+                   <span ng-show="validateInput(formaddnode,'username','required')" class="text-danger">用户名不能为空！</span>
+                </div>
+             </div>
+          </fieldset>
+          <fieldset ng-if="system=='linux'">
+             <div class="form-group">
+                <label class="col-sm-2 control-label">密码</label>
+                <div class="col-sm-6">
+                   <input type="password" name="password" required="" class="form-control" ng-model="formnodeData.password" maxlength="18" />
+                   <span ng-show="validateInput(formaddnode,'password','required')" class="text-danger">密码不能为空！</span>
+                </div>
+             </div>
+          </fieldset>
+       </div>
+       <div class="panel-footer text-center"> 
+          <button type="submit" class="btn btn-info" ng-disabled="!formaddnode.$valid" ng-class="{'btn-default':!formaddnode.$valid,'btn-info':formaddnode.$valid}">添加主机</button> 
+       </div>
+    </div>
+</form>
+</div>
+
+ 

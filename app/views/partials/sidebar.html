@@ -1,0 +1,45 @@
+<script type="text/ng-template" id="sidebar-renderer.html">
+    <a ng-href="{{$state.href(item.sref,item.params)}}" title="{{item.text}}">
+        <em ng-if="item.icon" class="{{item.icon}}"></em><span>{{(item.translate | translate) || item.text}}</span>
+    </a>
+    <ul ng-if="item.policyChild.length>0" collapse="isCollapse(pIndex)" ng-init="addCollapse(pIndex, item)"
+        class="nav sidebar-subnav">
+        <li ng-repeat="item in item.policyChild" ng-include="'sidebar-renderer.html'"
+            ng-class="getMenuItemPropClasses(item)" ng-init="pIndex=(pIndex+'-'+$index); inSubmenu = true"
+            ng-click="toggleCollapse(pIndex)"></li>
+    </ul>
+</script>
+
+<div class="aside-inner">
+   
+   <!-- <div class="logo">
+      <h1 class="text-center">
+         <a href="">
+            <div class="brand-logo">
+               <img src="app/images/logo.png" ng-attr-alt="{{app.title}}" class="img-responsive" />
+            </div>
+            <div class="brand-logo-collapsed">
+               <img src="app/images/logo-single.png" ng-attr-alt="{{app.title}}" class="img-responsive" />
+            </div>
+         </a>
+      </h1>
+   </div> -->
+   <nav class="sidebar" sidebar="" sidebar-anyclick-close="">
+      <ul class="nav">
+         <li ng-class="getMenuItemPropClasses(item)" ng-repeat="item in menuItems" ng-init="pIndex = $index;item.open=false;" ng-include="'sidebar-renderer.html'" ng-click="toggleCollapse(pIndex, true);item.open=!item.open"></li>
+      </ul>
+   </nav>
+   <!-- <ul class="nav-footer clearfix">
+   
+      <li tooltip-placement="right" tooltip="展开菜单栏" ng-if="isCollapsed">
+          <a href="#" trigger-resize="" ng-click="setCollapsed()" class="hidden-xs" >
+               <em class="fa fa-indent"></em>
+            </a>
+      </li>
+      <li ng-if="!isCollapsed">
+          <a href="#" trigger-resize="" ng-click="setCollapsed()" class="hidden-xs" >
+               <em class="fa fa-indent"></em> 收起
+            </a>
+      </li>
+    </ul> -->
+</div>

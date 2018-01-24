@@ -1,0 +1,50 @@
+<div class="row clearfix cont-header">
+   <div class="col-sm-6">
+        <a ui-sref="app.script_add" class="btn-cd-icon"><span class="cd-ic_adduser">
+                <span class="path1"></span><span class="path2"></span><span class="path3"></span>
+                </span>  添加</a>
+   </div>
+   <div class="col-sm-6">
+      <div class="search">
+        <input type="text" ng-keyup="search()" class="form-control" placeholder="按脚本名搜索" ng-model="searchval" />
+        <em class="icon-magnifier"></em>
+      </div>
+   </div>
+</div>
+
+<div class="cont-body">
+  <table class="table table_title table-striped cd-table mt20">
+   <thead>
+      <tr>
+         <th>脚本名称</th>
+         <th>描述</th>
+         <th>存放路径</th>
+         <th>创建时间</th>
+         <th>操作</th>
+      </tr>
+   </thead>
+   <tbody>
+      <tr ng-if="!listoff">
+         <td colspan="5">
+           <p class="noresult"><em class="icon-info"></em> {{warninginfo}}</p>
+         </td>
+      </tr>
+      <tr ng-repeat="item in scriptList">
+         <td>{{item.resourceName}}</td>
+         <td>{{item.resourceDesc}}</td>
+         <td>{{item.absolutePath}}</td>
+         <td>{{item.updateTime}}</td>
+         <td>
+           <button class="btn btn-default con_trash btn-sm" ng-click="delScript($index,item.id)">
+               <em class="fa fa-trash-o"></em>
+           </button>
+         </td>
+      </tr>
+      <tr ng-show="listoff">
+         <td colspan="5">
+            <page page-count="pageCount" page-num="pageNum" on-page-change="onPageChange()"></page>
+         </td>
+      </tr>
+   </tbody>
+</table>
+</div>

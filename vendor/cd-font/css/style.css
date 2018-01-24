@@ -1,0 +1,238 @@
+@font-face {
+  font-family: 'icomoon';
+  src:  url('../fonts/icomoon.eot?lg0g2k');
+  src:  url('../fonts/icomoon.eot?lg0g2k#iefix') format('embedded-opentype'),
+    url('../fonts/icomoon.ttf?lg0g2k') format('truetype'),
+    url('../fonts/icomoon.woff?lg0g2k') format('woff'),
+    url('../fonts/icomoon.svg?lg0g2k#icomoon') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+[class^="cd-"], [class*=" cd-"] {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: 'icomoon' !important;
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.cd-ic_delet2:before {
+  content: "\e900";
+  color: #6e7281;
+}
+.cd-ic_delete:before {
+  content: "\e901";
+  color: #ff566e;
+}
+.cd-ic_derive .path1:before {
+  content: "\e902";
+  color: rgb(51, 185, 246);
+}
+.cd-ic_derive .path2:before {
+  content: "\e903";
+  margin-left: -0.8232421875em;
+  color: rgb(51, 185, 246);
+  opacity: 0.6;
+}
+.cd-ic_hint:before {
+  content: "\e904";
+  color: #999;
+}
+.cd-ic_hint_s:before {
+  content: "\e905";
+  color: #30b4ec;
+}
+.cd-ic_hint1:before {
+  content: "\e906";
+  color: #30b4ec;
+}
+.cd-ic_lead .path1:before {
+  content: "\e907";
+  color: rgb(51, 185, 246);
+}
+.cd-ic_lead .path2:before {
+  content: "\e908";
+  margin-left: -0.8232421875em;
+  color: rgb(51, 185, 246);
+  opacity: 0.6;
+}
+.cd-ic_magnify:before {
+  content: "\e909";
+  color: #999;
+}
+.cd-ic_magnify_s:before {
+  content: "\e90a";
+  color: #30b4ec;
+}
+.cd-ic_meter1:before {
+  content: "\e90b";
+  color: #b3b9d7;
+}
+.cd-ic_meter1_s:before {
+  content: "\e90c";
+  color: #fff;
+}
+.cd-ic_meter2:before {
+  content: "\e90d";
+  color: #9aa9c5;
+}
+.cd-ic_meter2_s:before {
+  content: "\e90e";
+  color: #2fb0ec;
+}
+.cd-ic_module1:before {
+  content: "\e90f";
+  color: #b3b9d7;
+}
+.cd-ic_module1_s:before {
+  content: "\e910";
+  color: #fff;
+}
+.cd-ic_module2:before {
+  content: "\e911";
+  color: #9aa9c5;
+}
+.cd-ic_module2_s:before {
+  content: "\e912";
+  color: #2fb0ec;
+}
+.cd-ic_plus:before {
+  content: "\e913";
+  color: #999;
+}
+.cd-ic_plus_s:before {
+  content: "\e914";
+  color: #30b4ec;
+}
+.cd-ic_resource1:before {
+  content: "\e915";
+  color: #b3b9d7;
+}
+.cd-ic_resource1_s:before {
+  content: "\e916";
+  color: #fff;
+}
+.cd-ic_resource2:before {
+  content: "\e917";
+  color: #9aa9c5;
+}
+.cd-ic_resource2_s:before {
+  content: "\e918";
+  color: #2fb0ec;
+}
+.cd-ic_set1:before {
+  content: "\e919";
+  color: #b3b9d7;
+}
+.cd-ic_set1_s:before {
+  content: "\e91a";
+  color: #fff;
+}
+.cd-ic_set2:before {
+  content: "\e91b";
+  color: #9aa9c5;
+}
+.cd-ic_set2_s:before {
+  content: "\e91c";
+  color: #2fb0ec;
+}
+.cd-ic_use1:before {
+  content: "\e91d";
+  color: #b3b9d7;
+}
+.cd-ic_use1_s:before {
+  content: "\e91e";
+  color: #fff;
+}
+.cd-ic_use2:before {
+  content: "\e91f";
+  color: #9aa9c5;
+}
+.cd-ic_use2_s:before {
+  content: "\e920";
+  color: #2fb0ec;
+}
+.cd-ic_user:before {
+  content: "\e921";
+  color: #fff;
+}
+.cd-ic_vertical:before {
+  content: "\e922";
+  color: #fff;
+}
+.cd-search1:before {
+  content: "\e924";
+  color: #878a9b;
+}
+.cd-search2:before {
+  content: "\e925";
+  color: #20b6ef;
+}
+.cd-user_arroes:before {
+  content: "\e926";
+  color: #fff;
+}
+.cd-arroes1:before {
+  content: "\e927";
+  color: #d6d9e5;
+}
+.cd-arroes2:before {
+  content: "\e928";
+  color: #d6d9e5;
+}
+.cd-arroes3:before {
+  content: "\e929";
+  color: #93a3c1;
+}
+.cd-arroes4:before {
+  content: "\e92a";
+  color: #93a3c1;
+}
+.cd-ic_across:before {
+  content: "\e92b";
+  color: #fff;
+}
+.cd-ic_add:before {
+  content: "\e92c";
+  color: #999;
+}
+.cd-ic_add_s:before {
+  content: "\e92d";
+  color: #33b9f6;
+}
+.cd-ic_adduser .path1:before {
+  content: "\e92e";
+  color: rgb(32, 182, 239);
+  opacity: 0.0270;
+}
+.cd-ic_adduser .path2:before {
+  content: "\e92f";
+  margin-left: -1em;
+  color: none;
+}
+.cd-ic_adduser .path3:before {
+  content: "\e930";
+  margin-left: -1em;
+  color: rgb(32, 182, 239);
+}
+.cd-ic_border_color_24px .path1:before {
+  content: "\e931";
+  color: rgb(37, 150, 236);
+}
+.cd-ic_border_color_24px .path2:before {
+  content: "\e932";
+  margin-left: -0.9287109375em;
+  color: rgb(54, 158, 237);
+}
+.cd-ic_delet1:before {
+  content: "\e933";
+  color: #fff;
+}

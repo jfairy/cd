@@ -1,0 +1,28 @@
+<div class="clearfix cont-header" style="padding:0;">
+   <div class="col-sm-6">
+       <a class="btn-cd-icon" ng-click="openCreateLimit()"><span class="cd-ic_adduser">
+                <span class="path1"></span><span class="path2"></span><span class="path3"></span>
+                </span> 新建菜单</a>
+   </div>
+</div>
+
+<table class="table table_title table-striped cd-table mt20">
+	  <tr>
+	  	<th>菜单名</th>
+		<th>菜单描述</th>
+		<th>父级菜单</th>
+		<th>类型</th>
+		<th>操作</th>
+	  </tr>
+	  <tr ng-repeat="menu in menuList">
+	  	<td>{{menu.text}}</td>
+	  	<td>{{menu.sref}}</td>
+	  	<td>{{menu.pText}}</td>
+	  	<td>{{menu.type}}</td>
+	  	<td> 
+	  	    <a class="btn btn-cd-default btn-cd-default" ng-click="openEditLimit(menu)">编辑</a> 
+	  		<button class="btn btn-cd-default btn-cd-default-del" ng-click="delLimit($index,menu.id,menu.parent_id)">删除</button>
+	  		
+	  	</td>
+	  </tr>
+	</table>

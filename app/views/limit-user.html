@@ -1,0 +1,43 @@
+<div class="clearfix cont-header" style="padding:0;">
+   <div class="col-sm-6">
+        <a class="btn-cd-icon" ng-click="openCreateUser()"><span class="cd-ic_adduser">
+                <span class="path1"></span><span class="path2"></span><span class="path3"></span>
+                </span>  新建用户</a>
+   </div>
+   <div class="col-sm-6">
+      <div class="search">
+        <input type="text" ng-keyup="search()" class="form-control search-form-control" placeholder="按用户名搜索" ng-model="searchval" />
+        <em class="icon-magnifier"></em>
+      </div>
+   </div>
+</div>
+<table class="table table_title table-striped cd-table mt20">
+	  <thead>
+		  <tr>
+		  	<th>用户名</th>
+		  	<th>角色</th>
+		  	<th>操作</th>
+		  </tr>
+	  </thead>
+	  <tbody>
+	      <tr ng-if="!listoff">
+	         <td colspan="2">
+	           <p class="noresult"><em class="icon-info"></em> {{warninginfo}}</p>
+	         </td>
+	      </tr>
+		  <tr ng-repeat="item in userList">
+		  	<td>{{item.userName}}</td>
+		  	<td>{{item.roleName}}</td>
+		  	<td>
+			<button class="btn btn-cd-default btn-cd-default-del" ng-click="delUser($index,item.ID)">删除</button>
+			
+		  	<button class="btn btn-cd-default" ng-click="openUpdateUser(item,$index)">更新</button>
+            </td>
+		  </tr>
+		  <tr ng-show="listoff">
+	         <td colspan="3">
+	            <page page-count="pageCount" page-num="pageNum" on-page-change="onPageChange()"></page>
+	         </td>
+	      </tr>
+	  </tbody>
+</table>

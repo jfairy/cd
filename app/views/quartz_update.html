@@ -1,0 +1,69 @@
+<div class="breadcont clearfix">
+   <ol class="breadcrumb pull-left">
+      <li><a ui-sref="app.listQuartz">定时任务列表</a>
+      </li>
+      <li>
+        {{quartzName}}
+      </li>
+      <li class="active">
+        更新任务
+      </li>
+   </ol>
+</div>
+<div class="cont-body">
+<form name="formValidate" ng-submit="submitForm()" novalidate="" class="form-validate form-horizontal">
+<div class="panel panel-default">
+	<div class="panel-body">
+		 
+	 <fieldset>
+	 	<fieldset>
+           <div class="form-group">
+              <label class="col-sm-2 control-label"><span class="text-danger">*</span>定时任务名称</label>
+              <div class="col-sm-6">
+                 <input type="text" name="quartzName" required="" ng-maxlength="32" class="form-control" ng-pattern="/^([a-zA-Z0-9]*)$/" ng-model="quartzName" />
+                 <div><small>名字由英文、数字组成，最多32位！</small></div>
+                 <span ng-show="validateInput(formValidate,'quartzName', 'required')" class="text-danger">请填写定时任务名称！</span> 
+                 <span ng-show="validateInput(formValidate,'quartzName', 'pattern')" class="text-danger">名称不符合规则，请重新填写！</span> 
+                 <span ng-show="validateInput(formValidate,'quartzName', 'maxlength')" class="text-danger">名称最多32个字符！</span>
+              </div>
+           </div>
+           </fieldset>
+           <fieldset>
+           <div class="form-group">
+              <label class="col-sm-2 control-label"><span class="text-danger">*</span>cron表达式</label>
+              <div class="col-sm-6">
+                 <input type="text" name="quartzCron"  required="" class="form-control"  ng-model="quartzCron" />
+                 <span ng-show="validateInput(formValidate,'quartzCron', 'required')" class="text-danger">请填写cron表达式！</span> 
+                 <div class="notices mt20">
+		               <h4>
+							<em class="fa fa-exclamation-circle"></em>
+							cron参考：
+						</h4>
+						<p>
+							0 0 10,14,16 * * ? 每天上午10点，下午2点，4点<br/>
+							0 0/30 9-17 * * ? 朝九晚五工作时间内每半小时<br/>
+							0 0 12 ? * WED 表示每个星期三中午12点 <br/>
+							"0 0 12 * * ?" 每天中午12点触发<br/>
+							"0 15 10 * * ? 2005" 2005年的每天上午10:15触发<br/>
+							"0 * 14 * * ?" 在每天下午2点到下午2:59期间的每1分钟触发
+						</p>	 
+		          </div>
+              </div>
+           </div>
+           </fieldset>
+
+<div class="modal fade" id="limitSpeedTemplateDialog">
+
+</div>
+     
+ 
+	</div>
+	<div class="panel-footer text-center"> 
+        <button type="submit" class="btn" ng-click="updateQuartz(chosestyle)" ng-disabled="!formValidate.$valid" ng-class="{'btn-default':!formValidate.$valid,'btn-info':formValidate.$valid}">更新</button> 
+  
+  </div>
+
+</div>
+
+ </form>
+ </div>

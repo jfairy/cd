@@ -1,0 +1,58 @@
+<div class="dialog-header">
+    <h4>导出组件</h4>
+</div>
+<div class="dialog-body">
+   <div class="form-horizontal">
+        <div class="search clearfix">
+	        <input type="text" ng-keyup="exportSearch()" class="form-control search-form-control" placeholder="按组件名称搜索" ng-model="exportSearchval" />
+	        <em class="icon-magnifier"></em>
+	    </div>  
+        <table class="table table-bordered mt20">
+		   <thead>
+		      <tr>
+		         <th check-all="check-all" checkapp-id="checkappId" width="46px">
+		         <div data-toggle="tooltip" data-title="Check All" class="checkbox c-checkbox">
+		            <label style="padding-left:0;">
+		               <input type="checkbox" />
+		               <span class="fa fa-check hide"></span>全选
+		            </label>
+		         </div>
+		         </th>
+		         <th>组件名称</th>
+                 <th>导出工件</th>
+		      </tr>
+		   </thead>
+		   <tbody>
+		      <tr ng-if="!exportListoff">
+		         <td colspan="3">
+		           <p class="noresult"><em class="icon-info"></em> {{exportWarninginfo}}</p>
+		         </td>
+		      </tr>
+		      <tr ng-repeat="item in exportComponentList">
+		         <td>
+		            <div class="checkbox c-checkbox">
+		               <label>
+		                     <input type="checkbox" id="{{item.resourceId}}" save-id="{{item.resourceId}}" checkapp-id="checkappId" ng-checked="{{item.ischecked}}" />
+		                     <span class="fa fa-check"></span>
+		               </label>
+		            </div>
+		         </td>
+		         <td>{{item.resourceName}}</td>
+		         <td>
+		         	<button class="btn btn-cd-default" ng-click="exportPackage(item.resourceId,item.packageArr)">选择要导出的工件包</button>
+		         </td>
+		      </tr>
+		      <tr ng-show="exportListoff">
+		         <td colspan="3">
+		            <page page-count="exportPageCount" page-num="exportPageNum" on-page-change="onExportPageChange()"></page>  
+		         </td>
+		      </tr>
+		   </tbody>
+		</table>
+   </div>
+</div>
+<div class="dialog-footer">
+   <a class="btn btn-info" ng-click="closeThisDialog(0)">取消</a>
+   <button class="btn btn-info" ng-click="exportFn()">导出</button>
+</div>
+ 

@@ -1,0 +1,108 @@
+<div class="breadcont clearfix">
+   <ol class="breadcrumb pull-left">
+      <li><a ui-sref="app.component_manage">组件列表</a>
+      </li>
+      <li class="active">
+      	{{componentDetail.resourceName}}
+      </li>
+   </ol>
+</div>
+
+
+<div class="cont-body">
+<div class="panel">
+	<div class="panel-body">
+	<div class="row">
+		<div class="col-sm-10">
+			<div class="appl pull-left">
+			    <div class="img-shadow">
+				    <img ng-src="app/images/component-icons/{{componentDetail.pic}}.png">
+				</div>
+                <p class="mt20">{{componentDetail.resourceName}}</p>
+			</div>
+
+			<div class="appr pull-left">
+				<p></p>
+				<p>最近更新时间：{{componentDetail.updateTime}}</p>
+				<p>最新版本:{{componentDetail.versionName}}</p>
+				<p>版本数：{{componentDetail.versionNum}}</p>
+				<p>概述：{{componentDetail.resourceDesc}}</p>
+				<p>标签：{{componentDetail.labels}}<button class="btn btn-default btn-sm" ng-click="openUpdateLabel(componentDetail)"> 更新标签</button></p>
+			</div>
+		</div>
+	</div>
+</div>		
+	</div>
+
+
+
+
+<div class="cont-header">
+
+	<div class="row">
+  <div class="col-sm-6">
+  	<a href="" ui-sref="app.component_version_add({componentId:componentDetail.resourceId,componentName:componentDetail.resourceName})" class="btn-cd-icon"><span class="cd-ic_adduser">
+                <span class="path1"></span><span class="path2"></span><span class="path3"></span>
+                </span>  添加版本</a>
+  </div>
+  <div class="col-sm-6">
+  <div class="custom-search">
+  	 <input type="text" ng-keyup="search()" class="custom-search-form-control" placeholder="按版本名称搜索" ng-model="keyword" />
+  	  <em class="icon-magnifier"></em>
+  	 </div>
+  </div>
+	
+</div>
+</div>
+
+
+
+
+
+
+<table class="table table_title table-striped cd-table mt20">
+	  <thead>
+		   <tr>
+		      <th>版本</th>
+		      <th>当前状态</th>
+		      <th>注册时间</th>
+		      <th>描述</th>
+		      <th ng-if="!((registryId==2)&&!user.result)">操作</th>
+		   </tr>
+	  </thead>
+	  <tbody>
+	       <tr ng-if="!resultoff">
+	         <td colspan="5">
+	           <p class="noresult"><em class="icon-info"></em> {{warninginfo}}</p>
+	         </td>
+	      </tr>
+		   <tr ng-repeat="item in componentVersionList.rows">
+		      <td>{{item.versionName}}</td>
+		      <td ng-bind="(statuses|filter:item.status)[0].key||'无'"></td>
+		      <td>{{item.updateTime}}</td>
+		      <td>{{item.versionDesc||'无'}}</td>
+		      <td ng-if="!((registryId==2)&&!user.result)">
+		        
+		        
+                 <a href="" ui-sref="app.component_version_update({versionId:item.id,componentName:componentDetail.resourceName})" class="btn btn-cd-default">更新版本</a>
+
+                 <a href="" ui-sref="app.component_version_clone({versionId:item.id,componentName:componentDetail.resourceName})" class="btn btn-cd-default">版本克隆</a>
+                 
+                 <a href="" ui-sref="app.component_version_template_mapping({componentName:componentDetail.resourceName,componentId:componentDetail.resourceId,versionName:item.versionName,versionId:item.id})" class="btn btn-cd-default">配置模板映射</a>
+                 
+
+                 <button class="btn btn-cd-default" ng-click="openUpdateCVStatus(item,$index)">设置状态</button>
+
+			      <button class="btn btn-cd-default btn-cd-default-del" ng-click="delversion(item.id)">删除</button>
+		      
+		      </td>
+		   </tr>
+		   <tr ng-show="resultoff">
+	           <td colspan="5">
+	              <page page-count="pageCount" page-num="pageNum" on-page-change="onPageChange()"></page>
+	           </td>
+	       </tr>
+      </tbody>
+</table> 
+
+</div>

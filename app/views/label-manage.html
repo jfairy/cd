@@ -1,0 +1,54 @@
+<div class="row clearfix cont-header">
+   <div class="col-sm-6">
+        <a href="" ng-click="clearCookie();addLabelFn()" class="btn-cd-icon"><span class="cd-ic_adduser">
+                <span class="path1"></span><span class="path2"></span><span class="path3"></span>
+                </span> 新建标签</a>
+   </div>
+   <div class="col-sm-6">
+      <div class="search">
+        <input type="text" ng-keyup="search()" class="form-control" placeholder="按标签名搜索" ng-model="searchval" />
+        <em class="icon-magnifier"></em>
+      </div>
+   </div>
+</div>
+
+<div class="cont-body">
+  <table class="table table_title mt20">
+   <thead>
+      <tr>
+         <th>标签名</th>
+         <th>标签类型</th>
+         <th>标签描述</th>
+         <th>更新时间</th>
+         <th>操作</th>
+      </tr>
+   </thead>
+   <tbody>
+      <tr ng-if="!listoff">
+         <td colspan="6">
+           <p class="noresult"><em class="icon-default"></em> {{warningdefault}}</p>
+         </td>
+      </tr>
+      <tr ng-repeat="item in labelList">
+         <td>{{item.name}}</td>
+         <td>{{item.type}}</td>
+         <td>{{item.description}}</td>
+         <td>{{item.updateTime}}</td>
+         
+         <td>
+             <button class="btn btn-default btn-sm" ng-click="updateLabel($index,item)">
+                                           更新
+             </button>
+             <button class="btn btn-default con_trash btn-sm" ng-click="delLabel($index,item.id,item.name)">
+                <em class="fa fa-trash-o"></em>
+             </button>
+         </td>
+      </tr>
+      <tr ng-show="listoff">
+         <td colspan="6">
+            <page page-count="pageCount" page-num="pageNum" on-page-change="onPageChange()"></page>
+         </td>
+      </tr>
+   </tbody>
+</table>
+</div>

@@ -1,0 +1,27 @@
+<div class="dialog-header">
+    <h4>添加过程</h4>
+</div>
+<form name="form" ng-submit="addFlowFn()" novalidate="">
+<div class="dialog-body">
+   <div class="form-horizontal">  
+      
+      	 <div class="form-group">
+	         <label class="col-lg-3 control-label text-right"><span class="text-danger">*</span>过程名称</label>
+	         <div class="col-lg-8">
+	             <input type="text" name="flowname" required="" ng-maxlength="32" ng-pattern="/^[a-zA-Z0-9\u4e00-\u9fa5_.-]*$/" validnameexist class="form-control" ng-model="name">
+	             <div><small>名称由中文、字母、数字、.、-、_组成，最多32位</small></div>
+	             <span ng-show="validateInput(form,'flowname', 'required')" class="text-danger">请填写过程名称！</span> 
+                 <span ng-show="form.flowname.$error.isexit" class="text-danger">过程名称已存在,请重新命名！</span>
+                 <span ng-show="validateInput(form,'flowname', 'pattern')" class="text-danger">名称不符合规则！</span> 
+	             <span ng-show="validateInput(form,'flowname', 'maxlength')" class="text-danger">名称最多32个字符！</span> 
+	         </div>
+	     </div>
+     
+   </div>
+</div>
+<div class="dialog-footer">
+   <a class="btn btn-info" ng-click="closeThisDialog(0)">取消</a>
+   <button class="btn" ng-disabled="!form.$valid" ng-class="{'btn-primary':form.$valid,'btn-default':!form.$valid}">添加</button>
+</div>
+ </form>
+ 

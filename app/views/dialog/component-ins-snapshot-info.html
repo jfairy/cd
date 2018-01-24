@@ -1,0 +1,22 @@
+<div class="dialog-header">
+    <h4>快照实例信息</h4>
+</div>
+<div class="dialog-body">
+    <table class="table table_title">
+    	<tr style="font-weight: bold">
+    		<th>实例</th>
+    		<th>更新时间</th>
+    		<th>状态</th>
+    	</tr>
+    	<tr ng-if="!listoff">
+         <td colspan="3">
+           <p class="noresult"><em class="icon-info"></em> {{warninginfo}}</p>
+         </td>
+      	</tr>
+    	<tr ng-repeat="ins in snapshotInslist">
+    		<td ng-bind="ins.id"></td>
+    		<td ng-bind="ins.deployTime"></td>
+    		<td ng-bind="ins.status"></td>
+    	</tr>
+    </table>
+</div>

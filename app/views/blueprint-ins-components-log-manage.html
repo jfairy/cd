@@ -1,0 +1,76 @@
+<div class="breadcont clearfix">
+   <ol class="breadcrumb pull-left">
+      <li><a ui-sref="app.blueprint_ins_manage">蓝图实例列表</a>
+      </li>
+      <li>
+      	{{$stateParams.insName}}
+      </li>
+      <li>
+      	<a ui-sref="app.blueprint_ins_components({insName:$stateParams.insName,insId:$stateParams.insId,INSTANCE_ID:$stateParams.INSTANCE_ID})">组件列表</a>
+      </li>
+      <li>
+      	 {{$stateParams.appName}}
+      </li>
+      <li class="active">
+      	日志管理
+      </li>
+   </ol>
+</div>
+
+
+<div class="cont-body">
+	<tabset justified="false">
+	<tab ng-repeat="flowItem in flowList" ng-click="doHistoryListFn($index,flowItem.FLOW_NAME)">
+		<tab-heading>{{flowItem.FLOW_NAME}}</tab-heading>
+		<div>
+			<table class="table table_title">
+				<thead>
+					<tr>
+						<th>实例Id</th>
+						<th>过程状态</th>
+			            <th>操作时间</th>
+						<th>结束时间</th>
+			            <th>操作时长(s)</th>
+						<th>操作</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr ng-if="flowItem.off" ng-repeat="insItem in doData[flowItem.FLOW_NAME]">
+						<td>{{insItem.instanceId}}</td>
+						<td>
+						      <em class="fa" ng-class="{'text-success fa-check':insItem.state=='2','text-danger fa-times':insItem.state=='7'}"></em>
+							  <span style="display:inline-block;" class="sk-spinner sk-spinner-fading-circle" ng-if="insItem.state=='0'">
+				               <span class="sk-circle1 sk-circle"></span>
+				               <span class="sk-circle2 sk-circle"></span>
+				               <span class="sk-circle3 sk-circle"></span>
+				               <span class="sk-circle4 sk-circle"></span>
+				               <span class="sk-circle5 sk-circle"></span>
+				               <span class="sk-circle6 sk-circle"></span>
+				               <span class="sk-circle7 sk-circle"></span>
+				               <span class="sk-circle8 sk-circle"></span>
+				               <span class="sk-circle9 sk-circle"></span>
+				               <span class="sk-circle10 sk-circle"></span>
+				               <span class="sk-circle11 sk-circle"></span>
+				               <span class="sk-circle12 sk-circle"></span>
+				            </span>
+							<span ng-class="{'text-success':insItem.state=='2','text-danger':insItem.state=='7','text-custom-yellow':insItem.state=='0'}">{{insItem.flowState}}</span>
+						</td>
+			            <td>{{insItem.startTime}}</td>
+			            <td>{{insItem.endTime}}</td>
+			            <td>{{insItem.opTime}}</td>
+						<td> 
+						    <a target="_blank" ui-sref="app.blueprint_ins_component_flow_monitor({insName:$stateParams.insName,insId:$stateParams.insId,INSTANCE_ID:$stateParams.INSTANCE_ID,appName:$stateParams.appName,flowMonitorInsId:insItem.instanceId,flowName:flowItem.FLOW_NAME,flowId:flowItem.FLOW_ID})" class="btn btn-info btn-sm">监控</a>
+						    <a href="" ng-click="overFn(insItem.instanceId)" class="btn btn-info btn-sm">结束</a>
+						</td>
+					</tr>
+					<tr>
+			            <td colspan="6">
+			                <page ng-if="flowItem.off" page-count="pageCount" page-num="pageNum" on-page-change="onPageChange(pageNum,flowItem.FLOW_NAME)"></page>
+			            </td>
+                    </tr>
+				</tbody>
+			</table>
+		</div>
+	</tab>
+</tabset>
+</div>

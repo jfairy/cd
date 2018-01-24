@@ -1,0 +1,181 @@
+<div class="breadcont clearfix">
+   <ol class="breadcrumb pull-left">
+      <li>
+          <a ui-sref="app.plugin_manage">插件列表</a>
+      </li>
+      <li class="active">添加插件
+      </li>
+   </ol>
+</div>
+
+<div class="cont-body">
+	<form name="formValidate" ng-submit="submitForm()" novalidate="" class="form-validate form-horizontal">
+	<div class="panel panel-default">
+		<div class="panel-body">
+		   <fieldset>
+	           <div class="form-group">
+	              <label class="col-sm-2 control-label"><span class="text-danger">*</span>插件名称</label>
+	              <div class="col-sm-6">
+	                 <input type="text" name="pluginName" required="" class="form-control" ng-pattern="/^([a-zA-Z0-9]*)$/" ng-model="pluginName" />
+	                 <span class="text-danger" ng-show="validateInput(formValidate,'pluginName','required')">请输入插件名称！</span>
+	                 <span class="text-danger" ng-show="validateInput(formValidate,'pluginName','pattern')">插件名称不符合规则！</span>
+	              </div>
+	              <div class="col-sm-4">
+	              	 <div><small>名字可以包含英文、数字</small></div>
+	              </div>
+	           </div>
+	       </fieldset>
+           <fieldset>
+			   <div class="form-group">
+	              <label class="col-sm-2 control-label">插件描述</label>
+	              <div class="col-sm-6">
+	                 <textarea name="description"  class="form-control" ng-model="description">
+	                 </textarea>
+	              </div>
+	           </div>
+           </fieldset>
+           <fieldset>
+			   <div class="form-group">
+	              <label class="col-sm-2 control-label"><span class="text-danger">*</span>插件前处理方法</label>
+	              <div class="col-sm-6">
+	                 <input type="text" name="preAction"  required="" class="form-control" ng-model="preAction" placeholder="com.dc.appengine.plugins.service.impl.Config#preAction"/>
+	                 <span class="text-danger" ng-show="validateInput(formValidate,'preAction','required')">请输入前处理方法！</span>
+	              </div>
+	           </div>
+           </fieldset>
+           <fieldset>
+			   <div class="form-group">
+	              <label class="col-sm-2 control-label"><span class="text-danger">*</span>插件行为方法</label>
+	              <div class="col-sm-6">
+	                 <input type="text" name="invoke"  required="" class="form-control" ng-model="invoke" placeholder="com.dc.appengine.plugins.service.impl.Config#invoke"/>
+	                 <span class="text-danger" ng-show="validateInput(formValidate,'invoke','required')">请输入行为方法！</span>
+	              </div>
+	           </div>
+           </fieldset>
+           <fieldset>
+			   <div class="form-group">
+	              <label class="col-sm-2 control-label"><span class="text-danger">*</span>插件后处理方法</label>
+	              <div class="col-sm-6">
+	                 <input type="text" name="postAction"  required="" class="form-control" ng-model="postAction" placeholder="com.dc.appengine.plugins.service.impl.Config#postAction"/>
+	              	 <span class="text-danger" ng-show="validateInput(formValidate,'postAction','required')">请输入后处理方法！</span>
+	              </div>
+	           </div>
+           </fieldset>
+           <fieldset>
+	           <div class="form-group">
+	              <label class="col-sm-2 control-label"><span class="text-danger">*</span>插件Agent方法</label>
+	              <div class="col-sm-6">
+	                 <input type="text" name="agent"  required="" class="form-control" ng-model="agent" placeholder="com.dc.appengine.plugins.service.impl.Config#agent"/>
+	                 <span class="text-danger" ng-show="validateInput(formValidate,'agent','required')">请输入Agent方法！</span>
+	              </div>
+	           </div>
+           </fieldset>
+           <fieldset>
+	           <div class="form-group">
+					<div class="clearfix">
+		                  <label class="col-sm-2 control-label">插件标签</label>
+		                  <div class="col-sm-6"> 
+			                 <select ng-show="hasLabels" id="optionalLabels"
+		                       data-placeholder="请选择标签"
+		                       name="labels" ng-model="labels" multiple="multiple"
+		                       class="chosen-select form-control">
+		                     </select>
+	              		</div>
+		            </div>
+	                <div class="add-row-container mt20" data-ng-repeat="label in labelsarr track by $index">
+	                  <ng-form name="envs" class="clearfix">
+	                       <label class="col-sm-2 control-label"></label>
+	                       <div class="col-sm-3">
+	                           <input type="text" placeholder="标签名" ng-model="label.key" required="" class="form-control">
+	                       </div>
+	                       <div class="col-sm-3">
+	                           <input type="text" placeholder="标签值" ng-model="label.val" class="form-control">
+	                       </div> 
+	                       <div class="col-sm-1">
+	                           <a href="" ng-click="del('labelsarr',$index)" class="text-danger"><em class="fa fa-trash"></em></a>
+	                       </div>
+	                 </ng-form>
+	               </div>
+	        </div>
+         </fieldset>
+         <fieldset>
+           <div class="form-group">
+			 <div class="clearfix">
+                  <label class="col-sm-2 control-label">插件参数</label>
+                  <div class="col-sm-6"> 
+                      <a href="" class="btn btn-info btn-sm" ng-click="add('paramsarr')"><em class="fa fa-plus"></em> 添加参数</a>
+                  </div>
+              </div>
+             <div class="add-row-container mt20" data-ng-repeat="param in paramsarr track by $index">
+                  <ng-form name="params" class="clearfix">
+                       <label class="col-sm-2 control-label"></label>
+                         <div class="col-sm-3">
+                              <input type="text" placeholder="参数名" ng-model="param.key" required="" class="form-control">
+                          </div>
+                         <div class="col-sm-3">
+                               <input type="text" placeholder="参数值" ng-model="param.val" class="form-control">
+                          </div> 
+                           <div class="col-sm-1">
+                                 <a href="" ng-click="del('paramsarr',$index)" class="text-danger"><em class="fa fa-trash"></em></a>
+                            </div>
+                    </ng-form>
+                </div>
+           </div>
+		 </fieldset>
+		 <fieldset>
+	           <div class="form-group">
+	              <label class="col-sm-2 control-label"><span class="text-danger">*</span>上传文件(jar)</label>
+	              <div class="col-sm-6">
+	                  <div ng-if="isloading" nv-file-drop="" uploader="uploader" filters="queueLimit, customFilter">
+		                   <input filestyle="" type="file" data-button-text="添加" data-class-button="btn btn-info" data-classinput="form-control inline" nv-file-select="" uploader="uploader" class="form-control" ng-click="addfile()" />
+                           <table ng-if="uploader.queue.length" class="table">
+				                <thead>
+					               <tr>
+					                  <th>名称</th>
+					                  <th ng-show="uploader.isHTML5">大小</th>
+					                  <th ng-show="uploader.isHTML5">进度</th>
+					                  <th>状态</th>
+					                  <th>插件</th>
+					               </tr>
+					            </thead>
+				                <tbody>
+					   				<tr ng-repeat="item in uploader.queue">
+					                  <td>
+					                     <strong>{{ item.file.name }}</strong>
+					                  </td>
+					                  <td ng-show="uploader.isHTML5" nowrap="">{{ item.file.size/1024|number:2 }} kB</td>
+					                  <td ng-show="uploader.isHTML5">
+					                     <div style="margin-bottom: 0;" class="progress progress-xs">
+					                        <div role="progressbar" ng-style="{ 'width': item.progress + '%' }" class="progress-bar"></div>
+					                     </div>
+					                  </td>
+					                  <td class="text-center">
+					                     <span ng-show="item.isSuccess">
+					                        <em class="fa fa-check fa-fw"></em>
+					                     </span>
+					                     <span ng-show="item.isCancel">
+					                        <em class="fa fa-ban-circle fa-fw"></em>
+					                     </span>
+					                     <span ng-show="item.isError">
+					                        <em class="fa fa-times fa-fw"></em>
+					                     </span>
+					                  </td>
+					                  <td nowrap="">
+					                     <button type="button" ng-click="item.remove()" class="btn btn-danger btn-xs">
+					                        <span class="icon-trash"></span>
+					                     </button>
+					                  </td>
+					              </tr>
+					            </tbody>
+                             </table>
+                        </div>             
+	              </div>
+	           </div>
+           </fieldset>
+		</div>
+		<div class="panel-footer text-center"> 
+	       <button type="submit" class="btn" ng-click="addPluginFn()" ng-disabled="!(formValidate.$valid&&!isDisabled)" ng-class="{'btn-default':!formValidate.$valid&&isDisabled,'btn-info':formValidate.$valid&&!isDisabled}">添加</button>
+	    </div>
+	</div>
+</form>
+</div>

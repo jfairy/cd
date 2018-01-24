@@ -1,0 +1,216 @@
+/* ========================================================================
+   Component: layout
+ ========================================================================== */
+body,
+.wrapper > section {
+  background-color: #ecf0f4;
+}
+.wrapper > .aside {
+  background-color: #364150;
+}
+/* ========================================================================
+   Component: top-navbar
+ ========================================================================== */
+.topnavbar {
+  background-color: #fff;
+}
+.topnavbar .navbar-header {
+  background-color: transparent;
+  background-image: -webkit-linear-gradient(left, #1797be 0%, #23b7e5 100%);
+  background-image: -o-linear-gradient(left, #1797be 0%, #23b7e5 100%);
+  background-image: linear-gradient(to right, #1797be 0%, #23b7e5 100%);
+  background-repeat: repeat-x;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff1797be', endColorstr='#ff23b7e5', GradientType=1);
+}
+@media only screen and (min-width: 768px) {
+  .topnavbar .navbar-header {
+    background-image: none;
+  }
+}
+.topnavbar .navbar-nav > li > a,
+.topnavbar .navbar-nav > .open > a {
+  color: #1797be;
+}
+.topnavbar .navbar-nav > li > a:hover,
+.topnavbar .navbar-nav > .open > a:hover,
+.topnavbar .navbar-nav > li > a:focus,
+.topnavbar .navbar-nav > .open > a:focus {
+  color: #0c4f63;
+}
+.topnavbar .navbar-nav > .active > a,
+.topnavbar .navbar-nav > .open > a,
+.topnavbar .navbar-nav > .active > a:hover,
+.topnavbar .navbar-nav > .open > a:hover,
+.topnavbar .navbar-nav > .active > a:focus,
+.topnavbar .navbar-nav > .open > a:focus {
+  background-color: transparent;
+}
+.topnavbar .navbar-nav > li > [data-toggle='navbar-search'] {
+  color: #ffffff;
+}
+.topnavbar .nav-wrapper {
+  background-color: #fff;
+  /* background-image: -webkit-linear-gradient(left, #1797be 0%, #23b7e5 100%);
+  background-image: -o-linear-gradient(left, #1797be 0%, #23b7e5 100%);
+  background-image: linear-gradient(to right, #1797be 0%, #23b7e5 100%);
+  background-repeat: repeat-x;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff1797be', endColorstr='#ff23b7e5', GradientType=1); */
+}
+@media only screen and (min-width: 768px) {
+  .topnavbar {
+    background-color: #1797be;
+    background-image: -webkit-linear-gradient(left, #1797be 0%, #23b7e5 100%);
+    background-image: -o-linear-gradient(left, #1797be 0%, #23b7e5 100%);
+    background-image: linear-gradient(to right, #1797be 0%, #23b7e5 100%);
+    background-repeat: repeat-x;
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff1797be', endColorstr='#ff23b7e5', GradientType=1);
+  }
+  .topnavbar .navbar-nav > .open > a,
+  .topnavbar .navbar-nav > .open > a:hover,
+  .topnavbar .navbar-nav > .open > a:focus {
+    box-shadow: 0 -3px 0 rgba(255, 255, 255, 0.5) inset;
+  }
+  .topnavbar .navbar-nav > li > a,
+  .topnavbar .navbar-nav > .open > a {
+    color: #000;
+  }
+  .topnavbar .navbar-nav > li > a:hover,
+  .topnavbar .navbar-nav > .open > a:hover,
+  .topnavbar .navbar-nav > li > a:focus,
+  .topnavbar .navbar-nav > .open > a:focus {
+    color: #0c4f63;
+  }
+}
+/* ========================================================================
+   Component: sidebar
+ ========================================================================== */
+.sidebar {
+  background-color: #364150;
+}
+.sidebar .nav-heading {
+  color: #919da8;
+}
+.sidebar .nav > li > a,
+.sidebar .nav > li > .nav-item {
+  color: #e1e2e3;
+}
+.sidebar .nav > li > a:focus,
+.sidebar .nav > li > .nav-item:focus,
+.sidebar .nav > li > a:hover,
+.sidebar .nav > li > .nav-item:hover {
+  color: #fff;
+  background: #2c3542;
+}
+
+.sidebar .nav > li > .sidebar-subnav > li > a:focus,
+
+.sidebar .nav > li > .sidebar-subnav > li > a:hover
+ {
+  color: #fff;
+  background: #3e4b5c;
+}
+
+.sidebar .nav > li > a > em,
+.sidebar .nav > li > .nav-item > em {
+  color: inherits;
+}
+.sidebar .nav > li.active,
+.sidebar .nav > li.open,
+.sidebar .nav > li.active > a,
+.sidebar .nav > li.open > a,
+.sidebar .nav > li.active .nav,
+.sidebar .nav > li.open .nav {
+   
+}
+.sidebar .nav > li.active > a > em,
+.sidebar .nav > li.open > a > em {
+  color: #1797be;
+}
+.sidebar .nav > li.active {
+ /*  border-right-color: #fff; */
+}
+ 
+.sidebar-subnav > .sidebar-subnav-header {
+  color: #515253;
+}
+.sidebar-subnav > li > a,
+.sidebar-subnav > li > .nav-item {
+  color: #e1e2e3;
+}
+.sidebar-subnav > li > a:focus,
+.sidebar-subnav > li > .nav-item:focus,
+.sidebar-subnav > li > a:hover,
+.sidebar-subnav > li > .nav-item:hover {
+  color: #1797be;
+}
+.sidebar-subnav > li.active > a,
+.sidebar-subnav > li.active > .nav-item {
+  color: #1797be;
+}
+.sidebar-subnav > li.active > a:after,
+.sidebar-subnav > li.active > .nav-item:after {
+  border-color: #1797be;
+  background-color: #1797be;
+}
+
+.sidebar .nav > li.first {
+  background:#0d5268;
+}
+
+.nav-footer { 
+  height: 40px;
+  width: 100%; 
+  position: absolute; 
+  bottom: 0; 
+  left: 0; 
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  background:#273344;
+ }
+
+ .nav-footer li {
+  
+   line-height: 40px;
+   text-align: center;
+ 
+ }
+ .nav-footer li a {
+   color: #fff;
+   text-decoration: none;
+   display: block;
+ }
+ .nav-footer li a em {
+    padding-right: 10px;
+  }
+/* ========================================================================
+   Component: offsidebar
+ ========================================================================== */
+.offsidebar {
+  border-left: 1px solid #cccccc;
+  background-color: #ffffff;
+  color: #515253;
+}
+
+/* 20170417 */
+.sidebar .nav > li > a { border-top: 1px solid #3d4957!important; color: #b4bcc8; }
+/* .sidebar .nav > li.active .nav { background-color: rgb(54, 65, 80); } */
+.sidebar .nav > li.active .nav .active { background-color: #3e4b5c !important; }
+/* .sidebar .nav > li.active > a { background: #1f1414; color: #23b7e5; font-weight: bold; } */
+.sidebar .nav > li.active > a > em { color: #23b7e5; }
+.sidebar .sidebar-subnav > li.active > a { background: #1caf9a!important; color: #fff!important; font-weight: normal; }
+.sidebar .sidebar-subnav > li.active > a > em { color: #fff; }
+.sidebar .nav > li.open > a > em { color: #fff; }
+ 
+.sidebar .nav > li.single > a { background: #1caf9a; }
+
+
+a {
+  color: #2db7f5;
+  background: transparent;
+  text-decoration: none;
+  outline: none;
+  cursor: pointer;
+}
+ 
+ 

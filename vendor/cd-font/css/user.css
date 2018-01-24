@@ -1,0 +1,46 @@
+@font-face {
+  font-family: 'user';
+  src:  url('../fonts/user.eot?ckqcxx');
+  src:  url('../fonts/user.eot?ckqcxx#iefix') format('embedded-opentype'),
+    url('../fonts/user.ttf?ckqcxx') format('truetype'),
+    url('../fonts/user.woff?ckqcxx') format('woff'),
+    url('../fonts/user.svg?ckqcxx#user') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+[class^="cd-user"], [class*=" cd-user"] {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: 'user' !important;
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.cd-user-ic_skins:before {
+  content: "\e900";
+  color: #c9d1e0;
+}
+.cd-user-ic_userhelp:before {
+  content: "\e901";
+  color: #c9d1e0;
+}
+.cd-user-ic_logout:before {
+  content: "\e902";
+  color: #c9d1e0;
+}
+.cd-user-ic_password:before {
+  content: "\e903";
+  color: #c9d1e0;
+}
+.cd-user-ic_personal:before {
+  content: "\e904";
+  color: #c9d1e0;
+}

@@ -1,0 +1,31 @@
+<div class="breadcont clearfix">
+   <ol class="breadcrumb pull-left">
+      <li><a ui-sref="app.blueprint_manage">蓝图列表</a>
+      </li>
+      <li>
+      	{{$stateParams.templateName}}
+      </li>
+      <li class="active">
+      	过程管理
+      </li>
+   </ol>
+</div>
+<div class="cont-body">
+		<table class="table table_title table-striped cd-table">
+		    <thead>
+		    	<tr>
+		    		<th>过程名称</th>
+		    		<th>操作</th>
+		    	</tr>
+		    </thead>
+		    <tbody>
+		    	<tr ng-repeat="item in flowList track by $index">
+		    		<td>{{item.flowName}}</td>
+		    		<td>
+		    			<a class="btn btn-cd-default" ui-sref="app.blueprint_flow_update({templateName:templateName,blueprintId:blueprintId,flowId:item.cdFlowId})">编辑</a>
+		    			<button class="btn btn-cd-default btn-cd-default-del" ng-click="delFLow(item.cdFlowId,$index)">删除</button>
+		    		</td>
+		    	</tr>
+		    </tbody>
+		</table>
+	</div>

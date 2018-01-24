@@ -1,0 +1,20 @@
+<div class="dialog-header">
+    <h4>快照回滚</h4>
+</div>
+<div class="dialog-body">
+   <div class="form-horizontal">  
+      <form name="editResourceMapForm">
+         <div class="form-group">
+             <label class="col-lg-3 control-label text-right">选择过程：</label>
+             <div class="col-lg-8 form-control-static">
+                 <select class="form-control" ng-model="flow" ng-options="item as item.FLOW_NAME for item in flowList"></select> 
+             </div>
+         </div>
+      </form>
+   </div>
+</div>
+<div class="dialog-footer">
+    <button class="btn btn-info" ng-click="closeThisDialog(0)">取消</button>
+    <button class="btn btn-info" ng-click="rollBackFn();">确定</button> 
+</div>
+ 

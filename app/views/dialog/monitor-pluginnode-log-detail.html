@@ -1,0 +1,20 @@
+<div class="dialog-header">
+   <h4>执行日志</h4>
+</div>
+<div class="dialog-body">
+	<ul class="nav" id="tabhead">
+		<li ng-click="getCode(preLog_code,1)" ng-class="{active:isActive==1}">
+		     <a href="javascript:;">前处理</a>
+		</li>
+		<li ng-click="getCode(invokeLog_code,2)" ng-class="{active:isActive==2}">
+		    <a href="javascript:;">invoke</a>
+		</li>
+		<li ng-click="getCode(activeLog_code,3)" ng-class="{active:isActive==3}">
+		    <a href="javascript:;">active</a>
+		</li>
+		<li ng-click="getCode(postLog_code,4)" ng-class="{active:isActive==4}">
+		    <a href="javascript:;">后处理</a>
+		</li>
+	</ul>
+	<ui-codemirror ui-codemirror-opts="editorOpts" ng-model="code"></ui-codemirror>
+</div>

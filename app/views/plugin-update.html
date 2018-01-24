@@ -1,0 +1,133 @@
+<div class="breadcont clearfix">
+   <ol class="breadcrumb pull-left">
+      <li>
+          <a ui-sref="app.plugin_manage">插件列表</a>
+      </li>
+      <li class="active">{{pluginInfo.pluginName}}
+      </li>
+   </ol>
+</div>
+
+<div class="cont-body">
+	
+
+<form name="formValidate" ng-submit="submitForm()" novalidate="" class="form-validate form-horizontal">
+<div class="panel panel-default">
+	<div class="panel-body">
+	    <fieldset>
+           <div class="form-group">
+              <label class="col-sm-2 control-label">插件名称</label>
+              <div class="col-sm-6">
+                 <div class="form-control-static" ng-bind="pluginInfo.pluginName"></div>
+              </div>
+           </div>
+       </fieldset>
+       <fieldset>
+		   <div class="form-group">
+              <label class="col-sm-2 control-label">插件描述</label>
+              <div class="col-sm-6">
+              	<textarea type="text" name="description" ng-model="description" class="form-control" placeholder="插件描述">
+              	</textarea> 
+              </div>
+           </div>
+       </fieldset>
+       <fieldset>
+		   <div class="form-group">
+              <label class="col-sm-2 control-label">插件前处理方法</label>
+              <div class="col-sm-6">
+                <input type="text" required="" name="preAction" ng-model="preAction" class="form-control" placeholder="插件前处理方法" /> 
+                <span class="text-danger" ng-show="validateInput(formValidate,'preAction','required')">请输入前处理方法！</span>
+              </div>
+           </div>
+       </fieldset>
+       <fieldset>
+		   <div class="form-group">
+              <label class="col-sm-2 control-label">插件行为方法</label>
+              <div class="col-sm-6">
+                 <input type="text" required="" name="invoke" ng-model="invoke" class="form-control" placeholder="插件行为方法" />
+                 <span class="text-danger" ng-show="validateInput(formValidate,'invoke','required')">请输入行为方法！</span>
+              </div>
+           </div>
+       </fieldset>
+       <fieldset>
+		    <div class="form-group">
+              <label class="col-sm-2 control-label">插件后处理方法</label>
+              <div class="col-sm-6">
+                 <input type="text" required="" name="postAction" ng-model="postAction" class="form-control" placeholder="插件后处理方法" />
+              	 <span class="text-danger" ng-show="validateInput(formValidate,'postAction','required')">请输入后处理方法！</span>
+              </div>
+           </div>
+       </fieldset>
+           
+       <fieldset>
+		    <div class="form-group">
+              <label class="col-sm-2 control-label">插件Agent方法</label>
+              <div class="col-sm-6">
+                 <input type="text" required="" name="agent" ng-model="agent" class="form-control" placeholder="插件后agent方法" />
+                 <span class="text-danger" ng-show="validateInput(formValidate,'agent','required')">请输入Agent方法！</span>
+              </div>
+           </div>
+       </fieldset>
+       <fieldset>
+           <div class="form-group">
+			 <div class="clearfix">
+                  <label class="col-sm-2 control-label">插件标签</label>
+                   <div class="form-control-static" ng-bind="pluginInfo.labels||'无'"></div>
+              </div>
+           </div>
+       </fieldset>
+       <fieldset>
+           <div class="form-group">
+			 <div class="clearfix">
+                  <label class="col-sm-2 control-label">插件参数</label>
+                  <div class="col-sm-6">
+                      <table class="table table-bordered">
+                        <thead>
+					      <tr>
+					         <td style="width:20%">参数名</td>
+					         <td style="width:35%">参数值</td>
+					         <td style="width:25%">操作</td>
+					      </tr>
+			            </thead>
+						<tbody id="paramsbody">
+					      <tr ng-repeat="param in paramsarr">
+					         <td>{{param.key}}</td>
+					         <td>
+					            <input  type="text" placeholder="参数值" ng-model="param.val" class="form-control" style="width:50%; float:left;">
+					             
+					         </td>
+					         <td>
+					             <a href="" ng-click="del('paramsarr',$index)" class="text-danger"><em class="fa fa-trash"></em></a>
+					         </td>
+					      </tr>
+			            </tbody>
+						<tbody id="addparamsbody">
+					      <tr ng-repeat="param in addParams">
+					         <td>
+					              <input required="" type="text" placeholder="参数名" ng-model="param.key"  class="form-control">
+					         </td>
+					         <td> 
+					              <input  type="text" placeholder="参数值" ng-model="param.val" class="form-control" style="width:50%; float:left;">
+                                   
+					         </td>
+					         <td>
+					            <a href="" ng-click="del('addParams',$index)" class="text-danger"><em class="fa fa-trash"></em></a>
+					         </td>
+					      </tr>
+			            </tbody>
+					  </table>
+					  <a href="" class="btn btn-info mt20" ng-click="add('addParams')">添加参数</a>
+                    </div>
+              </div>
+           </div>
+      </fieldset>
+     
+
+	</div>
+	<div class="panel-footer text-center"> 
+        <button type="submit" class="btn" ng-click="createTemp(chosestyle)" ng-disabled="!formValidate.$valid" ng-class="{'btn-default':!formValidate.$valid,'btn-info':formValidate.$valid}">更新</button> 
+  </div>
+</div>
+
+ </form>
+ </div>

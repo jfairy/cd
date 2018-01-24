@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="userControllers">
+<head>
+   <meta charset="utf-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+   <meta http-equiv="pragma" content="no-cache"> 
+   <meta  http-equiv="Cache-Control" content="no-cache, must-revalidate"> 
+   <meta  http-equiv="expires" content="0">
+   <!-- Bootstrap styles-->
+   <link rel="stylesheet" href="../../app/css/bootstrap.css">
+   <link rel="stylesheet" href="../../vendor/fontawesome/css/font-awesome.min.css">
+   <link rel="stylesheet" href="../../app/css/app.css">
+   <link rel="stylesheet" href="../../app/css/login.css">
+   <script src="../../app/js/angular-1.5.0.min.js"></script>
+   <script src="../../app/js/user.js"></script>
+</head>
+
+<body class="layout-fixed">
+<div class="login_bg">
+   <div class="login-bg-cloud"></div>
+</div>
+<div  class="center-block wdlogin" ng-controller="RegisterFormController">
+   <section>
+      <header>
+          <span class="avatar">
+            <a href="../../index.jsp"><img ng-src="{{app.logosrc}}" alt=""></a>
+          </span>
+          <h1>{{app.name}}</h1>
+      </header>
+      <form role="form" name="registerForm" novalidate="" ng-submit="register()" class="form-validate mb-lg">
+            <div class="form-group has-feedback">
+
+               <input type="text" name="account_username" ng-pattern="/^[a-zA-Z0-9_-]{4,16}$/" placeholder="用户名" autocomplete="off" ng-model="account.username" required="" class="form-control" />
+                 
+               <div><small class="prompt">名字可以包含字母，数字，_，-，4-16个字符</small></div>
+                
+               <!-- <span class="fa fa-envelope form-control-feedback text-muted"></span> -->
+
+               <span class="prompt text-danger" ng-show="registerForm.account_username.$dirty &amp;&amp; registerForm.account_username.$error.required" class="text-danger">请输入用户名！</span>
+
+               <span class="prompt text-danger" ng-show="registerForm.account_username.$dirty &amp;&amp; registerForm.account_username.$error.pattern" class="text-danger">用户名不符合规则！</span>
+
+            </div>
+            <div class="form-group has-feedback">
+
+               <input id="id-password" type="password" name="account_password" placeholder="密码" ng-model="account.password" ng-pattern="/^[a-zA-Z0-9]{6,10}$/" required="" class="form-control" />
+               
+               <div><small class="prompt">6-10位的数字或字母</small></div>
+               
+               <!-- <span class="fa fa-lock form-control-feedback text-muted"></span> -->
+
+               <span class="prompt text-danger" ng-show="registerForm.account_password.$dirty &amp;&amp; registerForm.account_password.$error.required" class="text-danger">请输入密码</span>
+
+               <span class="prompt text-danger" ng-show="registerForm.account_password.$dirty &amp;&amp; registerForm.account_password.$error.pattern" class="text-danger">密码不符合规则！</span>
+
+            </div>
+
+            <div class="form-group has-feedback">
+
+               <input type="password" name="account_password_confirm" placeholder="确认密码" ng-model="account.account_password_confirm" class="form-control" required="" equalpassword />
+
+               <!-- <span class="fa fa-lock form-control-feedback text-muted"></span> -->
+               
+               <span class="prompt text-danger" ng-show="registerForm.account_password_confirm.$dirty &amp;&amp; registerForm.account_password_confirm.$error.required" class="text-danger">请输入确认密码</span>
+
+               <span class="prompt text-danger" ng-show="registerForm.account_password_confirm.$error.equal" class="text-danger">密码不一致，请重新输入！</span> 
+
+            </div>
+
+            <div class="clearfix agree text-danger">
+               <div class="checkbox c-checkbox pull-left mt0">
+                  <label>
+                     <input type="checkbox" required="" name="account_agreed" ng-model="account.agreed" />
+                     <span class="fa fa-check"></span>我同意这个 <a href="#">协议</a>
+                  </label>
+               </div>
+            </div>
+
+            <div class="agree text-danger" ng-show="registerForm.account_agreed.$dirty &amp;&amp; registerForm.account_agreed.$error.required" class="text-danger">必须同意协议</div>
+
+            <button type="submit" class="btn btn-block btn-primary mt-lg loginbtn">创建账户</button>
+
+         </form>
+
+         <div ng-show="authMsg" class="alert alert-danger text-center">{{authMsg}}</div>
+
+         <p class="pt-lg text-center">已经有一个账户?</p><a href="login.html" class="btn btn-block btn-default">登录</a>
+
+   </section>
+</div>
+</body>
+
+</html>

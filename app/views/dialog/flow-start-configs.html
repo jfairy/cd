@@ -1,0 +1,32 @@
+<div class="dialog-header">
+    <h4>过程变量</h4>
+</div>
+<div class="dialog-body">
+	 <table class="table table-bordered">
+         <thead>
+             <tr style="font-weight: bold">
+               <td style="width:40%">变量名</td>
+               <td style="width:40%">变量值</td>
+               <td style="width:20%;text-align:center;">操作</td>
+             </tr>
+         </thead>
+         <tbody>
+             <tr ng-repeat="val in vararr track by $index">
+                <td>
+                    <input type="text" placeholder="变量名" ng-model="val.key" class="form-control" placeholder="请填写变量名！">
+                </td>
+                <td>
+                    <input type="text" placeholder="变量值" ng-model="val.val" class="form-control" placeholder="请填写变量值！">
+                </td>
+                <td style="text-align:center;">
+                    <a href="" ng-click="del('vararr',$index)" class="text-danger"><em class="fa fa-trash"></em></a>
+                </td>
+             </tr>
+         </tbody>
+     </table>
+     <a href="" class="btn btn-info btn-sm" ng-click="add('vararr')"><em class="fa fa-plus"></em> 添加变量</a>
+</div>
+<div class="dialog-footer">
+	<a class="btn btn-info" ng-click="closeThisDialog(0)">取消</a>
+    <button type="submit" class="btn btn-primary" ng-click="addFlowVarFn()">确定</button>
+</div>

@@ -1,0 +1,50 @@
+<div class="breadcont clearfix">
+   <ol class="breadcrumb pull-left">
+      <li><a ui-sref="app.blueprint_ins_manage">蓝图实例列表</a>
+      </li>
+      <li>
+      	{{$stateParams.insName}}
+      </li>
+      <li>
+      	<a ui-sref="app.blueprint_ins_components({insName:$stateParams.insName,insId:$stateParams.insId})">组件列表</a>
+      </li>
+      <li>
+      	{{$stateParams.componentName}}
+      </li>
+      <li class="active">
+      	实例列表
+      </li>
+   </ol>
+</div>
+<div class="cont-body">
+   
+
+<table class="table table_title table-striped cd-table">
+   <thead>
+      <tr>
+         <th>实例名称</th>
+         <th>状态</th>
+         <th>主机IP</th>
+         <th>更新时间</th>
+      </tr>
+   </thead>
+   <tbody> 
+      <tr ng-if="!listoff">
+         <td colspan="4">
+           <p class="noresult"><em class="icon-info"></em> {{warninginfo}}</p>
+         </td>
+      </tr>
+	  <tr ng-repeat="item in insList">
+ 	    <td ng-bind="item.id"></td>
+       <td ng-bind="item.status"></td>
+        <td ng-bind="item.nodeIp"></td>
+ 	    <td ng-bind="item.deployTime"></td>
+	  </tr>
+      <tr>
+         <td colspan="4" ng-show="listoff">
+            <page page-count="pageCount" page-num="pageNum" on-page-change="onPageChange()"></page> 
+         </td>
+      </tr>
+	</tbody>
+</table>
+</div>

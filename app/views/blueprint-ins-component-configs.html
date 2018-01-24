@@ -1,0 +1,289 @@
+<div class="breadcont clearfix">
+   <ol class="breadcrumb pull-left">
+      <li><a ui-sref="app.blueprint_ins_manage">蓝图实例列表</a>
+      </li>
+      <li>
+      	{{$stateParams.insName}}
+      </li>
+      <li class="active">
+      	组件配置
+      </li>
+   </ol>
+</div>
+
+<div class="cont-body">
+	<form name="form1" novalidate="" class="form-validate form-horizontal">
+    <div class="panel">
+       <div class="panel-body">
+    	 <fieldset>
+	          <div class="form-group">
+	             <label class="col-sm-2 control-label">组件：</label>
+	             <div class="col-sm-6">
+	                 <select class="form-control" ng-model="component" ng-options="componentItem as componentItem.nodeDisplay for componentItem in componentList">
+	                 </select>
+	             </div>
+	          </div>
+         </fieldset>
+         <!-- <fieldset>
+	          <div class="form-group">
+	             <label class="col-sm-2 control-label">智能开关：</label>
+	             <div class="col-sm-6">
+	              <label class="switch switch-lg form-control-static">
+                     <input ng-model="switchOff" type="checkbox" checked="checked" />
+                     <span></span>
+                  </label>
+	             </div>
+	          </div>
+         </fieldset> -->
+         <!-- <fieldset>
+	          <div class="form-group">
+	             <label class="col-sm-2 control-label">组件描述：</label>
+	             <div class="col-sm-6">
+	                  <p class="form-control-static">1111</p>
+	             </div>
+	          </div>
+         </fieldset> -->
+         <fieldset>
+	          <div class="form-group">
+	             <label class="col-sm-2 control-label">配置：</label>
+	             <div class="col-sm-10">
+	                   <tabset justified="true" class="bg-white p0">
+	                   		
+	            		    <tab>
+	            		       <tab-heading>目标版本</tab-heading>
+	            		       <div style="padding:20px;">
+	            		       		<div class="form-group">
+                                        <label class="col-lg-1 control-label">版本：</label>
+                                        <div class="col-lg-7">
+                                            <select class="form-control" ng-model="target.version" ng-options="targetVersionItem as targetVersionItem.versionName for targetVersionItem in componentVersionList">
+                                            	 
+                                            </select>
+                                        </div>
+                                   </div>
+                                   <div class="form-group mt20">
+                                        <label class="col-lg-1 control-label">参数：</label>
+                                        <div class="col-lg-7">
+	            		       	        <tabset justified="true" class="bg-white p0">
+	            		       	   		<tab>
+	            		                     <tab-heading>输入参数</tab-heading>
+	            		                     <div>
+	            		                     	<div class="table-responsive" style="padding:10px;">
+	            		                     		<table class="table table-bordered table-hover table-striped">
+				                                 		<thead>
+				                                 			<tr>
+								                              <th>参数名</th>
+								                              <th>参数值
+								                              <small>(参数值不允许为中文，最多128位)</small>
+								                              </th>
+															  <th>参数类型</th>
+								                           </tr>
+				                                 		</thead>
+				                                 		<tbody> 
+									                 		<tr ng-repeat="targetInputItem in targetInputConfigs track by $index"> 
+									                 			<td>
+									                 				<div>{{targetInputItem.key}}</div> 
+									                 			</td>
+									                 			<td>
+									                 				<input type="text" id="targetinputvalue{{$index}}" name="targetinputvalue{{$index}}" ng-maxlength="128" ng-pattern="/^[^\u4e00-\u9fa5]{0,}$/" ng-model="targetInputItem.value" class="form-control"> 
+									                 				<span class="text-danger" ng-show="validateInput(form1,'targetinputvalue{{$index}}','maxlength')">value最多128位！</span>
+					                 				                <span class="text-danger" ng-show="validateInput(form1,'targetinputvalue{{$index}}','pattern')">value不能为中文！</span> 
+									                 			</td>
+																<td>
+									                 				<input type="checkbox" ng-checked="passwordChecked(targetInputItem,'targetinputvalue'+$index)" ng-click="passwordTypeChange(targetInputItem,'targetinputvalue'+$index)">密码参数</input>
+									                 			</td>
+									                 		</tr>
+									                 	</tbody>
+				                                 	</table>
+	            		                     	</div>
+	            		                     </div>
+	            		                </tab>
+	            		                <tab>
+	            		                     <tab-heading>输出参数</tab-heading>
+	            		                     <div>
+	            		                     	  <div class="table-responsive" style="padding:10px;">
+	            		                     		<table class="table table-bordered table-hover table-striped">
+				                                 		<thead>
+				                                 			<tr>
+								                              <th>参数名</th>
+								                              <th>参数值
+								                              <small>(参数值不允许为中文，最多128位)</small>
+								                              </th>
+															  <th>参数类型</th>
+								                           </tr>
+				                                 		</thead>
+				                                 		<tbody> 
+									                 		<tr ng-repeat="targetOutputItem in targetOutputConfigs track by $index"> 
+									                 			<td>
+									                 				<div>{{targetOutputItem.key}}</div> 
+									                 			</td>
+									                 			<td>
+									                 				<input type="text" id="targetoutputvalue{{$index}}" name="targetoutputvalue{{$index}}" ng-maxlength="128" ng-pattern="/^[^\u4e00-\u9fa5]{0,}$/" ng-model="targetOutputItem.value" class="form-control"> 
+									                 				<span class="text-danger" ng-show="validateInput(form1,'targetoutputvalue{{$index}}','maxlength')">value最多128位！</span>
+					                 				                <span class="text-danger" ng-show="validateInput(form1,'targetoutputvalue{{$index}}','pattern')">value不能为中文！</span> 
+									                 			</td>
+																<td>
+									                 				<input type="checkbox" ng-checked="passwordChecked(targetOutputItem,'targetoutputvalue'+$index)" ng-click="passwordTypeChange(targetOutputItem,'targetoutputvalue'+$index)">密码参数</input>
+									                 			</td>
+									                 		</tr>
+									                 	</tbody>
+				                                 	</table>
+	            		                     	</div>
+	            		                     </div>
+	            		                </tab>
+	            		       	   </tabset>
+	            		       	   </div>
+	            		       	   </div>
+	            		       </div>
+	            		    </tab>
+	            		    <tab>
+	            		       <tab-heading>当前版本</tab-heading>
+	            		       <div style="padding:20px;">
+	            		           <div class="form-group">
+                                        <label class="col-lg-1 control-label">版本：</label>
+                                        <div class="col-lg-7"> 
+                                            <select class="form-control" ng-model="current.version" ng-options="currentVersionItem as currentVersionItem.versionName for currentVersionItem in componentVersionList">
+                                            	 
+                                            </select>
+                                        </div>
+                                   </div>
+                                   <div class="form-group mt20"> 
+                                        <label class="col-lg-1 control-label">参数：</label>
+                                        <div class="col-lg-7">
+	            		       	        <tabset justified="true" class="bg-white p0">
+	            		       	   		<tab>
+	            		                     <tab-heading>输入参数</tab-heading>
+	            		                     <div>
+	            		                     	<div class="table-responsive" style="padding:10px;">
+	            		                     		<table class="table table-bordered table-hover table-striped">
+				                                 		<thead>
+				                                 			<tr>
+								                              <th>参数名</th>
+								                              <th>参数值
+								                              <small>(参数值不允许为中文，最多128位)</small>
+								                              </th>
+															  <th>参数类型</th>
+								                           </tr>
+				                                 		</thead>
+				                                 		<tbody> 
+									                 		<tr ng-repeat="currentInputItem in currentInputConfigs track by $index"> 
+									                 			<td>
+									                 				<div>{{currentInputItem.key}}</div> 
+									                 			</td>
+									                 			<td>
+									                 				<input type="text" id="currentinputvalue{{$index}}" name="currentinputvalue{{$index}}" ng-maxlength="128" ng-pattern="/^[^\u4e00-\u9fa5]{0,}$/" ng-model="currentInputItem.value" class="form-control"> 
+									                 				<span class="text-danger" ng-show="validateInput(form1,'currentinputvalue{{$index}}','maxlength')">value最多128位！</span>
+					                 				                <span class="text-danger" ng-show="validateInput(form1,'currentinputvalue{{$index}}','pattern')">value不能为中文！</span> 
+									                 			</td>
+																<td>
+									                 				<input type="checkbox" ng-checked="passwordChecked(currentInputItem,'currentinputvalue'+$index)" ng-click="passwordTypeChange(currentInputItem,'currentinputvalue'+$index)">密码参数</input>
+									                 			</td>
+									                 		</tr>
+									                 	</tbody>
+				                                 	</table>
+	            		                     	</div>
+	            		                     </div>
+	            		                </tab>
+	            		                <tab>
+	            		                     <tab-heading>输出参数</tab-heading>
+	            		                     <div>
+	            		                     	  <div class="table-responsive" style="padding:10px;">
+	            		                     		<table class="table table-bordered table-hover table-striped">
+				                                 		<thead>
+				                                 			<tr>
+								                              <th>参数名</th>
+								                              <th>参数值
+								                              <small>(参数值不允许为中文，最多128位)</small>
+								                              </th>
+															  <th>参数类型</th>
+								                           </tr>
+				                                 		</thead>
+				                                 		<tbody> 
+									                 		<tr ng-repeat="currentOutputItem in currentOutputConfigs track by $index"> 
+									                 			<td>
+									                 				<div>{{currentOutputItem.key}}</div> 
+									                 			</td>
+									                 			<td>
+									                 				<input type="text" id="currentoutputvalue{{$index}}" name="currentoutputvalue{{$index}}" ng-maxlength="128" ng-pattern="/^[^\u4e00-\u9fa5]{0,}$/" ng-model="currentOutputItem.value" class="form-control">
+									                 				<span class="text-danger" ng-show="validateInput(form1,'currentoutputvalue{{$index}}','maxlength')">value最多128位！</span>
+					                 				                <span class="text-danger" ng-show="validateInput(form1,'currentoutputvalue{{$index}}','pattern')">value不能为中文！</span>  
+									                 			</td>
+																<td>
+									                 				<input type="checkbox" ng-checked="passwordChecked(currentOutputItem,'currentoutputvalue'+$index)" ng-click="passwordTypeChange(currentOutputItem,'currentoutputvalue'+$index)">密码参数</input>
+									                 			</td>
+									                 		</tr>
+									                 	</tbody>
+				                                 	</table>
+	            		                     	</div>
+	            		                     </div>
+	            		                </tab>
+	            		       	   </tabset>
+	            		       	   </div>
+	            		       	   </div>
+	            		       </div>
+	            		    </tab>
+	                   </tabset>
+	             </div>
+	          </div>
+         </fieldset>
+       </div>
+       <div class="panel-footer text-center"> 
+          <button type="submit" class="btn" ng-disabled="!form1.$valid" ng-class="{'btn-default':!form1.$valid,'btn-info':form1.$valid}" ng-click="saveConfigs()">保存配置</button> 
+       </div>
+    </div>
+</form>
+ 
+<form name="form2" novalidate="" class="form-validate form-horizontal">   
+    <div ng-show="varList">
+    	<p>动态变量配置</p>
+    	<table class="table table_title">
+            <thead>
+              <tr>
+                 <th>参数名<small>(参数名由字母、数字、.、-、_组成，最多32位)</small></th>
+                 <th>参数值<small>(参数值不允许为中文，最多128位)</small></th>
+				 <th>密码参数</th>
+                 <th>操作</th>
+              </tr>
+            </thead>
+            <tbody> 
+            	<tr ng-repeat="varItem in varList">
+            		<td>{{varItem.key}}</td>
+            		<td>
+            			<input type="text" id="varvalue{{$index}}" name="varvalue{{$index}}" ng-maxlength="128" ng-pattern="/^[^\u4e00-\u9fa5]{0,}$/" ng-model="varItem.value" class="form-control">
+            			<span class="text-danger" ng-show="validateInput(form2,'varvalue{{$index}}','maxlength')">value最多128位！</span>
+					    <span class="text-danger" ng-show="validateInput(form2,'varvalue{{$index}}','pattern')">value不能为中文！</span> 
+            		</td>
+					<td>
+						<input type="checkbox" ng-checked="passwordChecked(varItem,'varvalue'+$index)" ng-click="passwordTypeChange(varItem,'varvalue'+$index)">密码参数</input>
+					</td>
+            		<td>无</td>
+            	</tr>
+            	<tr ng-repeat="newvarItem in newvarList">
+            		<td>
+            			<input type="text" name="newvarkey{{$index}}" ng-model="newvarItem.key" ng-maxlength="32" ng-pattern="/^[a-zA-Z0-9_.-]*$/" class="form-control">
+            		    <span class="text-danger" ng-show="validateInput(form2,'newvarkey{{$index}}','maxlength')">key最多32位！</span>
+					    <span class="text-danger" ng-show="validateInput(form2,'newvarkey{{$index}}','pattern')">key不符合规则(key由字母、数字、.、-、_组成)！</span> 
+            		</td>
+            		<td>
+            			<input type="text" id="newvarvalue{{$index}}" name="newvarvalue{{$index}}" ng-model="newvarItem.value" ng-maxlength="128" ng-pattern="/^[^\u4e00-\u9fa5]{0,}$/" class="form-control">
+            			<span class="text-danger" ng-show="validateInput(form2,'newvarvalue{{$index}}','maxlength')">value最多128位！</span>
+					    <span class="text-danger" ng-show="validateInput(form2,'newvarvalue{{$index}}','pattern')">value不能为中文！</span> 
+            		</td>
+					<td>
+						<input type="checkbox" ng-checked="passwordChecked(newvarItem,'newvarvalue'+$index)" ng-click="passwordTypeChange(newvarItem,'newvarvalue'+$index)">密码参数</input>
+					</td>
+            		<td>
+             		    <a href="" ng-click="del('newvarList',$index)" class="text-danger"><em class="fa fa-trash"></em></a>
+             	    </td>
+            	<tr>
+            </tbody>
+        </table> 
+        <a href="javascript:;" class="btn btn-info btn-sm mt20" ng-click="add('newvarList')"><em class="fa fa-plus"></em> 自定义变量</a>
+        <div class="text-center"> 
+        	<button type="submit" class="btn" ng-disabled="!form2.$valid" ng-class="{'btn-default':!form2.$valid,'btn-info':form2.$valid}" ng-click="saveVar()">保存变量</button>
+        </div>
+    </div>
+</form>
+</div>
+
+
+ 

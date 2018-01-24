@@ -1,0 +1,23 @@
+<div class="dialog-header">
+    <h4>环境重命名</h4>
+</div>
+<div class="dialog-body">
+   <div class="form-horizontal form-control-padding">  
+      <form name="changeclusterNameForm">
+      	 <div class="form-group">
+	         <label class="col-lg-3 control-label text-right">环境名称：</label>
+	         <div class="col-lg-8 control-formele">
+	            <input type="text" ng-focus="authMsg=''" tooltip="名字由字母，数字或下划线组成，首字母不能为数字或下划线,最多18位" ng-model="account.name" ng-pattern="/^[a-zA-Z][a-zA-Z0-9_]{0,17}$/" class="form-control" required="" name="name" autocomplete="off" />
+	            <span ng-show="validateInput(changeclusterNameForm,'name','required')" class="text-danger">请输入环境名称！</span>
+	            <span ng-show="validateInput(changeclusterNameForm,'name','pattern')" class="text-danger">名字不符合规则，请重新填写！</span>
+	            <span ng-show="authMsg" class="text-danger">{{authMsg}}</span>
+	         </div>
+	     </div>
+      </form>
+   </div>
+</div>
+<div class="dialog-footer">
+   <a class="btn btn-default" ng-click="closeThisDialog(0)">取 消</a>
+   <button type="submit" class="btn" ng-disabled="!changeclusterNameForm.$valid" ng-class="{'btn-primary':changeclusterNameForm.$valid,'btn-default':!changeclusterNameForm.$valid}" ng-click="changeclusterNameFn()">修改</button>
+</div>
+ 

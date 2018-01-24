@@ -1,0 +1,56 @@
+<div class="breadcont clearfix">
+   <ol class="breadcrumb pull-left">
+      <li><a ui-sref="app.listQuartz">定时任务列表</a>
+      </li>
+      <li>{{$stateParams.quartzName}}</li>
+      <li class="active">
+        job管理
+      </li>
+   </ol>
+</div>
+
+<div class="cont-body">
+	<div class="row clearfix">
+	   <div class="col-sm-6">
+	      <a ui-sref="app.quartz_info({quartzName:$stateParams.quartzName,quartzId:quartzId})" class="btn-cd-icon"><span class="cd-ic_adduser">
+                <span class="path1"></span><span class="path2"></span><span class="path3"></span>
+                </span> 添加Job</a>
+	   </div>
+	</div>
+	<table class="table table_title table-striped cd-table">
+   <thead>
+      <tr>
+      	 <th>所属定时任务</th>
+         <th>job名称</th>
+         <th>job状态</th>
+         <th>操作</th>
+      </tr>
+   </thead>
+   <tbody>
+      <tr ng-if="!listoff">
+         <td colspan="4">
+           <p class="noresult"><em class="icon-info"></em> {{warninginfo}}</p>
+         </td>
+      </tr>
+      <tr ng-repeat="item in quartzList.rows">
+         <td>{{item.quartz_name}}</td>
+         <td>{{item.jobName}}</td>
+         <td>{{item.jobStatus}}</td>
+        <td>
+            <button class="btn btn-info btn-sm" ng-click="stopQuartzJobOne($index,item.jobName)">暂停Job
+            </button>
+            <button class="btn btn-info btn-sm" ng-click="resumeQuartzJobOne($index,item.jobName)">恢复Job
+            </button>
+            <button class="btn btn-danger btn-sm" ng-click="deleteQuartzJobOne($index,item.jobName)">
+                <em class="fa fa-trash"></em>
+            </button>
+         </td> 
+      </tr>
+      <tr ng-show="listoff">
+         <td colspan="4">
+            <page page-count="pageCount" page-num="pageNum" on-page-change="onPageChange()"></page>
+         </td>
+      </tr>
+   </tbody>
+</table>
+</div>

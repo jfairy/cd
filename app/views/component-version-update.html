@@ -1,0 +1,157 @@
+<div class="breadcont clearfix">
+   <ol class="breadcrumb pull-left">
+      <li><a ui-sref="app.component_manage">组件列表</a>
+      </li>
+      <li>
+      	<a ui-sref="app.component_detail({componentName:$stateParams.componentName,resourceId:versionDetail.resourceId})">{{$stateParams.componentName}}</a>
+      </li>
+      <li class="active">
+      	{{versionDetail.versionName}}  
+      </li>
+   </ol>
+</div>
+<div class="cont-body">
+	
+
+<form name="formadd" ng-submit="updateVersionFn()" novalidate="" class="form-validate form-horizontal">
+    <div class="panel">
+       <div class="panel-body">
+    	 <fieldset>
+	          <div class="form-group">
+	             <label class="col-sm-2 control-label">版本名称：</label>
+	             <div class="col-sm-6">
+	                 <div class="form-control-static" ng-bind="versionDetail.versionName"></div>
+	             </div>
+	          </div>
+         </fieldset>
+         <fieldset>
+	          <div class="form-group">
+	             <label class="col-sm-2 control-label">版本描述：</label>
+	             <div class="col-sm-6">
+	                  <div class="form-control-static" ng-bind="versionDetail.versionDesc"></div>
+	             </div>
+	          </div>
+         </fieldset>
+         <fieldset>
+	          <div class="form-group">
+	             <label class="col-sm-2 control-label">组件类型：</label>
+	             <div class="col-sm-2"> 
+                     <div class="form-control-static" ng-bind="versionDetail.type==1?'salt组件':'通用组件'"></div>
+                 </div>
+	          </div>
+         </fieldset>
+         <fieldset>
+	          <div class="form-group">
+	             <label class="col-sm-2 control-label">工件包：</label>
+	             <div class="col-sm-6">
+	                 <input type="text" name="url" required="" placeholder="选择已有工件包" class="form-control" ng-model="url" ng-readonly="true" ng-focus="searchWorkpiecePackage()" validurl />
+	                 <span ng-show="validateInput(formadd,'url', 'required')" class="text-danger">请填写工件包地址！</span>
+	                 <!-- <span ng-show="validateInput(formadd,'url', 'url')" class="text-danger">工件包地址错误或工件包不存在！</span> --> 
+	             </div>
+	             <div class="col-sm-4">
+	                    <a href="javascript:;" class="btn btn-info" ng-click="newPackage()">上传新的工件包</a>
+	             </div>
+	          </div>
+         </fieldset>
+         <fieldset>
+	          <div class="form-group">
+	             <label class="col-sm-2 control-label">配置参数：</label>
+	             <div class="col-sm-10">
+	                 <tabset justified="true" class="bg-white p0">
+	            		<tab>
+	            		     <tab-heading>输入参数</tab-heading>
+                             <div>
+                             	<div class="table-responsive" style="padding:10px;">
+                                 	<table class="table table-bordered table-hover table-striped">
+                                 		<thead>
+                                 			<tr>
+				                              <th>参数名
+				                                   <small>(参数名由字母、数字、.、_组成，最多32位)</small>
+				                              </th>
+				                              <th>参数值
+				                                  <small>(参数值不允许为中文，最多128位)</small>
+				                              </th>
+											  <th>参数类型</th>
+				                              <th>操作</th>
+				                           </tr>
+                                 		</thead>
+                                 		<tbody> 
+					                 		<tr ng-repeat="inputItem in inputConfigs track by $index">
+					                 			<td>
+					                 				<input type="text" name="inputkey{{$index}}" reruired="" ng-maxlength="32" ng-pattern="/^[a-zA-Z0-9_.]*$/" ng-model="inputItem.key" class="form-control"> 
+					                 				<span class="text-danger" ng-show="validateInput(formadd,'inputkey{{$index}}','maxlength')">参数名最多32位！</span>
+					                 				<span class="text-danger" ng-show="validateInput(formadd,'inputkey{{$index}}','pattern')">参数名不符合规则(参数名由字母、数字、.、_组成)！</span>
+					                 			</td>
+					                 			<td>
+					                 				<input type="text" id="inputvalue{{$index}}" name="inputvalue{{$index}}" reruired="" ng-maxlength="128" ng-pattern="/^[^\u4e00-\u9fa5]{0,}$/" ng-model="inputItem.value" class="form-control"> 
+					                 				<span class="text-danger" ng-show="validateInput(formadd,'inputvalue{{$index}}','maxlength')">参数值最多128位！</span>
+					                 				<span class="text-danger" ng-show="validateInput(formadd,'inputvalue{{$index}}','pattern')">参数值不能为中文！</span>
+					                 			</td>
+												<td>
+													<input type="checkbox" ng-checked="passwordChecked(inputItem,'inputvalue'+$index)" ng-click="passwordTypeChange(inputItem,'inputvalue'+$index)">密码参数</input>
+												</td>
+					                 			<td>
+					                 				<a href="" ng-click="del('inputConfigs',$index)" class="text-danger"><em class="fa fa-trash"></em></a>
+					                 			</td>
+					                 		</tr>
+					                 	</tbody>
+                                 	</table>
+                                 	<a href="javascript:;" class="btn btn-info btn-sm mt20" ng-click="add('inputConfigs')"><em class="fa fa-plus"></em> 添加配置</a>
+                                 </div>
+                             </div>
+	            		</tab>
+	            		<tab>
+	            		     <tab-heading>输出参数</tab-heading>
+                             <div>
+                                 <div class="table-responsive" style="padding:10px;">
+                                 	<table class="table table-bordered table-hover table-striped">
+                                 		<thead>
+                                 			<tr>
+				                              <th>参数名
+				                              <small>(参数名由字母、数字、.、_组成，最多32位)</small></th>
+				                              <th>参数值
+				                              <small>(参数值不允许为中文，最多128位)</th>
+											  <th>参数类型</th>
+				                              <th>操作</th>
+				                           </tr>
+                                 		</thead>
+                                 		<tbody> 
+					                 		<tr ng-repeat="outputItem in outputConfigs track by $index">
+					                 			<td>
+					                 				<input type="text" name="outputkey{{$index}}" ng-maxlength="32" ng-pattern="/^[a-zA-Z0-9_.]*$/" ng-model="outputItem.key" class="form-control">
+					                 				<span class="text-danger" ng-show="validateInput(formadd,'outputkey{{$index}}','maxlength')">参数名最多32位！</span>
+					                 				<span class="text-danger" ng-show="validateInput(formadd,'outputkey{{$index}}','pattern')">参数名不符合规则(参数名由字母、数字、.、_组成)！</span> 
+					                 			</td>
+					                 			<td> 
+					                 				<input type="text" id="outputvalue{{$index}}" name="outputvalue{{$index}}" ng-maxlength="128" ng-pattern="/^[^\u4e00-\u9fa5]{0,}$/" ng-model="outputItem.value" class="form-control"> 
+					                 				<span class="text-danger" ng-show="validateInput(formadd,'outputvalue{{$index}}','maxlength')">参数值最多128位！</span>
+					                 				<span class="text-danger" ng-show="validateInput(formadd,'outputvalue{{$index}}','pattern')">参数值不能为中文！</span>
+					                 			</td>
+												<td>
+													<input type="checkbox" ng-checked="passwordChecked(outputItem,'outputvalue'+$index)" ng-click="passwordTypeChange(outputItem,'outputvalue'+$index)">密码参数</input>
+												</td>
+					                 			<td>
+					                 				<a href="" ng-click="del('outputConfigs',$index)" class="text-danger"><em class="fa fa-trash"></em></a>
+					                 			</td>
+					                 		</tr>
+					                 	</tbody>
+                                 	</table>
+                                 	<a href="javascript:;" class="btn btn-info btn-sm mt20" ng-click="add('outputConfigs')"><em class="fa fa-plus"></em> 添加配置</a>
+                                 </div>
+                             </div>
+	            		</tab>
+	            	</tabset>
+	             </div>
+	          </div>
+         </fieldset>
+       </div>  
+       <div class="panel-footer text-center"> 
+     
+         <!-- <button type="submit" class="btn btn-info">更新</button> --> 
+         <button type="submit" class="btn" ng-disabled="!formadd.$valid" ng-class="{'btn-default':!formadd.$valid,'btn-info':formadd.$valid}">更新</button> 
+          <!-- <button type="submit" class="btn btn-default" ng-disabled="!formadd.$valid" ng-class="{'btn-default':!formadd.$valid,'btn-info':formadd.$valid}">更新</button>  -->
+       </div>
+    </div>
+</form>
+</div>
+ 

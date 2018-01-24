@@ -1,0 +1,51 @@
+@-webkit-keyframes cloudAni{
+	0%{-webkit-transform:translate3d(0,0,0);transform:translate3d(0,0,0)}
+	100%{-webkit-transform:translate3d(-50%,0,0);transform:translate3d(-50%,0,0)}
+}
+@keyframes cloudAni{
+	0%{-webkit-transform:translate3d(0,0,0);transform:translate3d(0,0,0)}
+	100%{-webkit-transform:translate3d(-50%,0,0);transform:translate3d(-50%,0,0)}
+}	
+
+html,body { height: 100%; }	
+body {
+	background-color: #ffffff;
+	background-image: linear-gradient(60deg, rgba(107, 144, 226,1) 5%, rgba(158, 200, 215,1));
+	background-image: -moz-linear-gradient(60deg, rgba(107, 144, 226, 1) 5%, rgba(158, 200, 215,1));
+	background-image: -webkit-linear-gradient(60deg, rgba(107, 144, 226, 1) 5%, rgba(158, 200, 215,1));
+	background-image: -ms-linear-gradient(60deg, rgba(107, 144, 226, 1) 5%, rgba(158, 200, 215,1));
+	font-family: "Source Sans Pro", Helvetica, sans-serif;
+}
+.login_bg { height: 100%; min-height: 650px; position: relative; overflow:hidden; background: url(../images/banner.jpg) 0 0/auto 109%; }	 
+.login-bg-cloud{position:absolute;top:0;left:0;height:100%}
+.login-bg-cloud{
+	background:url(../images/clouds.png) 0 0;width:250.625em;min-height:650px;-webkit-animation:cloudAni 50s linear infinite;animation:cloudAni 50s linear infinite;
+}
+
+.wdlogin { width: 450px; padding: 20px; height: 460px; border-radius: 5px;  background: rgba(0, 0, 0, 0.5); position: absolute; left: 0; top: 0; right: 0; bottom: 0; margin: auto; }
+
+.wdlogin h1 { font-size: 1.85em; margin: 0 0 0.525em 0; color: #fff; font-weight: normal; text-align: center; margin-bottom: 30px; }
+
+.wdlogin h2 { font-size: 1.5em; margin: 0 0 0.525em 0; font-weight: normal; text-align: center; margin-bottom: 20px; color: white;}
+section header { margin: 0 -20px; }
+.avatar { position: relative; margin-bottom: 1.5em; display: block; height: 80px; }
+/* .avatar:before { content: ''; display: block; position: absolute; top: 50%; width: 100%; height: 1px; background: #c8cccf; z-index: 1; } */
+.avatar img { display: block; margin: 0 auto; padding: 10px 20px; max-height:100%; position: relative;	z-index: 2;	}	
+				
+.wdlogin  small{ color: #fff; }		
+.wdlogin .pt-lg { color: #fff; }	
+.wdlogin .checkbox label { color: #fff; }
+.loginbtn { background: #557DA0; }
+.wdlogin .form-control-feedback { left: auto; right: 0; top: 10px; }
+
+.has-feedback .form-control,.loginbtn,.btn.btn-default ,.agree{ width: 70%; margin: 0 auto; }
+input::-ms-input-placeholder{text-align: center;}
+input::-webkit-input-placeholder{text-align: center;}
+.prompt { text-align: center; display: block; }
+
+.rember { height:100%; width: 18%; display: inline-block; margin-left: 15%; color:white;font-size: 12px; }
+.rember label { cursor: pointer; margin: 0; font-weight: normal; }
+.rember input { height:15px; width:15px; vertical-align: middle; margin: 0;  }
+
+.login-form { margin-top: 35px; }
+.wdlogin .alert { width: 70%; margin: 0 auto; }

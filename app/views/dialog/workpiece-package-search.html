@@ -1,0 +1,42 @@
+<div class="dialog-header">
+    <h4>搜索工件</h4>
+</div>
+<div class="dialog-body">
+   <div class="form-horizontal"> 
+        <div class="search clearfix">
+           <input type="text" ng-keyup="workpiecePackageSearch()" class="form-control" placeholder="按工件包名搜索" ng-model="workpiecePackageSearchval" />
+           <em class="icon-magnifier"></em>
+        </div> 
+        <table class="table table-bordered mt20">
+		   <thead>
+		      <tr>
+				 <th>单选</th>
+		         <th>工件名称</th>
+		      </tr>
+		   </thead>
+		   <tbody>
+		      <tr ng-if="!searchListoff">
+		         <td colspan="2">
+		           <p class="noresult"><em class="icon-info"></em> {{searchWarninginfo}}</p>
+		         </td>
+		      </tr>
+		      <tr ng-repeat="item in searchWorkpiecePackageList track by $index">
+		         <td>
+					<input type="radio" name="workpiecePackage" ng-model="item.ischecked" ng-checked="workpiecePackageCheck(item)" ng-click="workpiecePackageClick(item,$event)" />
+		         </td>
+		         <td>{{item.resourceName}}</td>
+		      </tr>
+		      <tr ng-show="searchListoff">
+		         <td colspan="2">
+		            <page page-count="searchPageCount" page-num="searchPageNum" on-page-change="onSearchPageChange(searchPageNum)"></page>  
+		         </td>
+		      </tr>
+		   </tbody>
+		</table>
+   </div>
+</div>
+<div class="dialog-footer">
+   <a class="btn btn-info" ng-click="closeThisDialog(0)">取消</a>
+   <button class="btn btn-info" ng-disabled="workpiecePackageName.length==0" ng-click="confirmWorkpiecePackage()">确定</button>
+</div>
+ 

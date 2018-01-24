@@ -1,0 +1,32 @@
+<div class="breadcont clearfix">
+   <ol class="breadcrumb pull-left">
+      <li><a ui-sref="app.blueprint_ins_manage">蓝图实例列表</a>
+      </li>
+      <li>
+      	{{$stateParams.insName}}
+      </li>
+      <li class="active">
+      	快照列表
+      </li>
+   </ol>
+</div>
+<div class="cont-body">
+  
+
+<table class="table table_title">
+   <thead>
+      <tr>
+         <th>快照名称</th>
+         <th>操作</th>
+      </tr>
+   </thead>
+   <tbody> 
+	  <tr ng-repeat="item in snapshootList">
+ 	    <td ng-bind="item.snapshotName"></td>
+        <td>
+        	<button class="btn btn-sm btn-info" ng-click="rollBack(item.snapshotId)">回滚</button>
+        </td>
+	  </tr>
+	</tbody>
+</table>
+</div>

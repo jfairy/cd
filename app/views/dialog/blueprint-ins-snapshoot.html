@@ -1,0 +1,24 @@
+<div class="dialog-header">
+    <h4>生成快照</h4>
+</div>
+<div class="dialog-body">
+   <div class="form-horizontal">  
+      <form name="snapshootForm">
+      	 <div class="form-group">
+	         <label class="col-lg-3 control-label text-right">快照名称：</label>
+	         <div class="col-lg-9">
+	            <input type="text" ng-focus="authMsg=''" ng-model="name" class="form-control" required="" ng-maxlength="32" name="name" autocomplete="off" />
+	            <div><small>名称最多32位</small></div>
+	            <span ng-show="validateInput(snapshootForm,'name', 'required')" class="text-danger">请输入快照名称！</span>
+	            <span ng-show="validateInput(snapshootForm,'name', 'maxlength')" class="text-danger">名称最多32位！</span>  
+	            <span ng-show="authMsg" class="text-danger">{{authMsg}}</span>
+	         </div>
+	     </div>
+      </form>
+   </div>
+</div>
+<div class="dialog-footer">
+   <a class="btn btn-info" ng-click="closeThisDialog(0)">取消</a>
+   <button type="submit" class="btn" ng-disabled="!snapshootForm.$valid" ng-class="{'btn-primary':snapshootForm.$valid,'btn-default':!snapshootForm.$valid}" ng-click="saveSnapshootFn()">保存</button>
+</div>
+ 

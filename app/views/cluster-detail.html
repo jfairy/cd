@@ -1,0 +1,89 @@
+<div ng-controller="nodesListCtrl">
+	
+<div class="cont-header clearfix">
+   <ol class="breadcrumb pull-left">
+      <li><a ui-sref="app.cluster_manage">环境列表</a>
+      </li>
+      <li class="active">
+      	{{clusterDetail.name}}
+        <a href="" ng-click="openchangeCluster(clusterDetail.name)">
+        	<span class="cd-ic_border_color_24px">
+                <span class="path1"></span><span class="path2"></span>
+            </span>
+        </a>
+      </li>
+   </ol>
+   <div class="pull-right"> 
+	   <a class="btn-cd-icon" ng-click="openDelCluster(clusterDetail)"><span class="cd-ic_delete">
+                
+                </span> 删除环境</a>
+	   <a href="#" ui-sref="app.node_add({clustername:clusterDetail.name,clusterid:clusterDetail.id})" class="btn-cd-icon"><span class="cd-ic_adduser">
+                <span class="path1"></span><span class="path2"></span><span class="path3"></span>
+                </span> 添加主机</a>
+	   <a type="button" class="btn-cd-icon" ng-click="openDelNodeFn(params,index)"><span class="cd-ic_delete">
+	                  
+	                  </span> 批量删除主机</a>
+   </div>
+</div>
+ 
+<div class="cont-body">
+<div>
+	<table class="table table_title table-striped cd-table">
+	    <thead>
+	    <tr>
+	        <th check-all="check-all">
+	            <div data-toggle="tooltip" data-title="Check All" class="checkbox c-checkbox">
+	                <label>
+	                    <input type="checkbox" />
+	                    <span class="fa fa-check"></span>
+	                </label>
+	            </div>
+	        </th>
+	        <th>名称</th>
+	        <th>描述</th>
+	        <th>IP地址</th>
+	        <th>操作</th>
+	    </tr>
+	    </thead>
+	    <tbody>
+	    <tr ng-if="!listoff">
+	        <td colspan="5">
+	            <p class="noresult"><em class="icon-info"></em> {{warninginfo}}</p>
+	        </td>
+	    </tr>
+	    <tr ng-repeat="item in nodesList">
+	        <td>
+	            <div class="checkbox c-checkbox">
+	                <label>
+	                    <input type="checkbox" id="{{item.id}}" save-id="{{item.id}}" checkapp-id="checkappId" ng-checked="{{item.ischecked}}" />
+	                    <span class="fa fa-check"></span>
+	                </label>
+	            </div>
+	        </td>
+	        <td>{{item.name}}</td>
+	        <td>{{item.description}}</td>
+	        <td>{{item.ip}}</td>
+	        <td>
+	        	<button ui-sref="app.node_edit({clusterid:clusterDetail.id,nodeid:item.id})" class="btn btn-cd-default">编辑</button>
+	            <button class="btn btn-cd-default btn-cd-default-del" ng-click="openDelNodeFn(item.id,$index)">删 除
+	            </button>
+	            
+	        </td>
+	    </tr>
+	    <tr ng-show="listoff">
+	        <td colspan="5">
+	            <page page-count="pageCount" page-num="pageNum" on-page-change="onPageChange()"></page>
+	        </td>
+	    </tr>
+	    </tbody>
+	</table>
+</div>
+</div>
+
+</div>
+
+
+
+
+
+ 

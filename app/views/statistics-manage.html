@@ -1,0 +1,103 @@
+<div class="cont-body cont_sta">
+  <div class="panel mt20">
+    <div class="panel-body">
+<form role="form" class="form-horizontal clearfix form-log">
+  <div class="col-sm-4">
+     <div class="form-group"> 
+         <label class="col-sm-4 control-label">蓝图实例：</label> 
+         <div class="col-sm-8"> 
+           <select ng-model="blueprint" class="form-control"  ng-options="item as item.INSTANCE_NAME for item in blueprintInstancesList" >
+
+           </select>
+         </div>
+     </div>
+  </div>
+ <div class="col-sm-4">
+     <div class="form-group"> 
+         <label class="col-sm-4 control-label">蓝图过程：</label> 
+         <div class="col-sm-8"> 
+           <select ng-model="flow" class="form-control"  ng-options="item as item.FLOW_NAME for item in flowList" >
+
+           </select>
+         </div>
+     </div>
+  </div>
+  <div class="col-sm-4">
+     <div class="form-group"> 
+         <label class="col-sm-4 control-label">组件：</label> 
+         <div class="col-sm-8">
+       <select ng-model="component" class="form-control"  ng-options="item as item.nodeDisplay for item in componentList" >
+           </select>           
+         </div>
+     </div>
+  </div>
+  <div class="col-sm-4">
+     <div class="form-group"> 
+         <label class="col-sm-4 control-label">操作类型：</label> 
+         <div class="col-sm-8">
+           <select class="form-control" ng-model="op" ng-options="item.value as item.text for item in doList">
+               
+           </select> 
+         </div>
+     </div>
+  </div>
+  <div class="col-sm-4">
+     <div class="form-group"> 
+         <label class="col-sm-4 control-label">日期区间：</label> 
+         <div class="col-sm-8">
+             <input type="text" ruledate ng-model="daterange"  class="form-control daterange" data-time-picker="true" data-time-picker-increment="5" data-format="YYYY-MM-DD HH:mm:ss" />
+         </div>
+     </div>
+  </div>
+  <div class="col-sm-4">
+     <button type="button" class="btn btn-info" ng-click="querylog()">查询</button>
+  </div>    
+ </form>
+   </div>
+    </div>
+
+<div>
+成功率：{{resultData.succRate}}
+失败率：{{resultData.failRate}}
+总数：{{resultData.total}}
+</div>
+<table class="table table_title">
+    <thead>
+      <tr>
+      <th></th>
+        <th>蓝图实例</th>
+        <th>蓝图过程</th> 
+        <th>组件名称</th>
+        <th>组件过程</th>
+        <th>插件类型</th>
+        <th>开始日期</th>
+        <th>结束日期</th>
+        <th>操作时长(s)</th>
+        <th>操作结果</th>
+      </tr>
+    </thead>
+  <tbody>
+          <tr ng-if="!listoff">
+            <td colspan="10"> 
+                <!--<p class="noresult"><em class="icon-info"></em>{{warninginfo}}</p>-->
+                <p class="noresult"><em class="icon-info"></em></p>
+            </td>
+          </tr>
+            <tr ng-repeat="item in resultData.data">
+               <td>{{($index+1)}}</td>
+               <td>{{item.blueInstanceName}}</td>
+               <td>{{item.flowName}}</td> 
+               <td ng-bind="item.nodeDisplay||'无'"></td>
+               <td ng-bind="item.subFlowName||'无'"></td>
+               <td ng-bind="(doList|filter:item.op)[0].text||'无'"></td>
+               <td ng-bind="item.startTime||'无'"></td>
+               <td ng-bind="item.endTime||'无'"></td>
+               <td ng-bind="item.period||'1'"></td>
+               <td ng-bind="resultText(item.result)||'无'"></td>
+             </tr>
+     </tbody>
+  
+</table> 
+</div>
+
+

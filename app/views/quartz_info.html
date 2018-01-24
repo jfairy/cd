@@ -1,0 +1,50 @@
+<div class="breadcont clearfix">
+   <ol class="breadcrumb pull-left">
+      <li><a ui-sref="app.listQuartz">定时任务列表</a>
+      </li>
+      <li>
+          {{$stateParams.quartzName}}
+      </li>
+      <li class="active">
+      	添加job
+      </li>
+   </ol>
+</div>
+
+<div class="cont-body">
+<form role="form" class="form-horizontal clearfix form-log">
+<div class="panel">
+<div class="panel-body">
+     <div class="col-sm-2 text-right form-control-static">
+                操作选择： 
+     </div>
+     
+	  <div class="col-sm-5">
+	     <div class="form-group"> 
+	         <label class="col-sm-3 control-label">蓝图实例：</label> 
+	         <div class="col-sm-9">
+	
+	           <select ng-change="change(engineer)" ng-model = "engineer" class="form-control"  ng-options="item.INSTANCE_NAME for item in tree" >
+	
+	           </select>
+	         </div>
+	     </div>
+	  </div>
+		  
+	  <div class="col-sm-5">
+	     <div class="form-group"> 
+	         <label class="col-sm-3 control-label">操作：</label> 
+	         <div class="col-sm-9">
+			  <select  ng-model = "component1" class="form-control"  ng-options="it.FLOW_TYPE for it in component" >
+	           </select>
+	                       
+	         </div>
+	     </div>
+	  </div>
+</div>
+<div class="panel-footer text-center">
+	<button type="button" class="btn btn-info" ng-click="addQuartzJob()">添加Job</button>
+</div>
+</div>
+</form>
+</div>
